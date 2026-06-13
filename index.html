@@ -7,385 +7,322 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
   :root {
-    --bg: #f8f7f4;
-    --surface: #ffffff;
-    --border: rgba(0,0,0,0.10);
-    --border-strong: rgba(0,0,0,0.18);
-    --text: #1a1a18;
-    --muted: #6b6b67;
-    --hint: #9b9b96;
-    --radius: 10px;
-    --purple-bg: #EEEDFE; --purple-text: #3C3489;
-    --teal-bg: #E1F5EE;   --teal-text: #085041;
-    --amber-bg: #FAEEDA;  --amber-text: #633806;
-    --coral-bg: #FAECE7;  --coral-text: #993C1D;
-    --green-bg: #EAF3DE;  --green-text: #27500A;
-    --red-bg: #FCEBEB;    --red-text: #A32D2D;
-    --blue-bg: #E6F1FB;   --blue-text: #0C447C;
+    --bg: #f8f7f4; --surface: #ffffff; --border: rgba(0,0,0,0.10); --border-strong: rgba(0,0,0,0.18);
+    --text: #1a1a18; --muted: #6b6b67; --hint: #9b9b96; --radius: 10px;
+    --purple-bg:#EEEDFE;--purple-text:#3C3489;--teal-bg:#E1F5EE;--teal-text:#085041;
+    --amber-bg:#FAEEDA;--amber-text:#633806;--coral-bg:#FAECE7;--coral-text:#993C1D;
+    --green-bg:#EAF3DE;--green-text:#27500A;--red-bg:#FCEBEB;--red-text:#A32D2D;--blue-bg:#E6F1FB;--blue-text:#0C447C;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
-  header { background: var(--surface); border-bottom: 0.5px solid var(--border); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
-  header h1 { font-size: 15px; font-weight: 500; }
-  #last-updated { font-size: 12px; color: var(--muted); }
-  .tabs { display: flex; gap: 0; border-bottom: 0.5px solid var(--border); background: var(--surface); padding: 0 24px; }
-  .tab { padding: 10px 18px; font-size: 13px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -0.5px; transition: color 0.15s; white-space: nowrap; }
-  .tab:hover { color: var(--text); }
-  .tab.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
-  .page { display: none; padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
-  .page.active { display: block; }
-  .loading { display: flex; align-items: center; justify-content: center; min-height: 300px; flex-direction: column; gap: 12px; }
-  .spinner { width: 28px; height: 28px; border: 2px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-msg { font-size: 13px; color: var(--muted); }
-  .error-box { background: var(--red-bg); color: var(--red-text); border-radius: var(--radius); padding: 16px 20px; font-size: 13px; margin: 20px 0; }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-  .stat { background: var(--bg); border-radius: 8px; padding: 12px 14px; }
-  .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-  .stat-value { font-size: 22px; font-weight: 500; }
-  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .section-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 20px 0 8px; }
-  .tbl-wrap { overflow-x: auto; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  thead th { font-size: 10px; font-weight: 500; color: var(--muted); padding: 8px 10px; border-bottom: 0.5px solid var(--border); text-align: right; white-space: nowrap; }
-  thead th.left { text-align: left; }
-  tbody td { padding: 8px 10px; border-bottom: 0.5px solid var(--border); text-align: right; white-space: nowrap; }
-  tbody td.left { text-align: left; }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: var(--bg); }
-  tfoot td { padding: 8px 10px; text-align: right; font-weight: 500; font-size: 12px; border-top: 1px solid var(--border-strong); background: var(--bg); }
-  tfoot td.left { text-align: left; }
-  .sep-row td { border-top: 1.5px solid var(--border-strong); background: var(--bg); font-weight: 500; padding: 8px 10px; text-align: right; }
-  .sep-row td.left { text-align: left; }
-  .agg-row td { background: var(--bg); font-weight: 500; padding: 9px 10px; text-align: right; border-bottom: 0.5px solid var(--border); }
-  .agg-row td.left { text-align: left; }
-  .agg-row.final td { border-top: 1.5px solid var(--border-strong); border-bottom: none; }
-  .fh { background: var(--purple-bg); color: var(--purple-text); font-size: 10px; font-weight: 500; }
-  .cnvh { background: var(--amber-bg); color: var(--amber-text); font-size: 10px; font-weight: 500; }
-  .ch { background: var(--coral-bg); color: var(--coral-text); font-size: 10px; font-weight: 500; }
-  .kh { background: var(--teal-bg); color: var(--teal-text); font-size: 10px; font-weight: 500; }
-  .badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 4px; }
-  .b-search { background: var(--blue-bg); color: var(--blue-text); }
-  .b-pmax { background: var(--purple-bg); color: var(--purple-text); }
-  .b-new { background: var(--green-bg); color: var(--green-text); }
-  .good { color: #3B6D11; }
-  .warn { color: #BA7517; }
-  .muted-val { color: var(--hint); }
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
-  /* Insights */
-  .insight-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; display: flex; gap: 12px; }
-  .insight-card.c-green { border-left: 3px solid #639922; }
-  .insight-card.c-red { border-left: 3px solid #E24B4A; }
-  .insight-card.c-amber { border-left: 3px solid #BA7517; }
-  .insight-card.c-blue { border-left: 3px solid #378ADD; }
-  .card-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
-  .card-detail { font-size: 12px; color: var(--muted); line-height: 1.55; }
-  .card-detail strong { font-weight: 500; color: var(--text); }
-  .ibadge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
-  .b-red { background: var(--red-bg); color: var(--red-text); }
-  .b-green { background: var(--green-bg); color: var(--green-text); }
-  .b-amber { background: var(--amber-bg); color: var(--amber-text); }
-  .b-blue { background: var(--blue-bg); color: var(--blue-text); }
-  .pacing-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 6px; }
-  .pacing-day { text-align: center; }
-  .pacing-lbl { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
-  .pacing-bar-wrap { height: 52px; display: flex; align-items: flex-end; justify-content: center; }
-  .pacing-bar { width: 26px; border-radius: 3px 3px 0 0; }
-  .pacing-spend { font-size: 10px; font-weight: 500; margin-top: 4px; }
-  .pacing-delta { font-size: 10px; margin-top: 1px; }
-  .bottom-line { background: var(--bg); border-radius: var(--radius); padding: 14px 16px; font-size: 13px; color: var(--muted); line-height: 1.6; margin-top: 6px; }
-  .bottom-line strong { color: var(--text); font-weight: 500; }
-  .divider { height: 0.5px; background: var(--border); margin: 20px 0; }
-  .chart-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
-  .chart-inner { position: relative; width: 100%; height: 220px; }
-  .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11px; color: var(--muted); margin-top: 10px; }
-  .chart-legend span { display: flex; align-items: center; gap: 5px; }
-  .legend-line { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
-  .note { font-size: 11px; color: var(--hint); margin-top: 8px; }
-  @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2,1fr); } .pacing-grid { grid-template-columns: repeat(4,1fr); } }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+  header{background:var(--surface);border-bottom:0.5px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  header h1{font-size:15px;font-weight:500;}
+  #last-updated{font-size:12px;color:var(--muted);}
+  .tabs{display:flex;border-bottom:0.5px solid var(--border);background:var(--surface);padding:0 24px;}
+  .tab{padding:10px 18px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:color .15s;white-space:nowrap;}
+  .tab:hover{color:var(--text);}
+  .tab.active{color:var(--text);border-bottom-color:var(--text);font-weight:500;}
+  .page{display:none;padding:20px 24px;max-width:1200px;margin:0 auto;}
+  .page.active{display:block;}
+  .loading{display:flex;align-items:center;justify-content:center;min-height:300px;flex-direction:column;gap:12px;}
+  .spinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-msg{font-size:13px;color:var(--muted);}
+  .error-box{background:var(--red-bg);color:var(--red-text);border-radius:var(--radius);padding:16px 20px;font-size:13px;margin:20px 0;white-space:pre-wrap;word-break:break-word;}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+  .stat{background:var(--bg);border-radius:8px;padding:12px 14px;}
+  .stat-label{font-size:11px;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-size:22px;font-weight:500;}
+  .stat-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+  .section-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:20px 0 8px;}
+  .tbl-wrap{overflow-x:auto;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  thead th{font-size:10px;font-weight:500;color:var(--muted);padding:8px 10px;border-bottom:0.5px solid var(--border);text-align:right;white-space:nowrap;}
+  thead th.left{text-align:left;}
+  tbody td{padding:8px 10px;border-bottom:0.5px solid var(--border);text-align:right;white-space:nowrap;}
+  tbody td.left{text-align:left;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:var(--bg);}
+  tfoot td{padding:8px 10px;text-align:right;font-weight:500;font-size:12px;border-top:1px solid var(--border-strong);background:var(--bg);}
+  tfoot td.left{text-align:left;}
+  .agg-row td{background:var(--bg);font-weight:500;padding:9px 10px;text-align:right;border-bottom:0.5px solid var(--border);}
+  .agg-row td.left{text-align:left;}
+  .agg-row.final td{border-top:1.5px solid var(--border-strong);border-bottom:none;}
+  .fh{background:var(--purple-bg);color:var(--purple-text);font-size:10px;font-weight:500;}
+  .cnvh{background:var(--amber-bg);color:var(--amber-text);font-size:10px;font-weight:500;}
+  .ch{background:var(--coral-bg);color:var(--coral-text);font-size:10px;font-weight:500;}
+  .kh{background:var(--teal-bg);color:var(--teal-text);font-size:10px;font-weight:500;}
+  .badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;}
+  .b-search{background:var(--blue-bg);color:var(--blue-text);}
+  .b-pmax{background:var(--purple-bg);color:var(--purple-text);}
+  .b-new{background:var(--green-bg);color:var(--green-text);}
+  .good{color:#3B6D11;} .warn{color:#BA7517;} .muted-val{color:var(--hint);}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+  .insight-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;display:flex;gap:12px;}
+  .insight-card.c-green{border-left:3px solid #639922;}
+  .insight-card.c-red{border-left:3px solid #E24B4A;}
+  .insight-card.c-amber{border-left:3px solid #BA7517;}
+  .insight-card.c-blue{border-left:3px solid #378ADD;}
+  .card-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+  .card-title{font-size:13px;font-weight:500;margin-bottom:4px;}
+  .card-detail{font-size:12px;color:var(--muted);line-height:1.55;}
+  .card-detail strong{font-weight:500;color:var(--text);}
+  .ibadge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+  .b-red{background:var(--red-bg);color:var(--red-text);}
+  .b-green{background:var(--green-bg);color:var(--green-text);}
+  .b-amber{background:var(--amber-bg);color:var(--amber-text);}
+  .b-blue{background:var(--blue-bg);color:var(--blue-text);}
+  .pacing-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:6px;}
+  .pacing-day{text-align:center;}
+  .pacing-lbl{font-size:10px;color:var(--muted);margin-bottom:4px;}
+  .pacing-bar-wrap{height:52px;display:flex;align-items:flex-end;justify-content:center;}
+  .pacing-bar{width:26px;border-radius:3px 3px 0 0;}
+  .pacing-spend{font-size:10px;font-weight:500;margin-top:4px;}
+  .pacing-delta{font-size:10px;margin-top:1px;}
+  .bottom-line{background:var(--bg);border-radius:var(--radius);padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.6;margin-top:6px;}
+  .bottom-line strong{color:var(--text);font-weight:500;}
+  .divider{height:0.5px;background:var(--border);margin:20px 0;}
+  .chart-wrap{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;}
+  .chart-inner{position:relative;width:100%;height:220px;}
+  .chart-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:10px;}
+  .chart-legend span{display:flex;align-items:center;gap:5px;}
+  .legend-line{width:12px;height:3px;border-radius:2px;display:inline-block;}
+  @media(max-width:700px){.stat-grid{grid-template-columns:repeat(2,1fr);}.pacing-grid{grid-template-columns:repeat(4,1fr);}}
 </style>
 </head>
 <body>
-
 <header>
   <h1>Modern Menopause — Google Ads Dashboard</h1>
   <span id="last-updated">Loading…</span>
 </header>
-
 <div class="tabs">
   <div class="tab active" onclick="showTab('insights')">💡 Insights</div>
   <div class="tab" onclick="showTab('campaigns')">📊 Campaigns &amp; Time Periods</div>
   <div class="tab" onclick="showTab('funnel')">🌐 Site Funnel</div>
 </div>
 
-<!-- ═══════════════ INSIGHTS TAB ═══════════════ -->
 <div id="tab-insights" class="page active">
   <div class="loading" id="loading-insights"><div class="spinner"></div><div class="loading-msg">Pulling yesterday's data…</div></div>
   <div id="content-insights" style="display:none"></div>
 </div>
-
-<!-- ═══════════════ CAMPAIGNS TAB ═══════════════ -->
 <div id="tab-campaigns" class="page">
   <div class="loading" id="loading-campaigns"><div class="spinner"></div><div class="loading-msg">Loading campaign data…</div></div>
   <div id="content-campaigns" style="display:none"></div>
 </div>
-
-<!-- ═══════════════ FUNNEL TAB ═══════════════ -->
 <div id="tab-funnel" class="page">
   <div class="loading" id="loading-funnel"><div class="spinner"></div><div class="loading-msg">Loading site funnel…</div></div>
   <div id="content-funnel" style="display:none"></div>
 </div>
 
 <script>
-// ─── TAB NAVIGATION ───────────────────────────────────────────────────────────
+// ── TAB NAV ─────────────────────────────────────────────────────────────────
 function showTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.remove('active'));
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const tabs = ['insights','campaigns','funnel'];
-  document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
+  const tabs=['insights','campaigns','funnel'];
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',tabs[i]===name));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
 }
 
-// ─── DATE HELPERS ────────────────────────────────────────────────────────────
-function yesterday() {
-  const d = new Date(); d.setDate(d.getDate()-1);
-  return d.toISOString().slice(0,10);
-}
-function daysAgo(n) {
-  const d = new Date(); d.setDate(d.getDate()-n);
-  return d.toISOString().slice(0,10);
-}
-function fmtDate(iso) {
-  const d = new Date(iso+'T12:00:00Z');
-  return d.toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric'});
-}
+// ── DATE HELPERS ─────────────────────────────────────────────────────────────
+function daysAgo(n){const d=new Date();d.setDate(d.getDate()-n);return d.toISOString().slice(0,10);}
+function fmtDate(iso){return new Date(iso+'T12:00:00Z').toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric'});}
 
-// ─── ANTHROPIC API CALL ──────────────────────────────────────────────────────
-async function callClaude(prompt) {
+// ── FORMAT HELPERS ───────────────────────────────────────────────────────────
+const n=v=>+(v||0);
+const fmt$=v=>v>0?'$'+Math.round(v).toLocaleString():'—';
+const fmtPct=(a,b)=>n(b)>0?(n(a)/n(b)*100).toFixed(1)+'%':'—';
+const fmtCpa=(cost,conv)=>n(conv)>0?'$'+Math.round(n(cost)/n(conv)).toLocaleString():'—';
+const fmtCvr=(conv,clicks)=>n(conv)>0&&n(clicks)>0?(n(conv)/n(clicks)*100).toFixed(2)+'%':'—';
+const fmtRoas=v=>n(v)>0?(n(v)/100).toFixed(2)+'x':'—';
+function cpaColor(cpa){if(!cpa||cpa==='—')return 'muted-val';const v=parseInt(cpa.replace(/[$,]/g,''));return v<=150?'good':v<=300?'':' warn';}
+
+// ── API CALL ─────────────────────────────────────────────────────────────────
+async function callClaude(messages, systemPrompt) {
+  const body = {
+    model: 'claude-sonnet-4-6',
+    max_tokens: 4000,
+    system: systemPrompt || 'You are a data assistant. Always respond with valid JSON only — no markdown fences, no prose.',
+    mcp_servers: [
+      {type:'url',url:'https://mcp.windsor.ai',name:'windsor'},
+      {type:'url',url:'https://mcp.posthog.com/mcp',name:'posthog'}
+    ],
+    messages
+  };
   const res = await fetch('https://mm-ads-proxy.novel-rahman.workers.dev/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1000,
-      mcp_servers: [
-        { type: 'url', url: 'https://mcp.windsor.ai', name: 'windsor' },
-        { type: 'url', url: 'https://mcp.posthog.com/mcp', name: 'posthog' }
-      ],
-      messages: [{ role: 'user', content: prompt }]
-    })
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(body)
   });
+  if(!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
   const data = await res.json();
-  const results = data.content.filter(b => b.type === 'mcp_tool_result').map(b => {
-    try { return JSON.parse(b.content?.[0]?.text || '[]'); } catch { return b.content?.[0]?.text || ''; }
-  });
-  const text = data.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
-  return { results, text, raw: data };
+  if(data.error) throw new Error(data.error.message||JSON.stringify(data.error));
+  // Extract text blocks
+  const textBlocks = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text);
+  const fullText = textBlocks.join('\n').trim();
+  return fullText;
 }
 
-// ─── FORMAT HELPERS ──────────────────────────────────────────────────────────
-const fmt$ = v => v != null && v > 0 ? '$'+Math.round(v).toLocaleString() : '—';
-const fmtPct = v => v != null && v > 0 ? (v*100).toFixed(1)+'%' : '—';
-const fmtNum = v => v != null ? v.toLocaleString() : '—';
-const fmtRoas = v => v != null && v > 0 ? (v/100).toFixed(2)+'x' : '—';
-const fmtCvr = (conv, clicks) => conv > 0 && clicks > 0 ? (conv/clicks*100).toFixed(2)+'%' : '—';
-const fmtCpa = (cost, conv) => conv > 0 ? '$'+Math.round(cost/conv).toLocaleString() : '—';
-const fmtR = (a, b) => a > 0 && b > 0 ? (a/b*100).toFixed(1)+'%' : '—';
-function colorClass(val, good, warn) {
-  if (!val || val === '—') return 'muted-val';
-  const n = parseFloat(val.replace(/[$,%x]/g,''));
-  if (n <= good) return 'good';
-  if (n <= warn) return '';
-  return 'warn';
-}
-function cpaColor(cpa) {
-  if (!cpa || cpa === '—') return 'muted-val';
-  const n = parseInt(cpa.replace(/[$,]/g,''));
-  if (n <= 150) return 'good';
-  if (n <= 300) return '';
-  return 'warn';
+// ── SAFE JSON PARSE ──────────────────────────────────────────────────────────
+function safeParseJSON(text) {
+  // Strip markdown fences
+  let s = text.replace(/```json\s*/gi,'').replace(/```\s*/g,'').trim();
+  // Find first { or [
+  const start = Math.min(
+    s.indexOf('{') >= 0 ? s.indexOf('{') : Infinity,
+    s.indexOf('[') >= 0 ? s.indexOf('[') : Infinity
+  );
+  if(start===Infinity) throw new Error('No JSON found in: '+s.slice(0,200));
+  s = s.slice(start);
+  // Find matching close
+  const opener = s[0], closer = opener==='{' ? '}' : ']';
+  let depth=0, i=0;
+  for(;i<s.length;i++){if(s[i]===opener)depth++;else if(s[i]===closer){depth--;if(depth===0){i++;break;}}}
+  return JSON.parse(s.slice(0,i));
 }
 
-// ─── MAIN DATA LOAD ──────────────────────────────────────────────────────────
+// ── MAIN ─────────────────────────────────────────────────────────────────────
 async function loadDashboard() {
-  const yest = yesterday();
-  const ago7 = daysAgo(7); const ago14 = daysAgo(14); const ago30 = daysAgo(30);
-  document.getElementById('last-updated').textContent = 'Data for ' + fmtDate(yest) + ' · Loaded ' + new Date().toLocaleTimeString('en-CA',{hour:'2-digit',minute:'2-digit'});
-
-  // Run all 3 tabs in parallel
-  Promise.all([
-    loadCampaigns(yest, ago7, ago14, ago30),
-    loadFunnel(ago30, ago14, ago7, yest),
-  ]);
+  const yest=daysAgo(1), ago7=daysAgo(7), ago14=daysAgo(14), ago30=daysAgo(30);
+  document.getElementById('last-updated').textContent='Data for '+fmtDate(yest)+' · Loaded '+new Date().toLocaleTimeString('en-CA',{hour:'2-digit',minute:'2-digit'});
+  loadCampaigns(yest, ago7, ago14, ago30);
+  loadFunnel(ago30, ago14, ago7, yest);
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// REPORT 1 + 2: CAMPAIGNS + TIME PERIODS
-// ═══════════════════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════════════════
+// CAMPAIGNS + TIME PERIODS
+// ════════════════════════════════════════════════════════════════════════════
 async function loadCampaigns(yest, ago7, ago14, ago30) {
   try {
-    // Call Claude to pull Windsor data and return structured JSON
-    const prompt = `You are a data assistant. Pull Google Ads data for Modern Menopause account 230-778-8239 via Windsor.ai connector "google_ads".
+    const text = await callClaude([{role:'user',content:`
+Use Windsor.ai (connector: google_ads, account: 230-778-8239) and PostHog MCP tools to fetch this data, then return ONLY a single JSON object.
 
-Make these exact Windsor.ai calls and return ONLY a JSON object — no prose, no markdown.
+WINDSOR CALLS NEEDED:
+1. date_from:"${yest}" date_to:"${yest}" fields:["campaign","campaign_type","impressions","clicks","cost","search_top_impression_share","roas"]
+2. date_from:"${yest}" date_to:"${yest}" fields:["campaign","conversion_action_name","conversions"]
+3. date_from:"${ago7}" date_to:"${yest}" fields:["date","impressions","clicks","cost","search_top_impression_share","roas"]
+4. date_from:"${ago7}" date_to:"${yest}" fields:["date","conversion_action_name","conversions"]
+5. date_from:"${ago14}" date_to:"${yest}" fields:["impressions","clicks","cost","roas"] — aggregate only
+6. date_from:"${ago14}" date_to:"${yest}" fields:["conversion_action_name","conversions"] — for [gtag] purchase count
+7. date_from:"${ago30}" date_to:"${yest}" fields:["impressions","clicks","cost","roas"] — aggregate only
+8. date_from:"${ago30}" date_to:"${yest}" fields:["conversion_action_name","conversions"] — for [gtag] purchase count
 
-Call 1: yesterday's campaign metrics
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${yest}", date_to: "${yest}"
-  fields: ["campaign","campaign_type","impressions","clicks","ctr","cpc","cost","search_top_impression_share","roas"]
-
-Call 2: yesterday's purchase conversions
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${yest}", date_to: "${yest}"
-  fields: ["campaign","conversion_action_name","conversions"]
-
-Call 3: last 7 days daily metrics
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${ago7}", date_to: "${yest}"
-  fields: ["date","impressions","clicks","ctr","cpc","cost","search_top_impression_share","roas"]
-
-Call 4: last 7 days daily conversions
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${ago7}", date_to: "${yest}"
-  fields: ["date","conversion_action_name","conversions"]
-
-Call 5: last 14 day totals
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${ago14}", date_to: "${yest}"
-  fields: ["impressions","clicks","ctr","cpc","cost","search_top_impression_share","roas"]
-
-Call 6: last 14 day conversions
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${ago14}", date_to: "${yest}"
-  fields: ["conversion_action_name","conversions"]
-
-Call 7: last 30 day totals
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${ago30}", date_to: "${yest}"
-  fields: ["impressions","clicks","ctr","cpc","cost","search_top_impression_share","roas"]
-
-Call 8: last 30 day conversions
-  connector: google_ads, accounts: ["230-778-8239"]
-  date_from: "${ago30}", date_to: "${yest}"
-  fields: ["conversion_action_name","conversions"]
-
-Also run these PostHog HogQL queries (project at mcp.posthog.com):
-
-PostHog Query A — yesterday campaign funnel:
-SELECT properties.utm_campaign AS campaign, event, count() AS cnt
-FROM events
-WHERE timestamp >= toDate('${yest}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY
-  AND properties.utm_source = 'google_paid'
-  AND event IN ('booking_initial_assessment_clicked','booking_form_submitted','booking_payment_completed')
-GROUP BY campaign, event LIMIT 100
-
-PostHog Query B — 7 day daily funnel:
+POSTHOG QUERY (execute via PostHog MCP execute-sql tool):
 SELECT toDate(timestamp) AS day, event, count() AS cnt
 FROM events
 WHERE timestamp >= toDate('${ago7}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY
   AND properties.utm_source = 'google_paid'
   AND event IN ('booking_initial_assessment_clicked','booking_form_submitted','booking_payment_completed')
-GROUP BY day, event ORDER BY day LIMIT 100
+GROUP BY day, event ORDER BY day
 
-Return ONLY this JSON structure (fill with real data from the calls above):
+RULES:
+- For purch fields: only count rows where conversion_action_name = "[gtag] purchase"
+- roas from Windsor is pre-multiplied by 100 — pass through as-is
+- appts/forms/ph_purch for each campaign/day: pull from PostHog where utm_campaign matches campaign name
+
+Return EXACTLY this JSON structure with real numbers:
 {
-  "campaigns": [{"campaign":"...","type":"...","impr":0,"clicks":0,"cost":0,"top_is":0,"roas":0,"purch":0,"appts":0,"forms":0,"ph_purch":0}],
-  "daily": [{"date":"YYYY-MM-DD","impr":0,"clicks":0,"cost":0,"top_is":0,"roas":0,"purch":0,"appts":0,"forms":0,"ph_purch":0}],
-  "agg14": {"impr":0,"clicks":0,"cost":0,"top_is":0,"roas":0,"purch":0},
-  "agg30": {"impr":0,"clicks":0,"cost":0,"top_is":0,"roas":0,"purch":0}
+  "campaigns": [
+    {"campaign":"CAMPAIGN_NAME","type":"SEARCH or PERFORMANCE_MAX","impr":0,"clicks":0,"cost":0.0,"top_is":0.0,"roas":0,"purch":0.0,"appts":0,"forms":0,"ph_purch":0}
+  ],
+  "daily": [
+    {"date":"YYYY-MM-DD","impr":0,"clicks":0,"cost":0.0,"top_is":0.0,"roas":0,"purch":0.0,"appts":0,"forms":0,"ph_purch":0}
+  ],
+  "agg14": {"impr":0,"clicks":0,"cost":0.0,"roas":0,"purch":0.0},
+  "agg30": {"impr":0,"clicks":0,"cost":0.0,"roas":0,"purch":0.0}
 }
-For campaigns: filter conversion rows to conversion_action_name="[gtag] purchase" only. Windsor roas is already multiplied by 100 — keep as-is, the UI will divide by 100.
-For agg14/agg30: purch = sum of [gtag] purchase conversions only.`;
+`}]);
 
-    const { text } = await callClaude(prompt);
-    let data;
-    try {
-      const json = text.replace(/```json|```/g,'').trim();
-      data = JSON.parse(json);
-    } catch(e) {
-      throw new Error('Could not parse campaign data: ' + text.slice(0,200));
+    let raw;
+    try { raw = safeParseJSON(text); }
+    catch(e) { throw new Error('JSON parse failed.\n\nResponse was:\n'+text.slice(0,500)); }
+
+    // Ensure arrays exist
+    const data = {
+      campaigns: Array.isArray(raw.campaigns) ? raw.campaigns : [],
+      daily: Array.isArray(raw.daily) ? raw.daily : [],
+      agg14: raw.agg14 || {},
+      agg30: raw.agg30 || {}
+    };
+
+    if(data.campaigns.length===0 && data.daily.length===0) {
+      throw new Error('Claude returned empty data arrays. Raw response:\n'+text.slice(0,400));
     }
+
     renderCampaigns(data, yest);
-    // Also use campaign data for insights
     loadInsights(data, yest);
   } catch(e) {
-    document.getElementById('loading-campaigns').innerHTML = `<div class="error-box">Error loading campaign data: ${e.message}</div>`;
-    document.getElementById('loading-insights').innerHTML = `<div class="error-box">Error loading insights: ${e.message}</div>`;
+    const msg = e.message||String(e);
+    document.getElementById('loading-campaigns').innerHTML=`<div class="error-box">Campaign error:\n${msg}</div>`;
+    document.getElementById('loading-insights').innerHTML=`<div class="error-box">Insights error:\n${msg}</div>`;
   }
 }
 
 function renderCampaigns(data, yest) {
-  const { campaigns, daily, agg14, agg30 } = data;
+  const {campaigns, daily, agg14, agg30} = data;
 
-  // compute 7d totals from daily
-  const t7 = daily.reduce((a,d) => ({
-    impr: a.impr+d.impr, clicks: a.clicks+d.clicks, cost: a.cost+d.cost,
-    purch: a.purch+d.purch, appts: a.appts+d.appts, forms: a.forms+d.forms, ph_purch: a.ph_purch+d.ph_purch
-  }), {impr:0,clicks:0,cost:0,purch:0,appts:0,forms:0,ph_purch:0});
-  const t7ctr = t7.clicks/t7.impr; const t7cpc = t7.cost/t7.clicks;
+  const t7 = daily.reduce((a,d)=>({
+    impr:a.impr+n(d.impr),clicks:a.clicks+n(d.clicks),cost:a.cost+n(d.cost),
+    purch:a.purch+n(d.purch),appts:a.appts+n(d.appts),forms:a.forms+n(d.forms)
+  }),{impr:0,clicks:0,cost:0,purch:0,appts:0,forms:0});
 
-  // total yesterday
-  const tyest = campaigns.reduce((a,c) => ({cost:a.cost+c.cost,clicks:a.clicks+c.clicks,purch:a.purch+c.purch,impr:a.impr+c.impr}),{cost:0,clicks:0,purch:0,impr:0});
+  const tyest = campaigns.reduce((a,c)=>({
+    cost:a.cost+n(c.cost),clicks:a.clicks+n(c.clicks),purch:a.purch+n(c.purch),impr:a.impr+n(c.impr)
+  }),{cost:0,clicks:0,purch:0,impr:0});
 
   let html = `
   <div class="stat-grid">
     <div class="stat"><div class="stat-label">Yesterday spend</div><div class="stat-value">${fmt$(tyest.cost)}</div><div class="stat-sub">${fmtDate(yest)}</div></div>
-    <div class="stat"><div class="stat-label">Yesterday conv.</div><div class="stat-value">${tyest.purch.toFixed(1)}</div><div class="stat-sub">CPA ${fmtCpa(tyest.cost,tyest.purch)}</div></div>
+    <div class="stat"><div class="stat-label">Yesterday conv.</div><div class="stat-value">${n(tyest.purch).toFixed(1)}</div><div class="stat-sub">CPA ${fmtCpa(tyest.cost,tyest.purch)}</div></div>
     <div class="stat"><div class="stat-label">7-day spend</div><div class="stat-value">${fmt$(t7.cost)}</div><div class="stat-sub">CPA ${fmtCpa(t7.cost,t7.purch)}</div></div>
     <div class="stat"><div class="stat-label">30-day CPA</div><div class="stat-value">${fmtCpa(agg30.cost,agg30.purch)}</div><div class="stat-sub">vs $100 target</div></div>
   </div>
-
   <div class="section-label">Campaign summary — ${fmtDate(yest)}</div>
   <div class="tbl-wrap"><table>
     <thead><tr>
       <th class="left" style="min-width:160px">Campaign</th>
-      <th class="left" style="width:52px">Type</th>
+      <th class="left" style="width:60px">Type</th>
       <th>Impr.</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Cost</th>
       <th class="fh">Appts/Clicks</th><th class="fh">Forms/Appts</th><th class="fh">Purch/Forms</th>
       <th class="cnvh">Conv.</th><th class="ch">CVR</th><th class="kh">Cost/Conv.</th>
       <th>Top IS</th><th>ROAS</th>
-    </tr></thead>
-    <tbody>`;
+    </tr></thead><tbody>`;
 
-  campaigns.sort((a,b)=>b.cost-a.cost).forEach(c => {
-    const isNew = ['Search_QC_FR_Clinique_Hormonotherapie_tCPA [NB]','Search_CA_EN_Competitors [NB]','Search_ON_AB_Clinic_tCPA [NB]','Search_CA_EN_Clinic_tCPA [NB]','Search_CA_EN_HRT_Treatments_tCPA [NB]'].some(n => c.campaign.includes(n.split(' ')[0].split('_').slice(0,4).join('_')));
-    const typeTag = c.type === 'PERFORMANCE_MAX'
-      ? `<span class="badge b-pmax">PMax</span>`
-      : `<span class="badge b-search">Search</span>`;
+  [...campaigns].sort((a,b)=>n(b.cost)-n(a.cost)).forEach(c=>{
+    const isPMax = (c.type||'').toUpperCase().includes('PERFORMANCE');
+    const typeTag = isPMax ? `<span class="badge b-pmax">PMax</span>` : `<span class="badge b-search">Search</span>`;
+    const newCamps = ['Clinique_Hormonotherapie','Competitors','Search_ON_AB','Search_CA_EN_Clinic','HRT_Treatments'];
+    const isNew = newCamps.some(k=>c.campaign.includes(k));
     const newTag = isNew ? ` <span class="badge b-new">✦ new</span>` : '';
-    const shortName = c.campaign.replace('Search_','').replace('_tCPA','').replace('_Max_clicks','').replace('_Max_conversion_value','').replace('[NB]','').replace('[Brand]','Brand').trim();
-    const topIs = c.top_is > 0 ? (c.top_is*100).toFixed(1)+'%' : 'N/A';
-    const cpa = fmtCpa(c.cost, c.purch);
-    const cvr = fmtCvr(c.purch, c.clicks);
+    const short = c.campaign.replace(/Search_|_tCPA|_Max_clicks|_Max_conversion_value|\[NB\]/g,'').replace('[Brand]','Brand').trim().slice(0,45);
+    const topIs = n(c.top_is)>0 ? (n(c.top_is)*100).toFixed(1)+'%' : 'N/A';
+    const cpa = fmtCpa(c.cost,c.purch);
     html += `<tr>
-      <td class="left">${shortName}${newTag}</td>
+      <td class="left">${short}${newTag}</td>
       <td class="left">${typeTag}</td>
-      <td>${(c.impr||0).toLocaleString()}</td>
-      <td>${(c.clicks||0).toLocaleString()}</td>
-      <td>${c.clicks>0?((c.impr>0?(c.clicks/c.impr*100).toFixed(2):0)+'%'):'—'}</td>
-      <td>${c.clicks>0?('$'+(c.cost/c.clicks).toFixed(2)):'—'}</td>
-      <td>$${Math.round(c.cost).toLocaleString()}</td>
-      <td>${fmtR(c.appts,c.clicks)}</td>
-      <td>${fmtR(c.forms,c.appts)}</td>
-      <td>${fmtR(c.ph_purch,c.forms)}</td>
-      <td class="${c.purch>0?'':'muted-val'}">${c.purch>0?c.purch.toFixed(2):'—'}</td>
-      <td class="${c.purch>0&&c.clicks>0?'':''}">${cvr}</td>
+      <td>${n(c.impr).toLocaleString()}</td>
+      <td>${n(c.clicks).toLocaleString()}</td>
+      <td>${n(c.impr)>0?(n(c.clicks)/n(c.impr)*100).toFixed(2)+'%':'—'}</td>
+      <td>${n(c.clicks)>0?'$'+(n(c.cost)/n(c.clicks)).toFixed(2):'—'}</td>
+      <td>$${Math.round(n(c.cost)).toLocaleString()}</td>
+      <td>${fmtPct(c.appts,c.clicks)}</td>
+      <td>${fmtPct(c.forms,c.appts)}</td>
+      <td>${fmtPct(c.ph_purch,c.forms)}</td>
+      <td>${n(c.purch)>0?n(c.purch).toFixed(1):'—'}</td>
+      <td>${fmtCvr(c.purch,c.clicks)}</td>
       <td class="${cpaColor(cpa)}">${cpa}</td>
-      <td class="${c.top_is>0&&c.top_is<0.4?'warn':c.top_is>=0.8?'good':''}">${topIs}</td>
-      <td class="${c.roas>0&&c.roas/100>=1.5?'good':c.roas>0&&c.roas/100<1?'warn':''}">${c.roas>0?fmtRoas(c.roas):'—'}</td>
+      <td class="${n(c.top_is)>0.8?'good':n(c.top_is)>0&&n(c.top_is)<0.4?'warn':''}">${topIs}</td>
+      <td class="${n(c.roas)/100>=1.5?'good':n(c.roas)>0&&n(c.roas)/100<1?'warn':''}">${fmtRoas(c.roas)}</td>
     </tr>`;
   });
 
   html += `</tbody><tfoot><tr>
     <td class="left">Total</td><td class="left"></td>
-    <td>${tyest.impr.toLocaleString()}</td>
-    <td>${tyest.clicks.toLocaleString()}</td>
+    <td>${tyest.impr.toLocaleString()}</td><td>${tyest.clicks.toLocaleString()}</td>
     <td>${tyest.impr>0?(tyest.clicks/tyest.impr*100).toFixed(2)+'%':'—'}</td>
     <td>${tyest.clicks>0?'$'+(tyest.cost/tyest.clicks).toFixed(2):'—'}</td>
     <td>$${Math.round(tyest.cost).toLocaleString()}</td>
     <td>—</td><td>—</td><td>—</td>
-    <td>${tyest.purch.toFixed(1)}</td>
+    <td>${n(tyest.purch).toFixed(1)}</td>
     <td>${fmtCvr(tyest.purch,tyest.clicks)}</td>
     <td>${fmtCpa(tyest.cost,tyest.purch)}</td>
     <td>—</td><td>—</td>
@@ -394,121 +331,98 @@ function renderCampaigns(data, yest) {
   <div class="section-label" style="margin-top:24px">Daily breakdown — last 7 days</div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th class="left" style="min-width:90px">Date</th>
+      <th class="left" style="min-width:100px">Date</th>
       <th>Impr.</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th>
       <th class="fh">Appts/Clicks</th><th class="fh">Forms/Appts</th><th class="fh">Purch/Forms</th>
-      <th class="cnvh">Conv.</th><th class="ch">CVR</th><th class="kh">Cost/Conv.</th>
-      <th>Top IS</th>
-    </tr></thead>
-    <tbody>`;
+      <th class="cnvh">Conv.</th><th class="ch">CVR</th><th class="kh">Cost/Conv.</th><th>Top IS</th>
+    </tr></thead><tbody>`;
 
-  daily.forEach(d => {
-    const dayType = new Date(d.date+'T12:00:00Z').getDay();
-    const isWeekend = dayType === 0 || dayType === 6;
-    const target = isWeekend ? 2000 : 3250;
-    const over = d.cost > target * 1.2;
-    const under = d.cost < target * 0.8;
-    const topIs = d.top_is > 0 ? (d.top_is*100).toFixed(1)+'%' : 'N/A';
-    html += `<tr>
+  daily.forEach(d=>{
+    const dow=new Date(d.date+'T12:00:00Z').getDay();
+    const isWknd=dow===0||dow===6;
+    const target=isWknd?2000:3250;
+    const over=n(d.cost)>target*1.2, under=n(d.cost)<target*0.8;
+    const topIs=n(d.top_is)>0?(n(d.top_is)*100).toFixed(1)+'%':'N/A';
+    const cpa=fmtCpa(d.cost,d.purch);
+    html+=`<tr>
       <td class="left">${fmtDate(d.date)}</td>
-      <td>${(d.impr||0).toLocaleString()}</td>
-      <td>${(d.clicks||0).toLocaleString()}</td>
-      <td>${d.impr>0?(d.clicks/d.impr*100).toFixed(2)+'%':'—'}</td>
-      <td>${d.clicks>0?'$'+(d.cost/d.clicks).toFixed(2):'—'}</td>
-      <td class="${over?'warn':under?'muted-val':''}">$${Math.round(d.cost).toLocaleString()}</td>
-      <td>${fmtR(d.appts,d.clicks)}</td>
-      <td>${fmtR(d.forms,d.appts)}</td>
-      <td>${fmtR(d.ph_purch,d.forms)}</td>
-      <td>${d.purch>0?d.purch.toFixed(1):'—'}</td>
+      <td>${n(d.impr).toLocaleString()}</td><td>${n(d.clicks).toLocaleString()}</td>
+      <td>${n(d.impr)>0?(n(d.clicks)/n(d.impr)*100).toFixed(2)+'%':'—'}</td>
+      <td>${n(d.clicks)>0?'$'+(n(d.cost)/n(d.clicks)).toFixed(2):'—'}</td>
+      <td class="${over?'warn':under?'muted-val':''}">$${Math.round(n(d.cost)).toLocaleString()}</td>
+      <td>${fmtPct(d.appts,d.clicks)}</td><td>${fmtPct(d.forms,d.appts)}</td><td>${fmtPct(d.ph_purch,d.forms)}</td>
+      <td>${n(d.purch)>0?n(d.purch).toFixed(1):'—'}</td>
       <td>${fmtCvr(d.purch,d.clicks)}</td>
-      <td class="${cpaColor(fmtCpa(d.cost,d.purch))}">${fmtCpa(d.cost,d.purch)}</td>
+      <td class="${cpaColor(cpa)}">${cpa}</td>
       <td>${topIs}</td>
     </tr>`;
   });
 
-  html += `</tbody>
-    <tr class="sep-row">
-      <td class="left">7-day total</td>
-      <td>${t7.impr.toLocaleString()}</td>
-      <td>${t7.clicks.toLocaleString()}</td>
-      <td>${t7.impr>0?(t7.clicks/t7.impr*100).toFixed(2)+'%':'—'}</td>
-      <td>${t7.clicks>0?'$'+(t7.cost/t7.clicks).toFixed(2):'—'}</td>
-      <td>$${Math.round(t7.cost).toLocaleString()}</td>
-      <td>${fmtR(t7.appts,t7.clicks)}</td><td>${fmtR(t7.forms,t7.appts)}</td><td>${fmtR(t7.ph_purch,t7.forms)}</td>
-      <td>${t7.purch.toFixed(1)}</td>
-      <td>${fmtCvr(t7.purch,t7.clicks)}</td>
-      <td>${fmtCpa(t7.cost,t7.purch)}</td>
-      <td>—</td>
-    </tr>
-  </table></div>
+  html+=`</tbody><tfoot><tr>
+    <td class="left">7-day total</td>
+    <td>${t7.impr.toLocaleString()}</td><td>${t7.clicks.toLocaleString()}</td>
+    <td>${t7.impr>0?(t7.clicks/t7.impr*100).toFixed(2)+'%':'—'}</td>
+    <td>${t7.clicks>0?'$'+(t7.cost/t7.clicks).toFixed(2):'—'}</td>
+    <td>$${Math.round(t7.cost).toLocaleString()}</td>
+    <td>${fmtPct(t7.appts,t7.clicks)}</td><td>${fmtPct(t7.forms,t7.appts)}</td><td>${fmtPct(t7.ph_purch,t7.forms)}</td>
+    <td>${n(t7.purch).toFixed(1)}</td>
+    <td>${fmtCvr(t7.purch,t7.clicks)}</td>
+    <td>${fmtCpa(t7.cost,t7.purch)}</td><td>—</td>
+  </tr></tfoot></table></div>
 
   <div class="section-label" style="margin-top:24px">Aggregate windows</div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th class="left" style="min-width:120px">Period</th>
-      <th>Impr.</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th>
-      <th class="cnvh">Conv.</th><th class="ch">CVR</th><th class="kh">Cost/Conv.</th><th>Top IS</th>
-    </tr></thead>
-    <tbody>
-      <tr class="agg-row">
-        <td class="left">Last 14 days</td>
-        <td>${(agg14.impr||0).toLocaleString()}</td><td>${(agg14.clicks||0).toLocaleString()}</td>
-        <td>${agg14.clicks>0?(agg14.clicks/agg14.impr*100).toFixed(2)+'%':'—'}</td>
-        <td>${agg14.clicks>0?'$'+(agg14.cost/agg14.clicks).toFixed(2):'—'}</td>
-        <td>$${Math.round(agg14.cost||0).toLocaleString()}</td>
-        <td>${(agg14.purch||0).toFixed(1)}</td>
-        <td>${fmtCvr(agg14.purch,agg14.clicks)}</td>
-        <td class="${cpaColor(fmtCpa(agg14.cost,agg14.purch))}">${fmtCpa(agg14.cost,agg14.purch)}</td>
-        <td>${agg14.top_is>0?(agg14.top_is*100).toFixed(1)+'%':'—'}</td>
-      </tr>
-      <tr class="agg-row final">
-        <td class="left">Last 30 days</td>
-        <td>${(agg30.impr||0).toLocaleString()}</td><td>${(agg30.clicks||0).toLocaleString()}</td>
-        <td>${agg30.clicks>0?(agg30.clicks/agg30.impr*100).toFixed(2)+'%':'—'}</td>
-        <td>${agg30.clicks>0?'$'+(agg30.cost/agg30.clicks).toFixed(2):'—'}</td>
-        <td>$${Math.round(agg30.cost||0).toLocaleString()}</td>
-        <td class="good">${(agg30.purch||0).toFixed(1)}</td>
-        <td>${fmtCvr(agg30.purch,agg30.clicks)}</td>
-        <td class="${cpaColor(fmtCpa(agg30.cost,agg30.purch))}">${fmtCpa(agg30.cost,agg30.purch)}</td>
-        <td>${agg30.top_is>0?(agg30.top_is*100).toFixed(1)+'%':'—'}</td>
-      </tr>
-    </tbody>
-  </table></div>`;
+      <th class="left">Period</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th>
+      <th class="cnvh">Conv.</th><th class="ch">CVR</th><th class="kh">Cost/Conv.</th>
+    </tr></thead><tbody>
+    ${[{label:'Last 14 days',d:agg14},{label:'Last 30 days',d:agg30,final:true}].map(({label,d,final})=>`
+    <tr class="agg-row${final?' final':''}">
+      <td class="left">${label}</td>
+      <td>${n(d.impr).toLocaleString()}</td><td>${n(d.clicks).toLocaleString()}</td>
+      <td>${n(d.clicks)>0?(n(d.clicks)/n(d.impr)*100).toFixed(2)+'%':'—'}</td>
+      <td>${n(d.clicks)>0?'$'+(n(d.cost)/n(d.clicks)).toFixed(2):'—'}</td>
+      <td>$${Math.round(n(d.cost)).toLocaleString()}</td>
+      <td>${n(d.purch).toFixed(1)}</td>
+      <td>${fmtCvr(d.purch,d.clicks)}</td>
+      <td class="${cpaColor(fmtCpa(d.cost,d.purch))}">${fmtCpa(d.cost,d.purch)}</td>
+    </tr>`).join('')}
+    </tbody></table></div>`;
 
-  document.getElementById('loading-campaigns').style.display = 'none';
-  document.getElementById('content-campaigns').innerHTML = html;
-  document.getElementById('content-campaigns').style.display = 'block';
+  document.getElementById('loading-campaigns').style.display='none';
+  document.getElementById('content-campaigns').innerHTML=html;
+  document.getElementById('content-campaigns').style.display='block';
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// REPORT 3 + 4: SITE FUNNEL
-// ═══════════════════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════════════════
+// SITE FUNNEL
+// ════════════════════════════════════════════════════════════════════════════
 async function loadFunnel(ago30, ago14, ago7, yest) {
   try {
-    const prompt = `You are a data assistant. Run these PostHog HogQL queries and return ONLY a JSON object.
+    const text = await callClaude([{role:'user',content:`
+Use PostHog MCP execute-sql tool to run these HogQL queries, then return ONLY a JSON object.
 
-Query A — 30-day channel funnel:
+QUERY A — 30-day channel funnel:
 WITH channel_sessions AS (
   SELECT person_id, properties.$session_id AS session_id,
     multiIf(
-      properties.utm_source = 'google_paid', 'Google Paid',
-      properties.utm_source IN ('fb','facebook') OR properties.utm_medium IN ('Facebook_Mobile_Feed','Facebook_Desktop_Feed'), 'Meta Paid',
-      properties.utm_source = 'ig', 'Meta Paid',
-      properties.utm_source = 'paid_social_media', 'Meta Paid',
-      properties.utm_source = 'bing', 'Bing Paid',
-      properties.utm_source = 'chatgpt.com', 'ChatGPT',
-      properties.utm_source IS NOT NULL AND properties.utm_source != '', 'Other Paid',
-      properties.$referring_domain = '$direct' OR properties.$referring_domain IS NULL, 'Direct',
-      properties.$referring_domain LIKE '%google%', 'Organic Search',
-      properties.$referring_domain LIKE '%bing%', 'Organic Search',
-      properties.$referring_domain LIKE '%yahoo%', 'Organic Search',
-      properties.$referring_domain LIKE '%duckduckgo%', 'Organic Search',
-      properties.$referring_domain LIKE '%brave%', 'Organic Search',
-      properties.$referring_domain LIKE '%facebook%' OR properties.$referring_domain LIKE '%instagram%', 'Organic Social',
+      properties.utm_source = 'google_paid','Google Paid',
+      properties.utm_source IN ('fb','facebook'),'Meta Paid',
+      properties.utm_medium IN ('Facebook_Mobile_Feed','Facebook_Desktop_Feed'),'Meta Paid',
+      properties.utm_source = 'ig','Meta Paid',
+      properties.utm_source = 'paid_social_media','Meta Paid',
+      properties.utm_source = 'bing','Bing Paid',
+      properties.utm_source = 'chatgpt.com','ChatGPT',
+      properties.utm_source IS NOT NULL AND properties.utm_source != '','Other Paid',
+      properties.$referring_domain = '$direct' OR properties.$referring_domain IS NULL,'Direct',
+      properties.$referring_domain LIKE '%google%','Organic Search',
+      properties.$referring_domain LIKE '%bing%','Organic Search',
+      properties.$referring_domain LIKE '%yahoo%','Organic Search',
+      properties.$referring_domain LIKE '%duckduckgo%','Organic Search',
+      properties.$referring_domain LIKE '%facebook%' OR properties.$referring_domain LIKE '%instagram%','Organic Social',
       'Referral'
     ) AS channel
-  FROM events
-  WHERE timestamp >= toDate('${ago30}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY AND event = '$pageview'
+  FROM events WHERE timestamp >= toDate('${ago30}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY AND event = '$pageview'
   GROUP BY person_id, session_id, channel
 ),
 funnel_events AS (
@@ -516,69 +430,62 @@ funnel_events AS (
     countIf(event='booking_initial_assessment_clicked') AS appts,
     countIf(event='booking_form_submitted') AS forms,
     countIf(event='booking_payment_completed') AS purchases
-  FROM events
-  WHERE timestamp >= toDate('${ago30}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY
+  FROM events WHERE timestamp >= toDate('${ago30}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY
     AND event IN ('booking_initial_assessment_clicked','booking_form_submitted','booking_payment_completed')
   GROUP BY person_id, session_id
 )
 SELECT cs.channel, count(DISTINCT cs.session_id) AS sessions,
-  countIf(fe.appts>0) AS appt_sessions, countIf(fe.forms>0) AS form_sessions,
-  countIf(fe.purchases>0) AS purchase_sessions
+  countIf(fe.appts>0) AS appts, countIf(fe.forms>0) AS forms, countIf(fe.purchases>0) AS purchases
 FROM channel_sessions cs LEFT JOIN funnel_events fe ON cs.person_id=fe.person_id AND cs.session_id=fe.session_id
 GROUP BY cs.channel ORDER BY sessions DESC LIMIT 20
 
-Query B — 14-day daily funnel (all channels):
-SELECT toDate(timestamp) AS day,
-  count(DISTINCT properties.$session_id) AS sessions,
+QUERY B — 14-day daily all-channel funnel:
+SELECT toDate(timestamp) AS date,
+  count(DISTINCT if(event='$pageview', properties.$session_id, null)) AS sessions,
   countIf(event='booking_initial_assessment_clicked') AS appts,
   countIf(event='booking_form_submitted') AS forms,
   countIf(event='booking_payment_completed') AS purchases
 FROM events
 WHERE timestamp >= toDate('${ago14}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY
   AND event IN ('$pageview','booking_initial_assessment_clicked','booking_form_submitted','booking_payment_completed')
-GROUP BY day ORDER BY day LIMIT 100
-
-Query C — aggregate windows:
-SELECT
-  countIf(event='$pageview') AS pv,
-  countIf(event='booking_initial_assessment_clicked') AS appts,
-  countIf(event='booking_form_submitted') AS forms,
-  countIf(event='booking_payment_completed') AS purchases,
-  count(DISTINCT properties.$session_id) AS sessions
-FROM events
-WHERE timestamp >= toDate('${yest}') AND timestamp < toDate('${yest}') + INTERVAL 1 DAY
-  AND event IN ('$pageview','booking_initial_assessment_clicked','booking_form_submitted','booking_payment_completed')
-LIMIT 10
+GROUP BY date ORDER BY date LIMIT 30
 
 Return ONLY this JSON (no markdown, no prose):
 {
-  "channels": [{"channel":"...","sessions":0,"appts":0,"forms":0,"purchases":0}],
-  "daily14": [{"date":"YYYY-MM-DD","sessions":0,"appts":0,"forms":0,"purchases":0}],
-  "yesterday": {"sessions":0,"appts":0,"forms":0,"purchases":0},
-  "agg7": {"sessions":0,"appts":0,"forms":0,"purchases":0},
-  "agg14": {"sessions":0,"appts":0,"forms":0,"purchases":0},
-  "agg30": {"sessions":0,"appts":0,"forms":0,"purchases":0}
+  "channels": [{"channel":"string","sessions":0,"appts":0,"forms":0,"purchases":0}],
+  "daily14": [{"date":"YYYY-MM-DD","sessions":0,"appts":0,"forms":0,"purchases":0}]
 }
-Compute agg7 and agg30 by summing from daily14 (last 7 and all 14 rows respectively). yesterday = last row of daily14.`;
+`}]);
 
-    const { text } = await callClaude(prompt);
-    let data;
-    try {
-      data = JSON.parse(text.replace(/```json|```/g,'').trim());
-    } catch(e) {
-      throw new Error('Could not parse funnel data: ' + text.slice(0,200));
-    }
-    renderFunnel(data, yest);
+    let raw;
+    try { raw = safeParseJSON(text); }
+    catch(e) { throw new Error('JSON parse failed.\n\nResponse was:\n'+text.slice(0,500)); }
+
+    const data = {
+      channels: Array.isArray(raw.channels) ? raw.channels : [],
+      daily14: Array.isArray(raw.daily14) ? raw.daily14 : []
+    };
+
+    renderFunnel(data, yest, ago7);
   } catch(e) {
-    document.getElementById('loading-funnel').innerHTML = `<div class="error-box">Error loading funnel data: ${e.message}</div>`;
+    document.getElementById('loading-funnel').innerHTML=`<div class="error-box">Funnel error:\n${e.message}</div>`;
   }
 }
 
-function renderFunnel(data, yest) {
-  const { channels, daily14, yesterday, agg7, agg14, agg30 } = data;
-  const channelColors = {'Google Paid':'#378ADD','Direct':'#888780','Organic Search':'#1D9E75','Meta Paid':'#D4537E','Referral':'#EF9F27','Organic Social':'#AFA9EC','Bing Paid':'#B4B2A9','ChatGPT':'#97C459','Other Paid':'#D3D1C7'};
+function renderFunnel(data, yest, ago7) {
+  const {channels, daily14} = data;
+  const colors={'Google Paid':'#378ADD','Direct':'#888780','Organic Search':'#1D9E75','Meta Paid':'#D4537E','Referral':'#EF9F27','Organic Social':'#AFA9EC','Bing Paid':'#B4B2A9','ChatGPT':'#97C459','Other Paid':'#D3D1C7'};
 
-  let html = `
+  // Compute aggregates from daily14
+  const sumDaily=(arr,f)=>arr.reduce((a,d)=>a+n(d[f]),0);
+  const last7=daily14.slice(-7);
+  const aggs=[
+    {label:'Yesterday ('+fmtDate(yest)+')',d:daily14[daily14.length-1]||{}},
+    {label:'Last 7 days',d:{sessions:sumDaily(last7,'sessions'),appts:sumDaily(last7,'appts'),forms:sumDaily(last7,'forms'),purchases:sumDaily(last7,'purchases')}},
+    {label:'Last 14 days',d:{sessions:sumDaily(daily14,'sessions'),appts:sumDaily(daily14,'appts'),forms:sumDaily(daily14,'forms'),purchases:sumDaily(daily14,'purchases')}},
+  ];
+
+  let html=`
   <div class="section-label">Site funnel by channel — last 30 days</div>
   <div class="tbl-wrap"><table>
     <thead><tr>
@@ -586,287 +493,225 @@ function renderFunnel(data, yest) {
       <th>Sessions</th><th>Purchases</th>
       <th class="fh">Appts/Sessions</th><th class="fh">Forms/Appts</th><th class="fh">Purch/Forms</th>
       <th class="ch">CVR</th>
-    </tr></thead>
-    <tbody>`;
+    </tr></thead><tbody>`;
 
-  channels.forEach(c => {
-    const cvr = c.sessions>0?(c.purchases/c.sessions*100).toFixed(2)+'%':'—';
-    const isBadMeta = c.channel==='Meta Paid' && c.sessions>1000;
-    html += `<tr>
-      <td class="left"><span class="dot" style="background:${channelColors[c.channel]||'#ccc'}"></span>${c.channel}</td>
-      <td>${(c.sessions||0).toLocaleString()}</td>
-      <td>${(c.purchases||0).toLocaleString()}</td>
-      <td>${fmtR(c.appts,c.sessions)}</td>
-      <td>${fmtR(c.forms,c.appts)}</td>
-      <td class="${isBadMeta?'warn':c.purchases>0&&c.forms>0&&c.purchases/c.forms>0.5?'good':''}">${fmtR(c.purchases,c.forms)}</td>
-      <td class="${isBadMeta?'warn':''}">${cvr}</td>
+  channels.forEach(c=>{
+    const cvr=n(c.sessions)>0?(n(c.purchases)/n(c.sessions)*100).toFixed(2)+'%':'—';
+    const badMeta=c.channel==='Meta Paid'&&n(c.sessions)>1000;
+    html+=`<tr>
+      <td class="left"><span class="dot" style="background:${colors[c.channel]||'#ccc'}"></span>${c.channel}</td>
+      <td>${n(c.sessions).toLocaleString()}</td><td>${n(c.purchases).toLocaleString()}</td>
+      <td>${fmtPct(c.appts,c.sessions)}</td>
+      <td>${fmtPct(c.forms,c.appts)}</td>
+      <td class="${badMeta?'warn':''}">${fmtPct(c.purchases,c.forms)}</td>
+      <td class="${badMeta?'warn':''}">${cvr}</td>
     </tr>`;
   });
-  const totS = channels.reduce((a,c)=>a+c.sessions,0);
-  const totP = channels.reduce((a,c)=>a+c.purchases,0);
-  const totA = channels.reduce((a,c)=>a+c.appts,0);
-  const totF = channels.reduce((a,c)=>a+c.forms,0);
-  html += `</tbody><tfoot><tr>
-    <td class="left">Total</td>
-    <td>${totS.toLocaleString()}</td><td>${totP.toLocaleString()}</td>
-    <td>${fmtR(totA,totS)}</td><td>${fmtR(totF,totA)}</td><td>${fmtR(totP,totF)}</td>
+
+  const totS=channels.reduce((a,c)=>a+n(c.sessions),0);
+  const totP=channels.reduce((a,c)=>a+n(c.purchases),0);
+  const totA=channels.reduce((a,c)=>a+n(c.appts),0);
+  const totF=channels.reduce((a,c)=>a+n(c.forms),0);
+  html+=`</tbody><tfoot><tr>
+    <td class="left">Total</td><td>${totS.toLocaleString()}</td><td>${totP.toLocaleString()}</td>
+    <td>${fmtPct(totA,totS)}</td><td>${fmtPct(totF,totA)}</td><td>${fmtPct(totP,totF)}</td>
     <td>${totS>0?(totP/totS*100).toFixed(2)+'%':'—'}</td>
   </tr></tfoot></table></div>
 
   <div class="section-label" style="margin-top:24px">Funnel time windows — all channels</div>
   <div class="tbl-wrap"><table>
     <thead><tr>
-      <th class="left" style="min-width:130px">Period</th>
+      <th class="left" style="min-width:160px">Period</th>
       <th>Sessions</th><th>Purchases</th>
       <th class="fh">Appts/Sessions</th><th class="fh">Forms/Appts</th><th class="fh">Purch/Forms</th>
       <th class="ch">CVR</th>
-    </tr></thead>
-    <tbody>`;
-
-  [{label:'Yesterday ('+fmtDate(yest)+')', d:yesterday, hl:true},
-   {label:'Last 7 days', d:agg7},{label:'Last 14 days', d:agg14},{label:'Last 30 days', d:agg30}
-  ].forEach(({label,d,hl}) => {
-    const cvr = d&&d.sessions>0?(d.purchases/d.sessions*100).toFixed(2)+'%':'—';
-    html += `<tr class="agg-row${hl?' hl':''}">
+    </tr></thead><tbody>
+    ${aggs.map(({label,d})=>`<tr class="agg-row">
       <td class="left">${label}</td>
-      <td>${(d?.sessions||0).toLocaleString()}</td>
-      <td>${(d?.purchases||0).toLocaleString()}</td>
-      <td>${fmtR(d?.appts,d?.sessions)}</td>
-      <td>${fmtR(d?.forms,d?.appts)}</td>
-      <td>${fmtR(d?.purchases,d?.forms)}</td>
-      <td>${cvr}</td>
-    </tr>`;
-  });
-
-  html += `</tbody></table></div>
+      <td>${n(d.sessions).toLocaleString()}</td><td>${n(d.purchases).toLocaleString()}</td>
+      <td>${fmtPct(d.appts,d.sessions)}</td><td>${fmtPct(d.forms,d.appts)}</td><td>${fmtPct(d.purchases,d.forms)}</td>
+      <td>${n(d.sessions)>0?(n(d.purchases)/n(d.sessions)*100).toFixed(2)+'%':'—'}</td>
+    </tr>`).join('')}
+    </tbody></table></div>
 
   <div class="section-label" style="margin-top:24px">Daily CVR trend — last 14 days</div>
   <div class="chart-wrap">
-    <div class="chart-inner"><canvas id="funnelChart" role="img" aria-label="Daily site funnel rates over last 14 days">Daily funnel trend</canvas></div>
+    <div class="chart-inner"><canvas id="funnelChart"></canvas></div>
     <div class="chart-legend">
       <span><span class="legend-line" style="background:#7F77DD"></span>Appts/Sessions</span>
       <span><span class="legend-line" style="background:#1D9E75"></span>Forms/Appts</span>
       <span><span class="legend-line" style="background:#D85A30"></span>Purch/Forms</span>
-      <span><span class="legend-line" style="background:#BA7517"></span>CVR (right axis)</span>
+      <span><span class="legend-line" style="background:#BA7517;border-bottom:2px dashed #BA7517;height:0"></span>CVR (right axis)</span>
     </div>
   </div>`;
 
-  document.getElementById('loading-funnel').style.display = 'none';
-  document.getElementById('content-funnel').innerHTML = html;
-  document.getElementById('content-funnel').style.display = 'block';
+  document.getElementById('loading-funnel').style.display='none';
+  document.getElementById('content-funnel').innerHTML=html;
+  document.getElementById('content-funnel').style.display='block';
 
-  // Render chart
-  const labels = daily14.map(d => fmtDate(d.date));
-  const as = daily14.map(d => d.sessions>0?+(d.appts/d.sessions*100).toFixed(1):0);
-  const fa = daily14.map(d => d.appts>0?+(d.forms/d.appts*100).toFixed(1):0);
-  const pf = daily14.map(d => d.forms>0?+(d.purchases/d.forms*100).toFixed(1):0);
-  const cvr = daily14.map(d => d.sessions>0?+(d.purchases/d.sessions*100).toFixed(2):0);
-
-  new Chart(document.getElementById('funnelChart'), {
-    type: 'line',
-    data: { labels, datasets: [
-      {label:'Appts/Sessions',data:as,borderColor:'#7F77DD',borderWidth:2,pointRadius:3,pointBackgroundColor:'#7F77DD',tension:0.3,fill:false,yAxisID:'y'},
-      {label:'Forms/Appts',data:fa,borderColor:'#1D9E75',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1D9E75',tension:0.3,fill:false,borderDash:[4,3],yAxisID:'y'},
-      {label:'Purch/Forms',data:pf,borderColor:'#D85A30',borderWidth:2,pointRadius:3,pointBackgroundColor:'#D85A30',tension:0.3,fill:false,borderDash:[2,2],yAxisID:'y'},
-      {label:'CVR',data:cvr,borderColor:'#BA7517',borderWidth:2,pointRadius:3,pointBackgroundColor:'#BA7517',tension:0.3,fill:false,yAxisID:'y2'},
-    ]},
-    options: {
-      responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`}}},
-      scales:{
-        x:{ticks:{font:{size:10},maxRotation:45,autoSkip:false},grid:{color:'rgba(0,0,0,0.05)'}},
-        y:{position:'left',ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'rgba(0,0,0,0.05)'},min:0,max:100},
-        y2:{position:'right',ticks:{font:{size:10},callback:v=>v.toFixed(1)+'%'},grid:{display:false},min:0,max:3}
+  if(daily14.length>0){
+    const labels=daily14.map(d=>fmtDate(d.date));
+    const as=daily14.map(d=>n(d.sessions)>0?+(n(d.appts)/n(d.sessions)*100).toFixed(1):0);
+    const fa=daily14.map(d=>n(d.appts)>0?+(n(d.forms)/n(d.appts)*100).toFixed(1):0);
+    const pf=daily14.map(d=>n(d.forms)>0?+(n(d.purchases)/n(d.forms)*100).toFixed(1):0);
+    const cvr=daily14.map(d=>n(d.sessions)>0?+(n(d.purchases)/n(d.sessions)*100).toFixed(2):0);
+    new Chart(document.getElementById('funnelChart'),{
+      type:'line',
+      data:{labels,datasets:[
+        {label:'Appts/Sessions',data:as,borderColor:'#7F77DD',borderWidth:2,pointRadius:3,tension:0.3,fill:false,yAxisID:'y'},
+        {label:'Forms/Appts',data:fa,borderColor:'#1D9E75',borderWidth:2,pointRadius:3,tension:0.3,fill:false,borderDash:[4,3],yAxisID:'y'},
+        {label:'Purch/Forms',data:pf,borderColor:'#D85A30',borderWidth:2,pointRadius:3,tension:0.3,fill:false,borderDash:[2,2],yAxisID:'y'},
+        {label:'CVR',data:cvr,borderColor:'#BA7517',borderWidth:2,pointRadius:3,tension:0.3,fill:false,yAxisID:'y2'},
+      ]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`}}},
+        scales:{
+          x:{ticks:{font:{size:10},maxRotation:45,autoSkip:false},grid:{color:'rgba(0,0,0,0.05)'}},
+          y:{position:'left',ticks:{font:{size:10},callback:v=>v+'%'},grid:{color:'rgba(0,0,0,0.05)'},min:0,max:100},
+          y2:{position:'right',ticks:{font:{size:10},callback:v=>v.toFixed(1)+'%'},grid:{display:false},min:0,max:3}
+        }
       }
-    }
-  });
+    });
+  }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// REPORT 5: INSIGHTS (rule-based from campaign data)
-// ═══════════════════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════════════════
+// INSIGHTS (rule-based)
+// ════════════════════════════════════════════════════════════════════════════
 function loadInsights(data, yest) {
-  const { campaigns, daily } = data;
-  const WEEKDAY_TARGET = 3250, WEEKEND_TARGET = 2000;
+  const {campaigns, daily} = data;
+  if(!campaigns||!daily) return;
 
-  // Pacing
-  const pacingDays = daily.map(d => {
-    const dow = new Date(d.date+'T12:00:00Z').getDay();
-    const isWknd = dow===0||dow===6;
-    const target = isWknd ? WEEKEND_TARGET : WEEKDAY_TARGET;
-    const delta = d.cost - target;
-    const pct = Math.abs(delta)/target;
-    const color = delta > target*0.2 ? '#E24B4A' : delta > 0 ? '#EF9F27' : delta < -target*0.3 ? '#B4B2A9' : '#639922';
-    const maxSpend = Math.max(...daily.map(x=>x.cost));
-    const barH = Math.max(8, Math.round(d.cost/maxSpend*100));
-    const deltaStr = delta > 0 ? `<span style="color:${color}">+$${Math.round(delta).toLocaleString()}</span>` : delta < -200 ? `<span style="color:#888">–$${Math.round(-delta).toLocaleString()}</span>` : `<span style="color:#639922">✓</span>`;
-    return { ...d, target, delta, color, barH, deltaStr, label: fmtDate(d.date).replace(/\d{4}/,'').trim() };
-  });
+  const WEEKDAY=3250, WEEKEND=2000;
+  const totalYestCost=campaigns.reduce((a,c)=>a+n(c.cost),0);
 
-  const totalActual = daily.reduce((a,d)=>a+d.cost,0);
-  const totalTarget = daily.reduce((a,d,i)=>{const dow=new Date(d.date+'T12:00:00Z').getDay();return a+(dow===0||dow===6?WEEKEND_TARGET:WEEKDAY_TARGET);},0);
-  const totalDelta = totalActual - totalTarget;
+  // Pacing bars
+  const maxSpend=Math.max(...daily.map(d=>n(d.cost)),1);
+  const pacingHTML=daily.map(d=>{
+    const dow=new Date(d.date+'T12:00:00Z').getDay();
+    const isWknd=dow===0||dow===6;
+    const target=isWknd?WEEKEND:WEEKDAY;
+    const delta=n(d.cost)-target;
+    const color=delta>target*0.2?'#E24B4A':delta>0?'#EF9F27':delta<-target*0.3?'#B4B2A9':'#639922';
+    const barH=Math.max(6,Math.round(n(d.cost)/maxSpend*100));
+    const deltaStr=delta>100?`<span style="color:#E24B4A">+$${Math.round(delta).toLocaleString()}</span>`:
+                   delta<-200?`<span style="color:#888">–$${Math.round(-delta).toLocaleString()}</span>`:
+                   `<span style="color:#639922">✓</span>`;
+    return `<div class="pacing-day">
+      <div class="pacing-lbl">${fmtDate(d.date).split(',')[0]}</div>
+      <div class="pacing-bar-wrap"><div class="pacing-bar" style="height:${barH}%;background:${color}"></div></div>
+      <div class="pacing-spend">$${(n(d.cost)/1000).toFixed(1)}k</div>
+      <div class="pacing-delta">${deltaStr}</div>
+    </div>`;
+  }).join('');
 
-  // Campaign signals
-  const totalYestCost = campaigns.reduce((a,c)=>a+c.cost,0);
-  const pmax = campaigns.find(c=>c.type==='PERFORMANCE_MAX'&&c.cost>500);
-  const brand = campaigns.find(c=>c.campaign.includes('Brand')||c.campaign.includes('Max_clicks'));
-  const qcClinik = campaigns.find(c=>c.campaign.includes('Clinique_Hormonotherapie'));
-  const hrt = campaigns.find(c=>c.campaign.includes('HRT_Treatments'));
-  const qcPortfolio = campaigns.find(c=>c.campaign.includes('Portfolio'));
-  const onClinic = campaigns.find(c=>c.campaign.includes('Menopause_clinic'));
+  const totalActual=daily.reduce((a,d)=>a+n(d.cost),0);
+  const totalTarget=daily.reduce((a,d)=>{const dow=new Date(d.date+'T12:00:00Z').getDay();return a+(dow===0||dow===6?WEEKEND:WEEKDAY);},0);
+  const totalDelta=totalActual-totalTarget;
 
-  const doubleDown = [];
-  const investigate = [];
+  // Signal cards
+  const doubleDown=[], investigate=[];
+  const find=(k)=>campaigns.find(c=>c.campaign.includes(k));
 
-  // Brand check
-  if (brand) {
-    const bCpa = brand.purch>0 ? Math.round(brand.cost/brand.purch) : null;
-    const bIs = brand.top_is ? (brand.top_is*100).toFixed(0) : null;
-    const bRoas = brand.roas>0?(brand.roas/100).toFixed(2):null;
-    if (bCpa && bCpa < 150) doubleDown.push({
-      color:'c-green', icon:'⭐',
-      title: `Brand is your most efficient spend <span class="ibadge b-green">$${bCpa} CPA · ${bRoas}x ROAS</span>`,
-      detail: `${bIs}% Top IS${bIs>85?' — nearly maxed out':' — room to protect'}. Only <strong>$${Math.round(brand.cost).toLocaleString()} spend</strong> yesterday. Easiest lever for incremental conversions at lowest cost.`
-    });
+  const brand=find('Brand')||find('Max_clicks');
+  const qcClinik=find('Clinique_Hormonotherapie');
+  const hrt=find('HRT_Treatments');
+  const qcPortfolio=find('Portfolio');
+  const pmax=campaigns.find(c=>(c.type||'').toUpperCase().includes('PERFORMANCE')&&n(c.cost)>500);
+  const onClinic=find('Menopause_clinic');
+
+  if(brand&&n(brand.purch)>0){
+    const cpa=Math.round(n(brand.cost)/n(brand.purch));
+    if(cpa<150) doubleDown.push({color:'c-green',icon:'⭐',
+      title:`Brand is your most efficient spend <span class="ibadge b-green">$${cpa} CPA · ${fmtRoas(brand.roas)}</span>`,
+      detail:`${n(brand.top_is)>0?(n(brand.top_is)*100).toFixed(0)+'% Top IS':''} · Only <strong>$${Math.round(n(brand.cost)).toLocaleString()} spend</strong> yesterday. Easiest lever for incremental conversions at lowest cost.`});
   }
 
-  // QC Clinique
-  if (qcClinik && qcClinik.purch>0) {
-    const cpa = Math.round(qcClinik.cost/qcClinik.purch);
-    const roas = (qcClinik.roas/100).toFixed(2);
-    const is = (qcClinik.top_is*100).toFixed(0);
-    if (cpa < 250) doubleDown.push({
-      color:'c-green', icon:'📈',
-      title: `QC Clinique is your standout new campaign <span class="ibadge b-green">$${cpa} CPA · ${roas}x ROAS</span>`,
-      detail: `Top IS at ${is}% — significant room to scale. If CPA holds below $200 through the next few days, this warrants a budget increase. Watch daily.`
-    });
+  if(qcClinik&&n(qcClinik.purch)>0){
+    const cpa=Math.round(n(qcClinik.cost)/n(qcClinik.purch));
+    if(cpa<250) doubleDown.push({color:'c-green',icon:'📈',
+      title:`QC Clinique is your standout new campaign <span class="ibadge b-green">$${cpa} CPA · ${fmtRoas(qcClinik.roas)}</span>`,
+      detail:`Top IS ${n(qcClinik.top_is)>0?(n(qcClinik.top_is)*100).toFixed(0)+'%':'N/A'} — significant room to scale. If CPA holds below $200 over next few days, increase budget.`});
   }
 
-  // ON clinic
-  if (onClinic && onClinic.purch>0) {
-    const cpa = Math.round(onClinic.cost/onClinic.purch);
-    if (cpa < 200) doubleDown.push({
-      color:'c-blue', icon:'🏥',
-      title: `ON Menopause Clinic converting efficiently <span class="ibadge b-blue">$${cpa} CPA</span>`,
-      detail: `Strong CVR signal on small volume. Top IS at ${(onClinic.top_is*100).toFixed(0)}% — check if budget is constraining this campaign.`
-    });
+  if(onClinic&&n(onClinic.purch)>0){
+    const cpa=Math.round(n(onClinic.cost)/n(onClinic.purch));
+    if(cpa<200) doubleDown.push({color:'c-blue',icon:'🏥',
+      title:`ON Menopause Clinic converting efficiently <span class="ibadge b-blue">$${cpa} CPA</span>`,
+      detail:`Strong CVR signal. Top IS ${n(onClinic.top_is)>0?(n(onClinic.top_is)*100).toFixed(0)+'%':'N/A'} — check if budget is constraining this campaign.`});
   }
 
-  // Spend over ceiling
-  const yestData = daily[daily.length-1];
-  if (yestData) {
-    const yDow = new Date(yestData.date+'T12:00:00Z').getDay();
-    const yIsWknd = yDow===0||yDow===6;
-    const yCeil = yIsWknd ? 2000 : 3500;
-    if (yestData.cost > yCeil) {
-      const pmaxShare = pmax ? Math.round(pmax.cost/totalYestCost*100) : 0;
-      investigate.push({
-        color:'c-red', icon:'⚠️',
-        title: `Spend $${Math.round(yestData.cost-yCeil).toLocaleString()} over ${yIsWknd?'weekend':'weekday'} ceiling <span class="ibadge b-red">$${Math.round(yestData.cost).toLocaleString()} vs $${yCeil.toLocaleString()} target</span>`,
-        detail: `${pmax?`PMax alone spent <strong>$${Math.round(pmax.cost).toLocaleString()} (${pmaxShare}% of budget)</strong> on uncapped Max Conversion Value bidding. `:''}Consider setting a PMax daily budget cap to prevent day-level overruns.`
-      });
+  if(hrt&&n(hrt.cost)>50) investigate.push({color:'c-red',icon:'🔒',
+    title:`HRT Treatments spending $${Math.round(n(hrt.cost)).toLocaleString()}/day with LP not live until Jul 6 <span class="ibadge b-red">Pause immediately</span>`,
+    detail:`The /hormone-replacement-therapy landing page is not live until July 6, 2026. <strong>Pause or zero the budget now.</strong>`});
+
+  const yestData=daily[daily.length-1];
+  if(yestData){
+    const dow=new Date(yestData.date+'T12:00:00Z').getDay();
+    const ceil=dow===0||dow===6?2000:3500;
+    if(n(yestData.cost)>ceil){
+      const pmaxShare=pmax?Math.round(n(pmax.cost)/totalYestCost*100):0;
+      investigate.push({color:'c-red',icon:'⚠️',
+        title:`Spend $${Math.round(n(yestData.cost)-ceil).toLocaleString()} over ceiling <span class="ibadge b-red">$${Math.round(n(yestData.cost)).toLocaleString()} vs $${ceil.toLocaleString()} target</span>`,
+        detail:`${pmax?`PMax alone: <strong>$${Math.round(n(pmax.cost)).toLocaleString()} (${pmaxShare}% of budget)</strong> on uncapped bidding. `:''}Consider setting a PMax daily budget cap.`});
     }
   }
 
-  // HRT gated
-  if (hrt && hrt.cost > 50) {
-    investigate.push({
-      color:'c-red', icon:'🔒',
-      title: `HRT Treatments spending $${Math.round(hrt.cost).toLocaleString()}/day with LP not live until Jul 6 <span class="ibadge b-red">Pause immediately</span>`,
-      detail: `This campaign is gated — the /hormone-replacement-therapy landing page is not live until July 6, 2026. Every dollar here is wasted. <strong>Pause or zero the budget now.</strong>`
-    });
+  if(qcPortfolio){
+    const cpa=n(qcPortfolio.purch)>0?Math.round(n(qcPortfolio.cost)/n(qcPortfolio.purch)):null;
+    if(cpa&&cpa>400) investigate.push({color:'c-red',icon:'🔥',
+      title:`QC FR Portfolio bleeding spend <span class="ibadge b-red">$${cpa} CPA</span>`,
+      detail:`<strong>$${cpa} per conversion</strong>. Legacy campaign being replaced by QC Clinique. Migrate budget actively.`});
+    else if(!cpa&&n(qcPortfolio.cost)>200) investigate.push({color:'c-amber',icon:'🔥',
+      title:`QC FR Portfolio: $${Math.round(n(qcPortfolio.cost)).toLocaleString()} spend, 0 conversions`,
+      detail:`Legacy campaign. Shift budget to QC Clinique as it matures.`});
   }
 
-  // QC Portfolio drain
-  if (qcPortfolio && qcPortfolio.purch>0) {
-    const cpa = Math.round(qcPortfolio.cost/qcPortfolio.purch);
-    if (cpa > 400) investigate.push({
-      color:'c-red', icon:'🔥',
-      title: `QC FR Portfolio bleeding spend <span class="ibadge b-red">$${cpa} CPA · ${(qcPortfolio.roas/100).toFixed(2)}x ROAS</span>`,
-      detail: `<strong>$${cpa} for 1 conversion</strong> yesterday. This is the legacy QC campaign being replaced by QC Clinique ($${qcClinik&&qcClinik.purch>0?Math.round(qcClinik.cost/qcClinik.purch):'-'} CPA). Actively migrate budget as QC Clinique matures.`
-    });
-  } else if (qcPortfolio && qcPortfolio.purch===0 && qcPortfolio.cost > 200) {
-    investigate.push({
-      color:'c-amber', icon:'🔥',
-      title: `QC FR Portfolio: $${Math.round(qcPortfolio.cost).toLocaleString()} spend, 0 conversions <span class="ibadge b-amber">Budget migration candidate</span>`,
-      detail: `Legacy campaign with no conversions yesterday. If QC Clinique continues performing, shift this budget.`
-    });
-  }
-
-  // New campaigns with no conv and high spend
-  campaigns.filter(c=>c.purch===0&&c.cost>200&&!c.campaign.includes('HRT')).forEach(c => {
-    const shortN = c.campaign.replace('Search_','').replace('_tCPA','').split(' ')[0];
-    investigate.push({
-      color:'c-amber', icon:'⏱',
-      title: `${shortN} spending $${Math.round(c.cost).toLocaleString()} with 0 conversions <span class="ibadge b-amber">Learning phase</span>`,
-      detail: `Top IS ${c.top_is>0?(c.top_is*100).toFixed(0)+'%':'N/A'}. New campaign still in learning window — expected for first 7–14 days. Monitor appt click rate in PostHog for early quality signal.`
-    });
+  campaigns.filter(c=>n(c.purch)===0&&n(c.cost)>200&&!c.campaign.includes('HRT')&&!c.campaign.includes('Portfolio')&&!c.campaign.includes('Max_clicks')&&!c.campaign.includes('Brand')).forEach(c=>{
+    const short=c.campaign.replace(/Search_|_tCPA/g,'').split(' ')[0].slice(0,30);
+    investigate.push({color:'c-amber',icon:'⏱',
+      title:`${short}: $${Math.round(n(c.cost)).toLocaleString()} spend, 0 conversions <span class="ibadge b-amber">Learning phase</span>`,
+      detail:`New campaign — expected in first 7–14 days. Monitor appt click rate in PostHog for early quality signal.`});
   });
 
-  const yesterday7dCpa = daily.length>0 ? Math.round(daily.reduce((a,d)=>a+d.cost,0)/daily.reduce((a,d)=>a+d.purch,0)) : null;
+  const t7purch=daily.reduce((a,d)=>a+n(d.purch),0);
+  const t7cost=daily.reduce((a,d)=>a+n(d.cost),0);
+  const t7cpa=t7purch>0?Math.round(t7cost/t7purch):null;
+  const topIssue=hrt&&n(hrt.cost)>50?'Pause HRT Treatments immediately (LP gated until Jul 6)':
+    investigate.length>0?investigate[0].title.replace(/<[^>]+>/g,'').trim():
+    'Monitor new campaigns through learning phase';
 
-  // Build bottom line
-  const topIssue = hrt && hrt.cost > 50 ? 'Pause HRT Treatments immediately (LP gated until Jul 6)' :
-    investigate.find(i=>i.color==='c-red') ? investigate.find(i=>i.color==='c-red').title.replace(/<[^>]+>/g,'').trim() :
-    'Review PMax daily spend to stay within budget ceiling';
-
-  let insightsHtml = `
+  const html=`
   <div class="section-label">Spend pacing — last 7 days</div>
   <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:8px;">
-    <div class="pacing-grid">
-      ${pacingDays.map(d=>`
-      <div class="pacing-day">
-        <div class="pacing-lbl">${d.label.split(',')[0]}</div>
-        <div class="pacing-bar-wrap"><div class="pacing-bar" style="height:${d.barH}%;background:${d.color}"></div></div>
-        <div class="pacing-spend">$${Math.round(d.cost/1000).toFixed(1)}k</div>
-        <div class="pacing-delta">${d.deltaStr}</div>
-      </div>`).join('')}
-    </div>
+    <div class="pacing-grid">${pacingHTML}</div>
     <div style="font-size:11px;color:var(--hint);margin-top:8px;">
-      7d actual: <strong style="color:var(--text)">$${Math.round(totalActual).toLocaleString()}</strong> vs target $${Math.round(totalTarget).toLocaleString()} 
-      <span style="color:${totalDelta>0?'#BA7517':'#3B6D11'}">${totalDelta>0?'+':''} $${Math.round(totalDelta).toLocaleString()}</span> · 
-      Green = on target · Amber/Red = over · Grey = under
+      7d actual: <strong style="color:var(--text)">$${Math.round(totalActual).toLocaleString()}</strong> vs target $${Math.round(totalTarget).toLocaleString()}
+      <span style="color:${totalDelta>0?'#BA7517':'#3B6D11'}">${totalDelta>0?'+':''}$${Math.round(totalDelta).toLocaleString()}</span>
+      · Green = on target · Amber/Red = over · Grey = under
     </div>
   </div>
-
   <div class="divider"></div>
   <div class="section-label">Double down</div>
-  ${doubleDown.map(c=>`
-  <div class="insight-card ${c.color}">
-    <div class="card-icon">${c.icon}</div>
-    <div class="card-body">
-      <div class="card-title">${c.title}</div>
-      <div class="card-detail">${c.detail}</div>
-    </div>
-  </div>`).join('')}
-  ${doubleDown.length===0?'<div style="font-size:12px;color:var(--hint);padding:8px 0;">No strong scale signals today — check back after learning campaigns mature.</div>':''}
-
+  ${doubleDown.map(c=>`<div class="insight-card ${c.color}"><div class="card-icon">${c.icon}</div><div><div class="card-title">${c.title}</div><div class="card-detail">${c.detail}</div></div></div>`).join('')}
+  ${doubleDown.length===0?'<div style="font-size:12px;color:var(--hint);padding:8px 0">No strong scale signals today.</div>':''}
   <div class="divider"></div>
   <div class="section-label">Investigate</div>
-  ${investigate.map(c=>`
-  <div class="insight-card ${c.color}">
-    <div class="card-icon">${c.icon}</div>
-    <div class="card-body">
-      <div class="card-title">${c.title}</div>
-      <div class="card-detail">${c.detail}</div>
-    </div>
-  </div>`).join('')}
-  ${investigate.length===0?'<div style="font-size:12px;color:var(--hint);padding:8px 0;">No issues flagged today. 👌</div>':''}
-
+  ${investigate.map(c=>`<div class="insight-card ${c.color}"><div class="card-icon">${c.icon}</div><div><div class="card-title">${c.title}</div><div class="card-detail">${c.detail}</div></div></div>`).join('')}
+  ${investigate.length===0?'<div style="font-size:12px;color:var(--hint);padding:8px 0">No issues flagged today. 👌</div>':''}
   <div class="divider"></div>
   <div class="bottom-line">
-    <strong>Bottom line:</strong> ${topIssue}. 
-    7-day CPA is <strong>$${yesterday7dCpa||'—'}</strong> vs the 30-day baseline — 
-    ${yesterday7dCpa&&yesterday7dCpa<200?'trending well as new campaigns mature.':yesterday7dCpa&&yesterday7dCpa>250?'elevated while new campaigns are in learning phase; expect improvement over next 7–10 days.':'monitor daily as new campaigns stabilize.'}
+    <strong>Bottom line:</strong> ${topIssue}.
+    7-day CPA is <strong>${t7cpa?'$'+t7cpa.toLocaleString():'—'}</strong>
+    ${t7cpa&&t7cpa<200?' — trending well as new campaigns mature.':t7cpa&&t7cpa>300?' — elevated while new campaigns learn; expect improvement over next 7–10 days.':' — monitor daily as new campaigns stabilize.'}
   </div>`;
 
-  document.getElementById('loading-insights').style.display = 'none';
-  document.getElementById('content-insights').innerHTML = insightsHtml;
-  document.getElementById('content-insights').style.display = 'block';
+  document.getElementById('loading-insights').style.display='none';
+  document.getElementById('content-insights').innerHTML=html;
+  document.getElementById('content-insights').style.display='block';
 }
 
-// ─── BOOT ─────────────────────────────────────────────────────────────────────
 loadDashboard();
 </script>
 </body>
