@@ -242,7 +242,7 @@ function renderCampaigns(d){
     <th class="r">CTR</th>
     <th class="r">Avg CPC</th>
     <th class="r">Spend</th>
-    <th class="r">Appts/Sessions</th>
+    <th class="r">Appts/Clicks</th>
     <th class="r">Forms/Appts</th>
     <th class="r">Purch/Forms</th>
     <th class="r">ROAS</th>
@@ -267,7 +267,7 @@ function renderCampaigns(d){
       <td class="r">${r.ctr!=null?r.ctr.toFixed(2)+'%':'—'}</td>
       <td class="r">${r.cpc!=null?'$'+r.cpc.toFixed(2):'—'}</td>
       <td class="r">${fmtCAD(r.cost)}</td>
-      <td class="r">${fn.appts_per_session!=null?fn.appts_per_session.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.appts_per_click!=null?fn.appts_per_click.toFixed(1)+'%':'—'}</td>
       <td class="r">${fn.forms_per_appt!=null?fn.forms_per_appt.toFixed(1)+'%':'—'}</td>
       <td class="r">${fn.purch_per_form!=null?fn.purch_per_form.toFixed(1)+'%':'—'}</td>
       <td class="r">—</td>
@@ -308,7 +308,7 @@ function renderCampaigns(d){
     <td class="r">${r.clicks&&r.impressions?(r.clicks/r.impressions*100).toFixed(2)+'%':'—'}</td>
     <td class="r">${r.clicks&&r.cost?'$'+(r.cost/r.clicks).toFixed(2):'—'}</td>
     <td class="r">${fmtCAD(r.cost)}</td>
-    <td class="r">${r.appts_per_session!=null?r.appts_per_session.toFixed(1)+'%':'—'}</td>
+    <td class="r">${r.appts_per_click!=null?r.appts_per_click.toFixed(1)+'%':'—'}</td>
     <td class="r">${r.forms_per_appt!=null?r.forms_per_appt.toFixed(1)+'%':'—'}</td>
     <td class="r">${r.purch_per_form!=null?r.purch_per_form.toFixed(1)+'%':'—'}</td>
     <td class="r">—</td>
@@ -367,7 +367,7 @@ function renderCampaigns(d){
         <tbody>${dailyRows}</tbody>
       </table>
     </div>
-    <p class="footnote">Funnel rates from PostHog (all channels, session-scoped). IS and ROAS are campaign-level only. *[gtag] purchase only</p>`;
+    <p class="footnote">Funnel columns from PostHog events (utm_source=google), clicks from Windsor. IS and ROAS are campaign-level only. *[gtag] purchase only</p>`;
 }
 
 // ─── SITE FUNNEL ──────────────────────────────────────────────────────────────
