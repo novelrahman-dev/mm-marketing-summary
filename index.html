@@ -18,24 +18,21 @@ header{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;d
 header h1{font-size:15px;font-weight:700;white-space:nowrap;}
 #meta{font-size:11px;color:var(--muted);white-space:nowrap;}
 nav{display:flex;gap:2px;padding:10px 24px 0;border-bottom:1px solid var(--border);background:#fff;}
-nav button{padding:8px 16px;border:none;background:none;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:600;transition:color .15s;}
+nav button{padding:8px 16px;border:none;background:none;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:600;}
 nav button.active{color:var(--text);border-bottom-color:#3C3489;}
 nav button:hover:not(.active){color:var(--text);}
-.tab{display:none;padding:20px 24px;max-width:1400px;}
+.tab{display:none;padding:20px 24px;}
 .tab.active{display:block;}
 
-/* ── section headers ── */
 .sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:20px 0 8px;}
 .sec:first-child{margin-top:0;}
 
-/* ── stat cards ── */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:20px;}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
 .card .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:6px;font-weight:600;}
 .card .val{font-size:22px;font-weight:800;line-height:1.1;}
 .card .sub{font-size:10px;color:var(--muted);margin-top:4px;}
 
-/* ── tags ── */
 .tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;}
 .tag-brand{background:var(--purple-bg);color:var(--purple-text);}
 .tag-nb{background:var(--teal-bg);color:var(--teal-text);}
@@ -44,7 +41,6 @@ nav button:hover:not(.active){color:var(--text);}
 .tag-warn{background:var(--amber-bg);color:var(--amber-text);}
 .tag-bad{background:var(--red-bg);color:var(--red-text);}
 
-/* ── tables ── */
 .tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;margin-bottom:6px;}
 table{width:100%;border-collapse:collapse;font-size:11.5px;}
 th{background:#f5f4f1;font-weight:700;text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--muted);}
@@ -54,47 +50,40 @@ tr:hover td{background:#fafaf8;}
 .r{text-align:right;}
 .footnote{font-size:10px;color:var(--muted);margin-bottom:16px;padding-left:2px;}
 
-/* ── insight cards ── */
 .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-@media(max-width:720px){.insight-grid{grid-template-columns:1fr;}}
 .ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
 .ic-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.ic-icon{font-size:20px;line-height:1;flex-shrink:0;margin-top:1px;}
-.ic-title{font-weight:700;font-size:13px;line-height:1.2;}
+.ic-icon{font-size:20px;line-height:1;flex-shrink:0;}
+.ic-title{font-weight:700;font-size:13px;}
 .ic-sub{font-size:10px;color:var(--muted);margin-top:2px;}
 .ic ul{list-style:none;}
 .ic ul li{font-size:11.5px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;}
 .ic ul li:last-child{border:none;padding-bottom:0;}
-.ic ul li .dim{color:var(--muted);font-size:10px;}
+.dim{color:var(--muted);font-size:10px;}
 
-/* ── narrative summary box ── */
 .narrative{background:#fdfcf9;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;}
-.narrative h3{font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;}
-.narrative p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px;}
-.narrative p:last-child{margin-bottom:0;}
+.narrative h3{font-size:12px;font-weight:700;margin-bottom:8px;}
+.narrative p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:5px;}
+.narrative p:last-child{margin:0;}
 .narrative strong{color:var(--text);}
 
-/* ── bottom line ── */
 .bottom-line{background:var(--purple-bg);border:1px solid var(--purple-border);border-radius:var(--radius);padding:14px 18px;}
 .bl-title{font-weight:700;font-size:12px;color:var(--purple-text);margin-bottom:6px;}
 .bl-body{font-size:12px;color:var(--purple-text);line-height:1.6;}
 
-/* ── pacing bar ── */
-.pace-row{display:flex;align-items:center;gap:8px;padding:5px 0;}
-.pace-row:not(:last-child){border-bottom:1px solid var(--border);}
+.pace-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.pace-row:last-child{border:none;}
 .pace-name{width:280px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0;}
 .pace-bar-bg{flex:1;background:#eee;border-radius:4px;height:8px;overflow:hidden;min-width:60px;}
-.pace-bar-fill{height:8px;border-radius:4px;transition:width .3s;}
+.pace-bar-fill{height:8px;border-radius:4px;}
 .pace-spend{width:68px;text-align:right;font-size:11px;font-weight:700;}
-.pace-purch{width:58px;text-align:right;font-size:10px;color:var(--muted);}
+.pace-purch{width:60px;text-align:right;font-size:10px;color:var(--muted);}
 
-/* ── chart ── */
 .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:6px;}
-.chart-wrap h3{font-size:12px;font-weight:700;margin-bottom:12px;color:var(--text);}
+.chart-wrap h3{font-size:12px;font-weight:700;margin-bottom:12px;}
 
-/* ── loading/error ── */
-.loading{text-align:center;padding:60px 20px;color:var(--muted);}
 .error-box{background:var(--red-bg);border:1px solid #f5c0c0;border-radius:var(--radius);padding:16px 20px;margin:20px 0;color:var(--red-text);}
+.loading{text-align:center;padding:60px 20px;color:var(--muted);}
 </style>
 </head>
 <body>
@@ -115,120 +104,77 @@ tr:hover td{background:#fafaf8;}
 <div id="funnel" class="tab"><div class="loading">Loading…</div></div>
 
 <script>
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 const $e = id => document.getElementById(id);
-const fmtCAD = v => v == null ? '—' : '$' + Number(v).toLocaleString('en-CA', {minimumFractionDigits:0,maximumFractionDigits:0});
+
+const fmtCAD  = v => v == null ? '—' : '$' + Number(v).toLocaleString('en-CA',{minimumFractionDigits:0,maximumFractionDigits:0});
 const fmtCAD2 = v => v == null ? '—' : '$' + Number(v).toFixed(2);
-const fmtPct = (v, d=1) => v == null ? '—' : Number(v).toFixed(d) + '%';
-const fmtNum = v => v == null ? '—' : Number(v).toLocaleString();
-const fmtX = v => v == null ? '—' : Number(v).toFixed(2) + 'x';
+const fmtNum  = v => v == null ? '—' : Number(v).toLocaleString();
+const fmtPct  = (v,d=2) => v == null ? '—' : Number(v).toFixed(d)+'%';
 
-function showTab(id, btn) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  $e(id).classList.add('active');
-  btn.classList.add('active');
+function showTab(id, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  $e(id).classList.add('active'); btn.classList.add('active');
 }
 
-function cpaTag(cpa) {
-  if (cpa == null) return '<span style="color:var(--muted)">—</span>';
-  if (cpa <= 100) return `<span class="tag tag-good">${fmtCAD(cpa)}</span>`;
-  if (cpa <= 175) return `<span class="tag tag-warn">${fmtCAD(cpa)}</span>`;
-  return `<span class="tag tag-bad">${fmtCAD(cpa)}</span>`;
+function cpaTag(cpa){
+  if(cpa==null) return '<span style="color:var(--muted)">—</span>';
+  if(cpa<=100)  return `<span class="tag tag-good">${fmtCAD2(cpa)}</span>`;
+  if(cpa<=175)  return `<span class="tag tag-warn">${fmtCAD2(cpa)}</span>`;
+  return `<span class="tag tag-bad">${fmtCAD2(cpa)}</span>`;
 }
 
-function campTypeTag(name, type) {
+function campTag(name, type){
   const l = name.toLowerCase();
-  if (l.includes('[brand]') || l.includes('brand')) return '<span class="tag tag-brand">Brand</span>';
-  if (type === 'PERFORMANCE_MAX' || l.includes('pmax') || l.includes('[pmax]')) return '<span class="tag tag-pmax">PMax</span>';
+  if(l.includes('[brand]')||l.includes('brand')) return '<span class="tag tag-brand">Brand</span>';
+  if(type==='PERFORMANCE_MAX'||l.includes('pmax')||l.includes('[pmax]')) return '<span class="tag tag-pmax">PMax</span>';
   return '<span class="tag tag-nb">NB</span>';
 }
 
-function shortCamp(name) {
-  return name.replace(/_/g,' ');
-}
+function sc(name){ return name.replace(/_/g,' '); }
 
-// ─── TAB 1: Insights ─────────────────────────────────────────────────────────
-function renderInsights(d) {
+// ─── INSIGHTS ────────────────────────────────────────────────────────────────
+function renderInsights(d){
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
-  const t14 = totals['14d'] || {};
-  const t7  = totals['7d']  || {};
-  const ty  = totals.yesterday || {};
-
-  // Google Paid CVR from channel_funnel
-  const gp = (d.channel_funnel || []).find(c => c.channel === 'Google Paid');
-  const gCVR = gp ? (gp.purchase_sessions / gp.sessions * 100).toFixed(2) : null;
-
-  // Pacing
+  const t14=totals['14d']||{}, t7=totals['7d']||{}, ty=totals.yesterday||{};
+  const gp = (d.channel_funnel||[]).find(c=>c.channel==='Google Paid');
+  const gCVR = gp ? (gp.purchase_sessions/gp.sessions*100).toFixed(2) : null;
   const dow = new Date(d.date_yesterday).getDay();
-  const target = (dow === 0 || dow === 6) ? 2000 : 3000;
-  const pacePct = ty.cost ? (ty.cost / target * 100) : 0;
-  const paceColor = pacePct > 110 ? '#c0392b' : pacePct >= 85 ? '#27ae60' : '#e67e22';
+  const target = (dow===0||dow===6) ? 2000 : 3000;
+  const pacePct = ty.cost ? ty.cost/target*100 : 0;
+  const paceColor = pacePct>110?'#c0392b':pacePct>=85?'#27ae60':'#e67e22';
 
-  // Camp rankings by 14d CPA (with purchases)
-  const withPurch = camps.filter(c => c.purchases_14d > 0.5).map(c => ({
-    ...c, cpa14: c.cost_14d / c.purchases_14d
-  })).sort((a,b) => a.cpa14 - b.cpa14);
-
-  const best3 = withPurch.slice(0, 3);
-  const worst3 = withPurch.slice(-3).reverse();
-
-  // Investigate: 7d CPA > $175
-  const investigate = camps.filter(c => c.cpa_7d && c.cpa_7d > 175)
-    .sort((a,b) => b.cpa_7d - a.cpa_7d);
-
-  // HRT flag
-  const hrt = camps.find(c => c.campaign.includes('HRT'));
+  const withPurch = camps.filter(c=>c.purchases_14d>0.5)
+    .map(c=>({...c,cpa14:c.cost_14d/c.purchases_14d}))
+    .sort((a,b)=>a.cpa14-b.cpa14);
+  const best3 = withPurch.slice(0,3);
+  const investigate = camps.filter(c=>c.cpa_7d&&c.cpa_7d>175).sort((a,b)=>b.cpa_7d-a.cpa_7d);
+  const hrt = camps.find(c=>c.campaign.includes('HRT'));
   const hrtSpend = hrt ? hrt.cost_14d : 0;
-
-  // Brand IS (yesterday's top IS for brand campaign)
-  const brandCamp = camps.find(c => c.campaign.toLowerCase().includes('[brand]') && c.campaign.includes('Max_clicks'));
+  const brandCamp = camps.find(c=>c.campaign.toLowerCase().includes('[brand]')&&c.campaign.includes('Max_clicks'));
   const brandIS = brandCamp ? brandCamp.top_is : null;
+  const best = withPurch[0], worst = withPurch[withPurch.length-1];
 
-  // Narrative signals
-  const best = withPurch[0];
-  const worst = withPurch[withPurch.length - 1];
-  const cpaVsTarget = t7.cpa ? (t7.cpa <= 175 ? 'below' : 'above') : null;
-  const spendTrend14_7 = t14.cost && t7.cost ? (t7.cost / (t14.cost - t7.cost) * 100 - 100).toFixed(0) : null;
+  // Narrative
+  let lines = [];
+  if(t7.cpa) lines.push(`<strong>7d CPA is ${fmtCAD2(t7.cpa)}</strong> — ${t7.cpa<=175?'✅ within':'⚠️ above'} the $175 target. 14d blended CPA is <strong>${fmtCAD2(t14.cpa)}</strong> across <strong>${Math.round(t14.purchases||0)} purchases</strong>.`);
+  lines.push(`Yesterday: <strong>${fmtCAD(ty.cost)}</strong> spend (${pacePct.toFixed(0)}% of ${fmtCAD(target)} ${(dow===0||dow===6)?'weekend':'weekday'} target), <strong>${ty.purchases!=null?ty.purchases.toFixed(1):'—'} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.`);
+  if(best&&worst&&best.campaign!==worst.campaign) lines.push(`Best 14d: <strong>${sc(best.campaign).substring(0,44)}</strong> at <strong>${fmtCAD2(best.cpa14)} CPA</strong>. Worst: <strong>${sc(worst.campaign).substring(0,40)}</strong> at <strong>${fmtCAD2(worst.cpa14)} CPA</strong>.`);
+  if(hrtSpend>0) lines.push(`🔴 <strong>HRT campaign has spent ${fmtCAD(hrtSpend)} (14d)</strong> — LP gated until Jul 6, pause immediately.`);
+  else if(investigate.length>0) lines.push(`⚠️ <strong>${investigate.length} campaign${investigate.length>1?'s':''}</strong> running above $175 CPA (7d) — see Investigate card.`);
+  else lines.push(`✅ No structural flags. All campaigns within acceptable parameters.`);
 
-  // Build narrative paragraphs
-  let narrativeLines = [];
-
-  // 1. Overall CPA health
-  if (t7.cpa) {
-    const vs = t7.cpa <= 175 ? 'within' : 'above';
-    narrativeLines.push(`<strong>7d CPA is ${fmtCAD2(t7.cpa)}</strong> — ${vs} the $175 target. 14d blended CPA is ${fmtCAD2(t14.cpa)} across ${fmtNum(Math.round(t14.purchases))} purchases.`);
-  }
-
-  // 2. Volume / spend
-  narrativeLines.push(`Yesterday's spend was <strong>${fmtCAD(ty.cost)}</strong> (${pacePct.toFixed(0)}% of ${fmtCAD(target)} ${(dow===0||dow===6)?'weekend':'weekday'} target) with <strong>${ty.purchases != null ? ty.purchases.toFixed(1) : '—'} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.`);
-
-  // 3. Best & worst
-  if (best && worst && best.campaign !== worst.campaign) {
-    narrativeLines.push(`Best performer (14d): <strong>${shortCamp(best.campaign)}</strong> at <strong>${fmtCAD2(best.cpa14)} CPA</strong>. Worst: <strong>${shortCamp(worst.campaign)}</strong> at <strong>${fmtCAD2(worst.cpa14)} CPA</strong> — review or cut budget.`);
-  }
-
-  // 4. Flags
-  const flags = [];
-  if (hrtSpend > 0) flags.push(`🔴 HRT campaign has <strong>${fmtCAD(hrtSpend)} spend</strong> — LP gated until Jul 6, pause now.`);
-  if (brandIS != null && brandIS < 80) flags.push(`⚠️ Brand Top IS is <strong>${brandIS.toFixed(1)}%</strong> — below 80% threshold, check budget.`);
-  if (investigate.length > 0) flags.push(`⚠️ <strong>${investigate.length} campaign${investigate.length>1?'s':''}</strong> with 7d CPA above $175 — see Investigate card.`);
-  if (flags.length === 0) flags.push('✅ No structural flags. All campaigns within acceptable parameters.');
-  narrativeLines = narrativeLines.concat(flags);
-
-  // Camp pacing rows (yesterday, sorted by spend desc)
-  const campPaceRows = camps
-    .filter(c => c.yest_cost > 0)
-    .sort((a,b) => b.yest_cost - a.yest_cost)
-    .map(c => {
-      const pct = Math.min((c.yest_cost / target) * 100, 120);
-      const col = pct > 100 ? '#c0392b' : pct > 60 ? '#3C3489' : '#aaa';
+  const campPaceRows = camps.filter(c=>c.yest_cost>0)
+    .sort((a,b)=>b.yest_cost-a.yest_cost)
+    .map(c=>{
+      const pct = Math.min(c.yest_cost/target*100,120);
+      const col = pct>100?'#c0392b':pct>60?'#3C3489':'#aaa';
       return `<div class="pace-row">
-        <div class="pace-name" title="${c.campaign}">${shortCamp(c.campaign).substring(0,42)}</div>
+        <div class="pace-name" title="${c.campaign}">${sc(c.campaign).substring(0,44)}</div>
         <div class="pace-bar-bg"><div class="pace-bar-fill" style="width:${pct}%;background:${col}"></div></div>
         <div class="pace-spend" style="color:${col}">${fmtCAD(c.yest_cost)}</div>
-        <div class="pace-purch">${c.yest_purchases > 0 ? c.yest_purchases.toFixed(1)+' purch' : '0 purch'}</div>
+        <div class="pace-purch">${c.yest_purchases>0?c.yest_purchases.toFixed(1)+' purch':'0 purch'}</div>
       </div>`;
     }).join('');
 
@@ -238,15 +184,15 @@ function renderInsights(d) {
       <div class="card"><div class="lbl">Yesterday Spend</div><div class="val">${fmtCAD(ty.cost)}</div><div class="sub">${pacePct.toFixed(0)}% of ${fmtCAD(target)} target</div></div>
       <div class="card"><div class="lbl">Yesterday CPA</div><div class="val">${fmtCAD2(ty.cpa)}</div><div class="sub">[gtag] purchase</div></div>
       <div class="card"><div class="lbl">7d CPA</div><div class="val">${fmtCAD2(t7.cpa)}</div><div class="sub">target ≤ $175</div></div>
-      <div class="card"><div class="lbl">14d Spend</div><div class="val">${fmtCAD(t14.cost)}</div><div class="sub">${fmtNum(Math.round(t14.purchases || 0))} purchases</div></div>
+      <div class="card"><div class="lbl">14d Spend</div><div class="val">${fmtCAD(t14.cost)}</div><div class="sub">${fmtNum(Math.round(t14.purchases||0))} purchases</div></div>
       <div class="card"><div class="lbl">14d CPA</div><div class="val">${fmtCAD2(t14.cpa)}</div><div class="sub">blended all campaigns</div></div>
-      <div class="card"><div class="lbl">Google Paid CVR</div><div class="val">${gCVR != null ? gCVR + '%' : '—'}</div><div class="sub">purchases / sessions (30d)</div></div>
+      <div class="card"><div class="lbl">Google Paid CVR</div><div class="val">${gCVR!=null?gCVR+'%':'—'}</div><div class="sub">purchases / sessions (30d)</div></div>
     </div>
 
     <div class="sec">What to Look For Today</div>
     <div class="narrative">
       <h3>📋 Morning Briefing — ${d.date_yesterday}</h3>
-      ${narrativeLines.map(l => `<p>${l}</p>`).join('')}
+      ${lines.map(l=>`<p>${l}</p>`).join('')}
     </div>
 
     <div class="sec">Yesterday Spend Pacing vs ${fmtCAD(target)} ${(dow===0||dow===6)?'Weekend':'Weekday'} Target</div>
@@ -256,108 +202,100 @@ function renderInsights(d) {
     <div class="insight-grid">
       <div class="ic">
         <div class="ic-head"><span class="ic-icon">🚀</span><div><div class="ic-title">Double Down</div><div class="ic-sub">Lowest 14d CPA — scale these</div></div></div>
-        <ul>${best3.length ? best3.map(c => `<li>
-          <strong>${shortCamp(c.campaign).substring(0,44)}</strong><br>
-          <span class="dim">14d CPA: <strong>${fmtCAD2(c.cpa14)}</strong> &nbsp;·&nbsp; Spend: ${fmtCAD(c.cost_14d)} &nbsp;·&nbsp; Purchases: ${c.purchases_14d.toFixed(1)}</span>
-        </li>`).join('') : '<li>No data</li>'}</ul>
+        <ul>${best3.length?best3.map(c=>`<li><strong>${sc(c.campaign).substring(0,44)}</strong><br><span class="dim">14d CPA: <strong>${fmtCAD2(c.cpa14)}</strong> · Spend: ${fmtCAD(c.cost_14d)} · Purchases: ${c.purchases_14d.toFixed(1)}</span></li>`).join(''):'<li>No data</li>'}</ul>
       </div>
       <div class="ic">
         <div class="ic-head"><span class="ic-icon">⚠️</span><div><div class="ic-title">Investigate</div><div class="ic-sub">7d CPA above $175 — review or cut</div></div></div>
-        <ul>${investigate.length ? investigate.map(c => `<li>
-          ${cpaTag(c.cpa_7d)} <strong>${shortCamp(c.campaign).substring(0,36)}</strong><br>
-          <span class="dim">7d: ${fmtCAD(c.cost_7d)} spend &nbsp;·&nbsp; 14d CPA: ${fmtCAD2(c.cpa_14d)}</span>
-        </li>`).join('') : '<li>✅ All campaigns within target</li>'}</ul>
+        <ul>${investigate.length?investigate.map(c=>`<li>${cpaTag(c.cpa_7d)} <strong>${sc(c.campaign).substring(0,36)}</strong><br><span class="dim">7d spend: ${fmtCAD(c.cost_7d)} · 14d CPA: ${fmtCAD2(c.cpa_14d)}</span></li>`).join(''):'<li>✅ All campaigns within target</li>'}</ul>
       </div>
       <div class="ic">
         <div class="ic-head"><span class="ic-icon">🏆</span><div><div class="ic-title">Best Performer</div><div class="ic-sub">14d lowest CPA with volume</div></div></div>
-        <ul>${best ? `
-          <li><strong>${shortCamp(best.campaign)}</strong></li>
-          <li><span class="dim">14d CPA</span> ${cpaTag(best.cpa14)}</li>
-          <li><span class="dim">14d Spend</span> <strong>${fmtCAD(best.cost_14d)}</strong></li>
-          <li><span class="dim">14d Purchases</span> <strong>${best.purchases_14d.toFixed(1)}</strong></li>
-        ` : '<li>No data</li>'}</ul>
+        <ul>${best?`<li><strong>${sc(best.campaign)}</strong></li><li><span class="dim">14d CPA</span> ${cpaTag(best.cpa14)}</li><li><span class="dim">14d Spend</span> <strong>${fmtCAD(best.cost_14d)}</strong></li><li><span class="dim">Purchases</span> <strong>${best.purchases_14d.toFixed(1)}</strong></li>`:'<li>No data</li>'}</ul>
       </div>
       <div class="ic">
         <div class="ic-head"><span class="ic-icon">🚨</span><div><div class="ic-title">Structural Flags</div><div class="ic-sub">Always-on checks</div></div></div>
         <ul>
-          <li>${hrtSpend > 0 ? `🔴 <strong>HRT spending ${fmtCAD(hrtSpend)} (14d)</strong> — LP gated until Jul 6, pause immediately` : '✅ HRT campaign not spending (correct)'}</li>
-          <li>${brandIS != null && brandIS < 80 ? `🔴 Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong> — below 80% target` : brandIS != null ? `✅ Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong>` : '— Brand IS: no yesterday data'}</li>
-          <li>${worst && worst.cpa14 > 300 ? `📉 Worst CPA: <strong>${shortCamp(worst.campaign).substring(0,34)}</strong> at ${fmtCAD2(worst.cpa14)} (14d)` : '✅ No campaigns above $300 CPA (14d)'}</li>
+          <li>${hrtSpend>0?`🔴 <strong>HRT spending ${fmtCAD(hrtSpend)} (14d)</strong> — LP gated Jul 6, PAUSE`:'✅ HRT not spending (correct)'}</li>
+          <li>${brandIS!=null&&brandIS<80?`🔴 Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong> — below 80%`:brandIS!=null?`✅ Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong>`:'— Brand IS: no yesterday data'}</li>
+          <li>${worst&&worst.cpa14>300?`📉 Worst: <strong>${sc(worst.campaign).substring(0,34)}</strong> ${fmtCAD2(worst.cpa14)} CPA (14d)`:'✅ No campaigns above $300 CPA (14d)'}</li>
         </ul>
       </div>
     </div>
 
     <div class="bottom-line">
       <div class="bl-title">Bottom Line</div>
-      <div class="bl-body">
-        Yesterday spent <strong>${fmtCAD(ty.cost)}</strong> for <strong>${ty.purchases != null ? ty.purchases.toFixed(1) : '—'} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.
-        7d CPA is <strong>${fmtCAD2(t7.cpa)}</strong> — ${t7.cpa && t7.cpa <= 175 ? '✅ on target' : t7.cpa && t7.cpa <= 225 ? '⚠️ watch closely' : '🔴 above target — act now'}.
-        14d total: <strong>${fmtCAD(t14.cost)}</strong> spend, <strong>${fmtNum(Math.round(t14.purchases || 0))} purchases</strong>, <strong>${fmtCAD2(t14.cpa)} blended CPA</strong>.
-        ${hrtSpend > 0 ? '<br>🔴 <strong>HRT campaign spending — PAUSE IMMEDIATELY.</strong>' : ''}
-      </div>
-    </div>
-  `;
+      <div class="bl-body">Yesterday: <strong>${fmtCAD(ty.cost)}</strong> spend, <strong>${ty.purchases!=null?ty.purchases.toFixed(1):'—'} purchases</strong>, <strong>${fmtCAD2(ty.cpa)} CPA</strong>. 7d CPA <strong>${fmtCAD2(t7.cpa)}</strong> — ${t7.cpa&&t7.cpa<=175?'✅ on target':t7.cpa&&t7.cpa<=225?'⚠️ watch closely':'🔴 above target'}. 14d: <strong>${fmtCAD(t14.cost)}</strong> spend, <strong>${fmtNum(Math.round(t14.purchases||0))} purchases</strong>, <strong>${fmtCAD2(t14.cpa)}</strong> CPA.${hrtSpend>0?'<br>🔴 <strong>HRT campaign spending — PAUSE IMMEDIATELY.</strong>':''}</div>
+    </div>`;
 }
 
-// ─── TAB 2: Campaigns ─────────────────────────────────────────────────────────
-function renderCampaigns(d) {
+// ─── CAMPAIGNS ────────────────────────────────────────────────────────────────
+function renderCampaigns(d){
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
-  const t14 = totals['14d'] || {};
-  const t7  = totals['7d']  || {};
-  const ty  = totals.yesterday || {};
-  const daily = (d.daily || []).filter(r => r.date !== '2026-06-15'); // exclude today partial
+  const t14=totals['14d']||{}, t7=totals['7d']||{}, ty=totals.yesterday||{};
+  const daily = (d.daily||[]).filter(r=>r.date!=='2026-06-15');
 
-  // ── Account Summary: 3 periods × all metrics ──
+  // ── Shared column header: Impr · Clicks · CTR · CPC · Cost · Purchases · CPA
+  const sharedHdr = `
+    <th class="r">Impr.</th>
+    <th class="r">Clicks</th>
+    <th class="r">CTR</th>
+    <th class="r">Avg CPC</th>
+    <th class="r">Spend</th>
+    <th class="r">Purchases*</th>
+    <th class="r">CPA</th>`;
+
+  // ── Account Summary (3 rows × shared cols) ──
   const periods = [
-    {label:'Yesterday',      d:ty},
-    {label:'Last 7 Days',    d:t7},
-    {label:'Last 14 Days',   d:t14},
+    {label:'Yesterday',    r:ty},
+    {label:'Last 7 Days',  r:t7},
+    {label:'Last 14 Days', r:t14},
   ];
-  const summaryRows = periods.map(p => {
-    const r = p.d;
+  const summaryRows = periods.map(p=>{
+    const r=p.r;
     return `<tr>
       <td><strong>${p.label}</strong></td>
-      <td class="r">${fmtCAD(r.cost)}</td>
-      <td class="r">${fmtNum(r.clicks)}</td>
       <td class="r">${fmtNum(r.impressions)}</td>
-      <td class="r">${r.ctr != null ? r.ctr.toFixed(2)+'%' : '—'}</td>
-      <td class="r">${r.cpc != null ? '$'+r.cpc.toFixed(2) : '—'}</td>
-      <td class="r">${r.purchases != null ? r.purchases.toFixed(1) : '—'}</td>
+      <td class="r">${fmtNum(r.clicks)}</td>
+      <td class="r">${r.ctr!=null?r.ctr.toFixed(2)+'%':'—'}</td>
+      <td class="r">${r.cpc!=null?'$'+r.cpc.toFixed(2):'—'}</td>
+      <td class="r">${fmtCAD(r.cost)}</td>
+      <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
       <td class="r">${cpaTag(r.cpa)}</td>
     </tr>`;
   }).join('');
 
-  // ── Campaign table (Report 1) ──
-  const campRows = camps.map(c => `<tr>
-    <td style="max-width:260px;overflow:hidden;text-overflow:ellipsis;" title="${c.campaign}">
-      ${campTypeTag(c.campaign, c.type)} ${shortCamp(c.campaign).substring(0,38)}
+  // ── Campaign table (shared cols + 3 CPA columns) ──
+  const campRows = camps.map(c=>`<tr>
+    <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;" title="${c.campaign}">
+      ${campTag(c.campaign,c.type)} ${sc(c.campaign).substring(0,36)}
     </td>
-    <td class="r">${fmtNum(c.yest_impressions || 0)}</td>
-    <td class="r">${fmtNum(c.yest_clicks || 0)}</td>
-    <td class="r">${c.yest_ctr != null ? c.yest_ctr.toFixed(1)+'%' : '—'}</td>
-    <td class="r">${c.yest_cpc != null ? '$'+c.yest_cpc.toFixed(2) : '—'}</td>
+    <td class="r">${fmtNum(c.yest_impressions||0)}</td>
+    <td class="r">${fmtNum(c.yest_clicks||0)}</td>
+    <td class="r">${c.yest_ctr!=null?c.yest_ctr.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.yest_cpc!=null?'$'+c.yest_cpc.toFixed(2):'—'}</td>
     <td class="r">${fmtCAD(c.yest_cost)}</td>
-    <td class="r">${c.funnel_appts_per_click != null ? c.funnel_appts_per_click.toFixed(1)+'%' : '—'}</td>
-    <td class="r">${c.funnel_forms_per_appt != null ? c.funnel_forms_per_appt.toFixed(1)+'%' : '—'}</td>
-    <td class="r">${c.funnel_purchases_per_form != null ? c.funnel_purchases_per_form.toFixed(1)+'%' : '—'}</td>
-    <td class="r">${c.yest_roas != null ? c.yest_roas.toFixed(2)+'x' : '—'}</td>
-    <td class="r">${c.top_is != null ? c.top_is.toFixed(1)+'%' : '—'}</td>
-    <td class="r">${c.budget_lost_is != null ? c.budget_lost_is.toFixed(1)+'%' : '—'}</td>
+    <td class="r">${c.funnel_appts_per_click!=null?c.funnel_appts_per_click.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.funnel_forms_per_appt!=null?c.funnel_forms_per_appt.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.funnel_purchases_per_form!=null?c.funnel_purchases_per_form.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.yest_roas!=null?c.yest_roas.toFixed(2)+'x':'—'}</td>
+    <td class="r">${c.top_is!=null?c.top_is.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.budget_lost_is!=null?c.budget_lost_is.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.yest_purchases!=null?c.yest_purchases.toFixed(1):'—'}</td>
     <td class="r">${cpaTag(c.yest_cpa)}</td>
     <td class="r">${cpaTag(c.cpa_7d)}</td>
     <td class="r">${cpaTag(c.cpa_14d)}</td>
   </tr>`).join('');
 
-  // ── Daily table: ALL metrics ──
-  const dailyRows = daily.map(r => `<tr>
+  // ── Daily Breakdown (shared cols — same as Account Summary shape) ──
+  const dailyRows = daily.map(r=>`<tr>
     <td>${r.date}</td>
-    <td class="r">${fmtCAD(r.cost)}</td>
-    <td class="r">${fmtNum(r.clicks)}</td>
     <td class="r">${fmtNum(r.impressions)}</td>
-    <td class="r">${r.clicks && r.impressions ? (r.clicks/r.impressions*100).toFixed(2)+'%' : '—'}</td>
-    <td class="r">${r.clicks && r.cost ? '$'+(r.cost/r.clicks).toFixed(2) : '—'}</td>
-    <td class="r">${r.purchases != null ? r.purchases.toFixed(1) : '—'}</td>
+    <td class="r">${fmtNum(r.clicks)}</td>
+    <td class="r">${r.clicks&&r.impressions?(r.clicks/r.impressions*100).toFixed(2)+'%':'—'}</td>
+    <td class="r">${r.clicks&&r.cost?'$'+(r.cost/r.clicks).toFixed(2):'—'}</td>
+    <td class="r">${fmtCAD(r.cost)}</td>
+    <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
     <td class="r">${cpaTag(r.cpa)}</td>
   </tr>`).join('');
 
@@ -367,13 +305,7 @@ function renderCampaigns(d) {
       <table>
         <thead><tr>
           <th>Period</th>
-          <th class="r">Spend</th>
-          <th class="r">Clicks</th>
-          <th class="r">Impressions</th>
-          <th class="r">CTR</th>
-          <th class="r">Avg CPC</th>
-          <th class="r">Purchases*</th>
-          <th class="r">CPA</th>
+          ${sharedHdr}
         </tr></thead>
         <tbody>${summaryRows}</tbody>
       </table>
@@ -396,6 +328,7 @@ function renderCampaigns(d) {
           <th class="r">ROAS</th>
           <th class="r">Top IS</th>
           <th class="r">Bgt Lost IS</th>
+          <th class="r">Purchases*</th>
           <th class="r">CPA Yest</th>
           <th class="r">CPA 7d</th>
           <th class="r">CPA 14d</th>
@@ -403,71 +336,61 @@ function renderCampaigns(d) {
         <tbody>${campRows}</tbody>
       </table>
     </div>
-    <p class="footnote">Funnel columns = PostHog 14d (utm_source=google_paid) · ROAS = Windsor ÷ 100 · CPA = [gtag] purchase only</p>
+    <p class="footnote">Funnel columns = PostHog 14d (utm_source=google_paid) · ROAS = Windsor ÷ 100 · *[gtag] purchase only</p>
 
     <div class="sec">Daily Breakdown — Last 14 Days</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
           <th>Date</th>
-          <th class="r">Spend</th>
-          <th class="r">Clicks</th>
-          <th class="r">Impressions</th>
-          <th class="r">CTR</th>
-          <th class="r">Avg CPC</th>
-          <th class="r">Purchases*</th>
-          <th class="r">CPA</th>
+          ${sharedHdr}
         </tr></thead>
         <tbody>${dailyRows}</tbody>
       </table>
     </div>
-    <p class="footnote">*[gtag] purchase only</p>
-  `;
+    <p class="footnote">*[gtag] purchase only</p>`;
 }
 
-// ─── TAB 3: Site Funnel ────────────────────────────────────────────────────────
-function renderFunnel(d) {
+// ─── SITE FUNNEL ──────────────────────────────────────────────────────────────
+function renderFunnel(d){
   const channels = d.channel_funnel || [];
-  const daily14  = (d.daily14_funnel || []).filter(r => r.date !== '2026-06-15');
+  const daily14  = (d.daily14_funnel||[]).filter(r=>r.date!=='2026-06-15');
 
-  // Channel table — only % ratios, no raw appt/form counts, CVR = purchases/sessions
-  const chanRows = channels.map(c => {
-    const apptRate  = c.sessions > 0 ? (c.appt_sessions / c.sessions * 100).toFixed(1) : '—';
-    const formRate  = c.appt_sessions > 0 ? (c.form_sessions / c.appt_sessions * 100).toFixed(1) : '—';
-    const purchRate = c.form_sessions > 0 ? (c.purchase_sessions / c.form_sessions * 100).toFixed(1) : '—';
-    const cvr       = c.sessions > 0 ? (c.purchase_sessions / c.sessions * 100).toFixed(2) : '—'; // purchases/sessions
+  const chanRows = channels.map(c=>{
+    const apptR  = c.sessions>0?(c.appt_sessions/c.sessions*100).toFixed(1):'—';
+    const formR  = c.appt_sessions>0?(c.form_sessions/c.appt_sessions*100).toFixed(1):'—';
+    const purchR = c.form_sessions>0?(c.purchase_sessions/c.form_sessions*100).toFixed(1):'—';
+    const cvr    = c.sessions>0?(c.purchase_sessions/c.sessions*100).toFixed(2):'—';
     return `<tr>
       <td><strong>${c.channel}</strong></td>
       <td class="r">${fmtNum(c.sessions)}</td>
-      <td class="r">${apptRate}%</td>
-      <td class="r">${formRate}%</td>
-      <td class="r">${purchRate}%</td>
-      <td class="r"><strong>${cvr}%</strong></td>
+      <td class="r">${apptR!=='—'?apptR+'%':'—'}</td>
+      <td class="r">${formR!=='—'?formR+'%':'—'}</td>
+      <td class="r">${purchR!=='—'?purchR+'%':'—'}</td>
+      <td class="r"><strong>${cvr!=='—'?cvr+'%':'—'}</strong></td>
     </tr>`;
   }).join('');
 
-  // Daily funnel table — only % ratios, CVR = purchases/sessions
-  const dailyFunnelRows = daily14.map(r => {
-    const apptRate  = r.sessions > 0 ? (r.appt_sessions / r.sessions * 100).toFixed(1) : '—';
-    const formRate  = r.appt_sessions > 0 ? (r.form_sessions / r.appt_sessions * 100).toFixed(1) : '—';
-    const purchRate = r.form_sessions > 0 ? (r.purchase_sessions / r.form_sessions * 100).toFixed(1) : '—';
-    const cvr       = r.sessions > 0 ? (r.purchase_sessions / r.sessions * 100).toFixed(2) : '—';
+  const dailyFunnelRows = daily14.map(r=>{
+    const apptR  = r.sessions>0?(r.appt_sessions/r.sessions*100).toFixed(1):'—';
+    const formR  = r.appt_sessions>0?(r.form_sessions/r.appt_sessions*100).toFixed(1):'—';
+    const purchR = r.form_sessions>0?(r.purchase_sessions/r.form_sessions*100).toFixed(1):'—';
+    const cvr    = r.sessions>0?(r.purchase_sessions/r.sessions*100).toFixed(2):'—';
     return `<tr>
       <td>${r.date}</td>
       <td class="r">${fmtNum(r.sessions)}</td>
-      <td class="r">${apptRate}%</td>
-      <td class="r">${formRate}%</td>
-      <td class="r">${purchRate}%</td>
-      <td class="r"><strong>${cvr}%</strong></td>
+      <td class="r">${apptR!=='—'?apptR+'%':'—'}</td>
+      <td class="r">${formR!=='—'?formR+'%':'—'}</td>
+      <td class="r">${purchR!=='—'?purchR+'%':'—'}</td>
+      <td class="r"><strong>${cvr!=='—'?cvr+'%':'—'}</strong></td>
     </tr>`;
   }).join('');
 
-  // Chart data
-  const labels    = daily14.map(r => r.date.slice(5));
-  const apptR     = daily14.map(r => r.sessions > 0 ? +(r.appt_sessions/r.sessions*100).toFixed(2) : 0);
-  const formR     = daily14.map(r => r.appt_sessions > 0 ? +(r.form_sessions/r.appt_sessions*100).toFixed(2) : 0);
-  const purchR    = daily14.map(r => r.form_sessions > 0 ? +(r.purchase_sessions/r.form_sessions*100).toFixed(2) : 0);
-  const cvrR      = daily14.map(r => r.sessions > 0 ? +(r.purchase_sessions/r.sessions*100).toFixed(2) : 0);
+  const labels = daily14.map(r=>r.date.slice(5));
+  const apptR  = daily14.map(r=>r.sessions>0?+(r.appt_sessions/r.sessions*100).toFixed(2):0);
+  const formR  = daily14.map(r=>r.appt_sessions>0?+(r.form_sessions/r.appt_sessions*100).toFixed(2):0);
+  const purchR = daily14.map(r=>r.form_sessions>0?+(r.purchase_sessions/r.form_sessions*100).toFixed(2):0);
+  const cvrR   = daily14.map(r=>r.sessions>0?+(r.purchase_sessions/r.sessions*100).toFixed(2):0);
 
   $e('funnel').innerHTML = `
     <div class="sec">Channel Funnel — Last 30 Days (session-scoped)</div>
@@ -479,12 +402,12 @@ function renderFunnel(d) {
           <th class="r">Appts / Sessions</th>
           <th class="r">Forms / Appts</th>
           <th class="r">Purch / Forms</th>
-          <th class="r">CVR (Purch/Sessions)</th>
+          <th class="r">CVR (Purch / Sessions)</th>
         </tr></thead>
         <tbody>${chanRows}</tbody>
       </table>
     </div>
-    <p class="footnote">Session-scoped: each session attributed to its entry channel. CVR = purchase sessions ÷ total sessions.</p>
+    <p class="footnote">Session-scoped: each session attributed to its entry channel. CVR = purchase sessions ÷ sessions.</p>
 
     <div class="sec">Daily Funnel Rates — Last 14 Days</div>
     <div class="chart-wrap">
@@ -499,57 +422,43 @@ function renderFunnel(d) {
           <th class="r">Appts / Sessions</th>
           <th class="r">Forms / Appts</th>
           <th class="r">Purch / Forms</th>
-          <th class="r">CVR (Purch/Sessions)</th>
+          <th class="r">CVR (Purch / Sessions)</th>
         </tr></thead>
         <tbody>${dailyFunnelRows}</tbody>
       </table>
     </div>
-    <p class="footnote">All channels combined. CVR = purchase sessions ÷ sessions.</p>
-  `;
+    <p class="footnote">All channels combined. CVR = purchase sessions ÷ sessions.</p>`;
 
-  // Render chart after DOM is ready
-  setTimeout(() => {
+  setTimeout(()=>{
     const ctx = document.getElementById('funnelChart');
-    if (ctx && labels.length) {
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels,
-          datasets: [
-            {label:'Appts / Sessions %', data:apptR, borderColor:'#3C3489', backgroundColor:'rgba(60,52,137,.06)', tension:.3, yAxisID:'y', pointRadius:3},
-            {label:'Forms / Appts %',    data:formR, borderColor:'#085041', backgroundColor:'rgba(8,80,65,.06)',  tension:.3, yAxisID:'y', pointRadius:3},
-            {label:'Purch / Forms %',    data:purchR,borderColor:'#e67e22', backgroundColor:'rgba(230,126,34,.06)',tension:.3,yAxisID:'y', pointRadius:3},
-            {label:'CVR (Purch/Sessions) %',data:cvrR,borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,.05)',tension:.3,yAxisID:'y2',pointRadius:3,borderDash:[5,3]},
-          ]
-        },
-        options: {
-          responsive: true,
-          interaction: {mode:'index', intersect:false},
-          plugins: {legend: {position:'top', labels:{font:{size:11}}}},
-          scales: {
-            y:  {type:'linear', position:'left',  title:{display:true, text:'Funnel Step %'}},
-            y2: {type:'linear', position:'right', title:{display:true, text:'CVR %'}, grid:{drawOnChartArea:false}},
-          }
-        }
-      });
+    if(ctx&&labels.length){
+      new Chart(ctx,{type:'line',data:{labels,datasets:[
+        {label:'Appts/Sessions %',data:apptR,borderColor:'#3C3489',backgroundColor:'rgba(60,52,137,.06)',tension:.3,yAxisID:'y',pointRadius:3},
+        {label:'Forms/Appts %',   data:formR,borderColor:'#085041',backgroundColor:'rgba(8,80,65,.06)',  tension:.3,yAxisID:'y',pointRadius:3},
+        {label:'Purch/Forms %',   data:purchR,borderColor:'#e67e22',backgroundColor:'rgba(230,126,34,.06)',tension:.3,yAxisID:'y',pointRadius:3},
+        {label:'CVR %',           data:cvrR, borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,.05)',tension:.3,yAxisID:'y2',pointRadius:3,borderDash:[5,3]},
+      ]},options:{responsive:true,interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'top',labels:{font:{size:11}}}},
+        scales:{y:{type:'linear',position:'left',title:{display:true,text:'Funnel Step %'}},
+                y2:{type:'linear',position:'right',title:{display:true,text:'CVR %'},grid:{drawOnChartArea:false}}}}});
     }
-  }, 50);
+  },50);
 }
 
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
-async function loadData() {
-  const url = `https://raw.githubusercontent.com/novelrahman-dev/mm-google-ads-summary/main/data.json?t=${Date.now()}`;
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    $e('meta').textContent = `Generated: ${data.generated_at}`;
+async function loadData(){
+  const url=`https://raw.githubusercontent.com/novelrahman-dev/mm-google-ads-summary/main/data.json?t=${Date.now()}`;
+  try{
+    const res=await fetch(url);
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data=await res.json();
+    $e('meta').textContent=`Generated: ${data.generated_at}`;
     renderInsights(data);
     renderCampaigns(data);
     renderFunnel(data);
-  } catch(err) {
-    const msg = `<div class="error-box">⚠️ Could not load data.json<br><small>${err.message}</small><br><br>Run "pull morning data" in Claude to refresh.</div>`;
-    ['insights','campaigns','funnel'].forEach(id => $e(id).innerHTML = msg);
+  }catch(err){
+    const msg=`<div class="error-box">⚠️ Could not load data.json<br><small>${err.message}</small><br><br>Run "pull morning data" in Claude to refresh.</div>`;
+    ['insights','campaigns','funnel'].forEach(id=>$e(id).innerHTML=msg);
   }
 }
 loadData();
