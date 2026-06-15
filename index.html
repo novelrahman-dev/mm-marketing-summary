@@ -6,75 +6,95 @@
 <title>Modern Menopause — Google Ads Dashboard</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-:root{--bg:#f8f7f4;--surface:#fff;--border:rgba(0,0,0,.10);--text:#1a1a18;--muted:#6b6b67;--radius:10px;
---purple-bg:#EEEDFE;--purple-text:#3C3489;--teal-bg:#E1F5EE;--teal-text:#085041;
---amber-bg:#FAEEDA;--amber-text:#6B4C00;--red-bg:#FEEDED;--red-text:#8B1A1A;--green-bg:#E6F4EA;--green-text:#1A5C2A;}
+:root{
+  --bg:#f8f7f4;--surface:#fff;--border:rgba(0,0,0,.09);--text:#1a1a18;--muted:#6b6b67;
+  --radius:10px;--purple-bg:#EEEDFE;--purple-border:#c5c3f5;--purple-text:#3C3489;
+  --teal-bg:#E1F5EE;--teal-text:#085041;--amber-bg:#FAEEDA;--amber-text:#6B4C00;
+  --red-bg:#FEEDED;--red-text:#8B1A1A;--green-bg:#E6F4EA;--green-text:#1A5C2A;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:13px;}
-header{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
-header h1{font-size:15px;font-weight:700;}
-#meta{font-size:11px;color:var(--muted);}
-nav{display:flex;gap:4px;padding:10px 24px 0;border-bottom:1px solid var(--border);background:#fff;}
-nav button{padding:8px 16px;border:none;background:none;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:600;}
+header{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+header h1{font-size:15px;font-weight:700;white-space:nowrap;}
+#meta{font-size:11px;color:var(--muted);white-space:nowrap;}
+nav{display:flex;gap:2px;padding:10px 24px 0;border-bottom:1px solid var(--border);background:#fff;}
+nav button{padding:8px 16px;border:none;background:none;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:600;transition:color .15s;}
 nav button.active{color:var(--text);border-bottom-color:#3C3489;}
-.tab{display:none;padding:20px 24px;}
+nav button:hover:not(.active){color:var(--text);}
+.tab{display:none;padding:20px 24px;max-width:1400px;}
 .tab.active{display:block;}
-.loading-state{text-align:center;padding:60px;color:var(--muted);}
-.error-state{text-align:center;padding:40px;color:#8B1A1A;background:var(--red-bg);border-radius:var(--radius);margin:20px;}
 
-/* Stat cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:18px;}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
-.card .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px;}
-.card .val{font-size:20px;font-weight:800;}
-.card .sub{font-size:10px;color:var(--muted);margin-top:3px;}
+/* ── section headers ── */
+.sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:20px 0 8px;}
+.sec:first-child{margin-top:0;}
 
-/* Section labels */
-.sec{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin:18px 0 8px;}
+/* ── stat cards ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:20px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+.card .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:6px;font-weight:600;}
+.card .val{font-size:22px;font-weight:800;line-height:1.1;}
+.card .sub{font-size:10px;color:var(--muted);margin-top:4px;}
 
-/* Tables */
-.tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;margin-bottom:18px;}
-table{width:100%;border-collapse:collapse;font-size:11.5px;}
-th{background:#f5f4f1;font-weight:700;text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--muted);}
-td{padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;}
-tr:last-child td{border-bottom:none;}
-tr:hover td{background:#fafaf8;}
-.r{text-align:right;}
-.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;}
+/* ── tags ── */
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;}
 .tag-brand{background:var(--purple-bg);color:var(--purple-text);}
 .tag-nb{background:var(--teal-bg);color:var(--teal-text);}
 .tag-pmax{background:var(--amber-bg);color:var(--amber-text);}
 .tag-good{background:var(--green-bg);color:var(--green-text);}
 .tag-warn{background:var(--amber-bg);color:var(--amber-text);}
 .tag-bad{background:var(--red-bg);color:var(--red-text);}
-.tag-na{background:#eee;color:#888;}
 
-/* Insights */
-.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
-.ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
-.ic .ich{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-.ic .ico{font-size:18px;}
-.ic .ict{font-weight:700;font-size:13px;}
-.ic .ics{font-size:10px;color:var(--muted);}
+/* ── tables ── */
+.tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;font-size:11.5px;}
+th{background:#f5f4f1;font-weight:700;text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--muted);}
+td{padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafaf8;}
+.r{text-align:right;}
+.footnote{font-size:10px;color:var(--muted);margin-bottom:16px;padding-left:2px;}
+
+/* ── insight cards ── */
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:720px){.insight-grid{grid-template-columns:1fr;}}
+.ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+.ic-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.ic-icon{font-size:20px;line-height:1;flex-shrink:0;margin-top:1px;}
+.ic-title{font-weight:700;font-size:13px;line-height:1.2;}
+.ic-sub{font-size:10px;color:var(--muted);margin-top:2px;}
 .ic ul{list-style:none;}
-.ic ul li{font-size:11.5px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);}
-.ic ul li:last-child{border:none;}
-.ic ul li strong{color:var(--text);}
-.bottom-line{background:var(--purple-bg);border:1px solid #c5c3f5;border-radius:var(--radius);padding:14px 18px;}
+.ic ul li{font-size:11.5px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.4;}
+.ic ul li:last-child{border:none;padding-bottom:0;}
+.ic ul li .dim{color:var(--muted);font-size:10px;}
+
+/* ── narrative summary box ── */
+.narrative{background:#fdfcf9;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;}
+.narrative h3{font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.narrative p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px;}
+.narrative p:last-child{margin-bottom:0;}
+.narrative strong{color:var(--text);}
+
+/* ── bottom line ── */
+.bottom-line{background:var(--purple-bg);border:1px solid var(--purple-border);border-radius:var(--radius);padding:14px 18px;}
 .bl-title{font-weight:700;font-size:12px;color:var(--purple-text);margin-bottom:6px;}
-.bl-body{font-size:12px;color:var(--purple-text);line-height:1.55;}
+.bl-body{font-size:12px;color:var(--purple-text);line-height:1.6;}
 
-/* Chart */
-.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:18px;}
-.chart-wrap h3{font-size:12px;font-weight:700;margin-bottom:10px;}
+/* ── pacing bar ── */
+.pace-row{display:flex;align-items:center;gap:8px;padding:5px 0;}
+.pace-row:not(:last-child){border-bottom:1px solid var(--border);}
+.pace-name{width:280px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0;}
+.pace-bar-bg{flex:1;background:#eee;border-radius:4px;height:8px;overflow:hidden;min-width:60px;}
+.pace-bar-fill{height:8px;border-radius:4px;transition:width .3s;}
+.pace-spend{width:68px;text-align:right;font-size:11px;font-weight:700;}
+.pace-purch{width:58px;text-align:right;font-size:10px;color:var(--muted);}
 
-/* Pacing bars */
-.pace-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.pace-name{width:240px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.pace-bg{flex:1;background:#eee;border-radius:4px;height:9px;overflow:hidden;}
-.pace-fill{height:9px;border-radius:4px;}
-.pace-pct{width:42px;text-align:right;font-size:11px;font-weight:700;}
-.pace-spend{width:65px;text-align:right;font-size:10px;color:var(--muted);}
+/* ── chart ── */
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:6px;}
+.chart-wrap h3{font-size:12px;font-weight:700;margin-bottom:12px;color:var(--text);}
+
+/* ── loading/error ── */
+.loading{text-align:center;padding:60px 20px;color:var(--muted);}
+.error-box{background:var(--red-bg);border:1px solid #f5c0c0;border-radius:var(--radius);padding:16px 20px;margin:20px 0;color:var(--red-text);}
 </style>
 </head>
 <body>
@@ -86,364 +106,450 @@ tr:hover td{background:#fafaf8;}
 
 <nav>
   <button class="active" onclick="showTab('insights',this)">💡 Insights</button>
-  <button onclick="showTab('campaigns',this)">📊 Campaigns & Time Periods</button>
+  <button onclick="showTab('campaigns',this)">📊 Campaigns</button>
   <button onclick="showTab('funnel',this)">🌐 Site Funnel</button>
 </nav>
 
-<div id="insights" class="tab active"><div class="loading-state">Loading data…</div></div>
-<div id="campaigns" class="tab"><div class="loading-state">Loading data…</div></div>
-<div id="funnel" class="tab"><div class="loading-state">Loading data…</div></div>
+<div id="insights" class="tab active"><div class="loading">Loading…</div></div>
+<div id="campaigns" class="tab"><div class="loading">Loading…</div></div>
+<div id="funnel" class="tab"><div class="loading">Loading…</div></div>
 
 <script>
-// ── Helpers ────────────────────────────────────────────────────────────────────
-const $ = id => document.getElementById(id);
-const fmt = {
-  cad: v => v==null?'—':'$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:0,maximumFractionDigits:0}),
-  cad2: v => v==null?'—':'$'+Number(v).toFixed(2),
-  pct: (v,d=1) => v==null?'—':Number(v).toFixed(d)+'%',
-  num: v => v==null?'—':Number(v).toLocaleString(),
-  x: v => v==null?'—':Number(v).toFixed(2)+'x',
-};
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const $e = id => document.getElementById(id);
+const fmtCAD = v => v == null ? '—' : '$' + Number(v).toLocaleString('en-CA', {minimumFractionDigits:0,maximumFractionDigits:0});
+const fmtCAD2 = v => v == null ? '—' : '$' + Number(v).toFixed(2);
+const fmtPct = (v, d=1) => v == null ? '—' : Number(v).toFixed(d) + '%';
+const fmtNum = v => v == null ? '—' : Number(v).toLocaleString();
+const fmtX = v => v == null ? '—' : Number(v).toFixed(2) + 'x';
 
-function showTab(id,btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  $(id).classList.add('active');
+function showTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  $e(id).classList.add('active');
   btn.classList.add('active');
 }
 
-function cpaTag(cpa){
-  if(cpa==null) return '<span class="tag tag-na">—</span>';
-  if(cpa<=100) return `<span class="tag tag-good">${fmt.cad(cpa)}</span>`;
-  if(cpa<=150) return `<span class="tag tag-warn">${fmt.cad(cpa)}</span>`;
-  return `<span class="tag tag-bad">${fmt.cad(cpa)}</span>`;
+function cpaTag(cpa) {
+  if (cpa == null) return '<span style="color:var(--muted)">—</span>';
+  if (cpa <= 100) return `<span class="tag tag-good">${fmtCAD(cpa)}</span>`;
+  if (cpa <= 175) return `<span class="tag tag-warn">${fmtCAD(cpa)}</span>`;
+  return `<span class="tag tag-bad">${fmtCAD(cpa)}</span>`;
 }
 
-function typeTag(t){
-  if(!t) return '';
-  if(t.includes('BRAND')||t.toLowerCase().includes('[brand]')) return '<span class="tag tag-brand">Brand</span>';
-  if(t.includes('PERFORMANCE_MAX')) return '<span class="tag tag-pmax">PMax</span>';
+function campTypeTag(name, type) {
+  const l = name.toLowerCase();
+  if (l.includes('[brand]') || l.includes('brand')) return '<span class="tag tag-brand">Brand</span>';
+  if (type === 'PERFORMANCE_MAX' || l.includes('pmax') || l.includes('[pmax]')) return '<span class="tag tag-pmax">PMax</span>';
   return '<span class="tag tag-nb">NB</span>';
 }
 
-function campTypeTag(campaign){
-  const l=campaign.toLowerCase();
-  if(l.includes('[brand]')||l.includes('brand')) return '<span class="tag tag-brand">Brand</span>';
-  if(l.includes('pmax')||l.includes('[pmax]')) return '<span class="tag tag-pmax">PMax</span>';
-  return '<span class="tag tag-nb">NB</span>';
+function shortCamp(name) {
+  return name.replace(/_/g,' ');
 }
 
-function funnelPct(v){
-  if(v==null) return '—';
-  return `<span style="font-weight:600">${v.toFixed(1)}%</span>`;
-}
-
-// ── Render Insights ─────────────────────────────────────────────────────────
-function renderInsights(d){
+// ─── TAB 1: Insights ─────────────────────────────────────────────────────────
+function renderInsights(d) {
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
   const t14 = totals['14d'] || {};
-  const t7 = totals['7d'] || {};
-  const ty = totals.yesterday || {};
+  const t7  = totals['7d']  || {};
+  const ty  = totals.yesterday || {};
 
-  // Account totals
-  const totalCost14 = t14.cost||0, totalPurch14 = t14.purchases||0, totalCPA14 = t14.cpa;
-  const totalCost7 = t7.cost||0, totalPurch7 = t7.purchases||0, totalCPA7 = t7.cpa;
-  const totalCostY = ty.cost||0, totalPurchY = ty.purchases||0, totalCPAY = ty.cpa;
+  // Google Paid CVR from channel_funnel
+  const gp = (d.channel_funnel || []).find(c => c.channel === 'Google Paid');
+  const gCVR = gp ? (gp.purchase_sessions / gp.sessions * 100).toFixed(2) : null;
 
-  // Brand vs NB
-  const brandCamps = camps.filter(c=>c.campaign.toLowerCase().includes('[brand]'));
-  const nbCamps = camps.filter(c=>!c.campaign.toLowerCase().includes('[brand]')&&!c.campaign.toLowerCase().includes('pmax'));
-  const brandSpend14 = brandCamps.reduce((s,c)=>s+(c.cost_14d||0),0);
-  const nbSpend14 = nbCamps.reduce((s,c)=>s+(c.cost_14d||0),0);
+  // Pacing
+  const dow = new Date(d.date_yesterday).getDay();
+  const target = (dow === 0 || dow === 6) ? 2000 : 3000;
+  const pacePct = ty.cost ? (ty.cost / target * 100) : 0;
+  const paceColor = pacePct > 110 ? '#c0392b' : pacePct >= 85 ? '#27ae60' : '#e67e22';
 
-  // Top and worst CPA (14d, exclude brand, require conversions)
-  const rankedCPA = camps.filter(c=>c.purchases_14d>0).map(c=>({...c,cpa14:c.cost_14d/c.purchases_14d})).sort((a,b)=>a.cpa14-b.cpa14);
-  const bestCPA = rankedCPA[0];
-  const worstCPA = rankedCPA[rankedCPA.length-1];
+  // Camp rankings by 14d CPA (with purchases)
+  const withPurch = camps.filter(c => c.purchases_14d > 0.5).map(c => ({
+    ...c, cpa14: c.cost_14d / c.purchases_14d
+  })).sort((a,b) => a.cpa14 - b.cpa14);
 
-  // Alert campaigns (7d CPA > 150)
-  const alerts = camps.filter(c=>c.cpa_7d&&c.cpa_7d>100);
+  const best3 = withPurch.slice(0, 3);
+  const worst3 = withPurch.slice(-3).reverse();
 
-  // HRT flag (should not be spending)
-  const hrtCamp = camps.find(c=>c.campaign.includes('HRT'));
-  const hrtSpend = hrtCamp ? hrtCamp.cost_14d : 0;
+  // Investigate: 7d CPA > $175
+  const investigate = camps.filter(c => c.cpa_7d && c.cpa_7d > 175)
+    .sort((a,b) => b.cpa_7d - a.cpa_7d);
 
-  // Pacing (yesterday vs targets: weekday=$3000, weekend estimate=$2000)
-  const yesterdayDate = new Date(d.date_yesterday);
-  const dow = yesterdayDate.getDay();
-  const isWeekend = dow===0||dow===6;
-  const pacingTarget = isWeekend ? 2000 : 3000;
-  const pacingPct = totalCostY > 0 ? (totalCostY/pacingTarget*100) : 0;
-  const pacingColor = pacingPct > 120 ? '#c0392b' : pacingPct > 90 ? '#27ae60' : '#e67e22';
+  // HRT flag
+  const hrt = camps.find(c => c.campaign.includes('HRT'));
+  const hrtSpend = hrt ? hrt.cost_14d : 0;
 
-  // Channel CVR highlight (Google Paid)
-  const gPaid = (d.channel_funnel||[]).find(c=>c.channel==='Google Paid');
-  const gCVR = gPaid ? (gPaid.purchase_sessions/gPaid.sessions*100).toFixed(2) : null;
+  // Brand IS (yesterday's top IS for brand campaign)
+  const brandCamp = camps.find(c => c.campaign.toLowerCase().includes('[brand]') && c.campaign.includes('Max_clicks'));
+  const brandIS = brandCamp ? brandCamp.top_is : null;
 
-  const el = $('insights');
-  el.innerHTML = `
-    <div class="sec">Account Snapshot — Data as of ${d.date_yesterday}</div>
+  // Narrative signals
+  const best = withPurch[0];
+  const worst = withPurch[withPurch.length - 1];
+  const cpaVsTarget = t7.cpa ? (t7.cpa <= 175 ? 'below' : 'above') : null;
+  const spendTrend14_7 = t14.cost && t7.cost ? (t7.cost / (t14.cost - t7.cost) * 100 - 100).toFixed(0) : null;
+
+  // Build narrative paragraphs
+  let narrativeLines = [];
+
+  // 1. Overall CPA health
+  if (t7.cpa) {
+    const vs = t7.cpa <= 175 ? 'within' : 'above';
+    narrativeLines.push(`<strong>7d CPA is ${fmtCAD2(t7.cpa)}</strong> — ${vs} the $175 target. 14d blended CPA is ${fmtCAD2(t14.cpa)} across ${fmtNum(Math.round(t14.purchases))} purchases.`);
+  }
+
+  // 2. Volume / spend
+  narrativeLines.push(`Yesterday's spend was <strong>${fmtCAD(ty.cost)}</strong> (${pacePct.toFixed(0)}% of ${fmtCAD(target)} ${(dow===0||dow===6)?'weekend':'weekday'} target) with <strong>${ty.purchases != null ? ty.purchases.toFixed(1) : '—'} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.`);
+
+  // 3. Best & worst
+  if (best && worst && best.campaign !== worst.campaign) {
+    narrativeLines.push(`Best performer (14d): <strong>${shortCamp(best.campaign)}</strong> at <strong>${fmtCAD2(best.cpa14)} CPA</strong>. Worst: <strong>${shortCamp(worst.campaign)}</strong> at <strong>${fmtCAD2(worst.cpa14)} CPA</strong> — review or cut budget.`);
+  }
+
+  // 4. Flags
+  const flags = [];
+  if (hrtSpend > 0) flags.push(`🔴 HRT campaign has <strong>${fmtCAD(hrtSpend)} spend</strong> — LP gated until Jul 6, pause now.`);
+  if (brandIS != null && brandIS < 80) flags.push(`⚠️ Brand Top IS is <strong>${brandIS.toFixed(1)}%</strong> — below 80% threshold, check budget.`);
+  if (investigate.length > 0) flags.push(`⚠️ <strong>${investigate.length} campaign${investigate.length>1?'s':''}</strong> with 7d CPA above $175 — see Investigate card.`);
+  if (flags.length === 0) flags.push('✅ No structural flags. All campaigns within acceptable parameters.');
+  narrativeLines = narrativeLines.concat(flags);
+
+  // Camp pacing rows (yesterday, sorted by spend desc)
+  const campPaceRows = camps
+    .filter(c => c.yest_cost > 0)
+    .sort((a,b) => b.yest_cost - a.yest_cost)
+    .map(c => {
+      const pct = Math.min((c.yest_cost / target) * 100, 120);
+      const col = pct > 100 ? '#c0392b' : pct > 60 ? '#3C3489' : '#aaa';
+      return `<div class="pace-row">
+        <div class="pace-name" title="${c.campaign}">${shortCamp(c.campaign).substring(0,42)}</div>
+        <div class="pace-bar-bg"><div class="pace-bar-fill" style="width:${pct}%;background:${col}"></div></div>
+        <div class="pace-spend" style="color:${col}">${fmtCAD(c.yest_cost)}</div>
+        <div class="pace-purch">${c.yest_purchases > 0 ? c.yest_purchases.toFixed(1)+' purch' : '0 purch'}</div>
+      </div>`;
+    }).join('');
+
+  $e('insights').innerHTML = `
+    <div class="sec">Account Snapshot — ${d.date_yesterday}</div>
     <div class="cards">
-      <div class="card"><div class="lbl">Yesterday Spend</div><div class="val">${fmt.cad(totalCostY)}</div><div class="sub">vs $3k target</div></div>
-      <div class="card"><div class="lbl">Yesterday CPA</div><div class="val">${fmt.cad2(totalCPAY)}</div><div class="sub">[gtag] purchase</div></div>
-      <div class="card"><div class="lbl">7d CPA</div><div class="val">${fmt.cad2(totalCPA7)}</div><div class="sub">Target ≤ $100</div></div>
-      <div class="card"><div class="lbl">14d Spend</div><div class="val">${fmt.cad(totalCost14)}</div><div class="sub">${fmt.num(Math.round(totalPurch14))} purchases</div></div>
-      <div class="card"><div class="lbl">14d CPA</div><div class="val">${fmt.cad2(totalCPA14)}</div><div class="sub">Blended all campaigns</div></div>
-      <div class="card"><div class="lbl">Google Paid CVR</div><div class="val">${gCVR ? gCVR+'%' : '—'}</div><div class="sub">Clicks → payment (30d)</div></div>
+      <div class="card"><div class="lbl">Yesterday Spend</div><div class="val">${fmtCAD(ty.cost)}</div><div class="sub">${pacePct.toFixed(0)}% of ${fmtCAD(target)} target</div></div>
+      <div class="card"><div class="lbl">Yesterday CPA</div><div class="val">${fmtCAD2(ty.cpa)}</div><div class="sub">[gtag] purchase</div></div>
+      <div class="card"><div class="lbl">7d CPA</div><div class="val">${fmtCAD2(t7.cpa)}</div><div class="sub">target ≤ $175</div></div>
+      <div class="card"><div class="lbl">14d Spend</div><div class="val">${fmtCAD(t14.cost)}</div><div class="sub">${fmtNum(Math.round(t14.purchases || 0))} purchases</div></div>
+      <div class="card"><div class="lbl">14d CPA</div><div class="val">${fmtCAD2(t14.cpa)}</div><div class="sub">blended all campaigns</div></div>
+      <div class="card"><div class="lbl">Google Paid CVR</div><div class="val">${gCVR != null ? gCVR + '%' : '—'}</div><div class="sub">purchases / sessions (30d)</div></div>
     </div>
 
-    <div class="sec">Yesterday Spend Pacing</div>
-    <div class="tbl-wrap" style="padding:14px 16px;">
-      <div class="pace-row">
-        <div class="pace-name">Yesterday Total: ${fmt.cad(totalCostY)}</div>
-        <div class="pace-bg"><div class="pace-fill" style="width:${Math.min(pacingPct,100)}%;background:${pacingColor}"></div></div>
-        <div class="pace-pct" style="color:${pacingColor}">${pacingPct.toFixed(0)}%</div>
-        <div class="pace-spend">vs ${fmt.cad(pacingTarget)} target</div>
-      </div>
-      ${camps.filter(c=>(c.yest_cost||0)>0).sort((a,b)=>(b.yest_cost||0)-(a.yest_cost||0)).map(c=>{
-        const pct = Math.min((c.yest_cost/pacingTarget*camps.filter(x=>(x.yest_cost||0)>0).length)*100,100);
-        const col = pct>120?'#c0392b':pct>60?'#3C3489':'#aaa';
-        return `<div class="pace-row">
-          <div class="pace-name" title="${c.campaign}">${c.campaign.replace(/_/g,' ')}</div>
-          <div class="pace-bg"><div class="pace-fill" style="width:${pct}%;background:${col}"></div></div>
-          <div class="pace-pct" style="color:${col}">${fmt.cad(c.yest_cost)}</div>
-          <div class="pace-spend">${c.yest_purchases ? fmt.num(c.yest_purchases.toFixed(1))+' conv' : '0 conv'}</div>
-        </div>`;
-      }).join('')}
+    <div class="sec">What to Look For Today</div>
+    <div class="narrative">
+      <h3>📋 Morning Briefing — ${d.date_yesterday}</h3>
+      ${narrativeLines.map(l => `<p>${l}</p>`).join('')}
     </div>
 
-    <div class="sec">Action Items</div>
+    <div class="sec">Yesterday Spend Pacing vs ${fmtCAD(target)} ${(dow===0||dow===6)?'Weekend':'Weekday'} Target</div>
+    <div class="tbl-wrap" style="padding:10px 14px;">${campPaceRows}</div>
+
+    <div class="sec">Action Cards</div>
     <div class="insight-grid">
       <div class="ic">
-        <div class="ich"><span class="ico">🚀</span><div><div class="ict">Double Down</div><div class="ics">Lowest CPA — push budget</div></div></div>
-        <ul>
-          ${rankedCPA.slice(0,3).map(c=>`<li>✅ <strong>${c.campaign.replace(/_/g,' ')}</strong><br>14d CPA: <strong>${fmt.cad(c.cpa14)}</strong> · Purchases: ${c.purchases_14d.toFixed(1)}</li>`).join('')}
-        </ul>
+        <div class="ic-head"><span class="ic-icon">🚀</span><div><div class="ic-title">Double Down</div><div class="ic-sub">Lowest 14d CPA — scale these</div></div></div>
+        <ul>${best3.length ? best3.map(c => `<li>
+          <strong>${shortCamp(c.campaign).substring(0,44)}</strong><br>
+          <span class="dim">14d CPA: <strong>${fmtCAD2(c.cpa14)}</strong> &nbsp;·&nbsp; Spend: ${fmtCAD(c.cost_14d)} &nbsp;·&nbsp; Purchases: ${c.purchases_14d.toFixed(1)}</span>
+        </li>`).join('') : '<li>No data</li>'}</ul>
       </div>
       <div class="ic">
-        <div class="ich"><span class="ico">⚠️</span><div><div class="ict">Investigate</div><div class="ics">CPA above $100 threshold</div></div></div>
-        <ul>
-          ${alerts.length===0?'<li>✅ All campaigns within target</li>':alerts.map(c=>{
-            const tag = c.cpa_7d>150?'tag-bad':'tag-warn';
-            return `<li><span class="tag ${tag}">${fmt.cad(c.cpa_7d)}</span> <strong>${c.campaign.replace(/_/g,' ')}</strong><br>7d CPA vs target $100</li>`;
-          }).join('')}
-        </ul>
+        <div class="ic-head"><span class="ic-icon">⚠️</span><div><div class="ic-title">Investigate</div><div class="ic-sub">7d CPA above $175 — review or cut</div></div></div>
+        <ul>${investigate.length ? investigate.map(c => `<li>
+          ${cpaTag(c.cpa_7d)} <strong>${shortCamp(c.campaign).substring(0,36)}</strong><br>
+          <span class="dim">7d: ${fmtCAD(c.cost_7d)} spend &nbsp;·&nbsp; 14d CPA: ${fmtCAD2(c.cpa_14d)}</span>
+        </li>`).join('') : '<li>✅ All campaigns within target</li>'}</ul>
       </div>
       <div class="ic">
-        <div class="ich"><span class="ico">🏆</span><div><div class="ict">Best 14d Performer</div><div class="ics">Lowest CPA with volume</div></div></div>
-        <ul>
-          ${bestCPA ? `<li><strong>${bestCPA.campaign.replace(/_/g,' ')}</strong></li>
-            <li>14d CPA: <strong>${fmt.cad(bestCPA.cpa14)}</strong></li>
-            <li>Spend: <strong>${fmt.cad(bestCPA.cost_14d)}</strong></li>
-            <li>Purchases: <strong>${bestCPA.purchases_14d.toFixed(1)}</strong></li>` : '<li>No data</li>'}
-        </ul>
+        <div class="ic-head"><span class="ic-icon">🏆</span><div><div class="ic-title">Best Performer</div><div class="ic-sub">14d lowest CPA with volume</div></div></div>
+        <ul>${best ? `
+          <li><strong>${shortCamp(best.campaign)}</strong></li>
+          <li><span class="dim">14d CPA</span> ${cpaTag(best.cpa14)}</li>
+          <li><span class="dim">14d Spend</span> <strong>${fmtCAD(best.cost_14d)}</strong></li>
+          <li><span class="dim">14d Purchases</span> <strong>${best.purchases_14d.toFixed(1)}</strong></li>
+        ` : '<li>No data</li>'}</ul>
       </div>
       <div class="ic">
-        <div class="ich"><span class="ico">🚨</span><div><div class="ict">Structural Flags</div><div class="ics">Always-on checks</div></div></div>
+        <div class="ic-head"><span class="ic-icon">🚨</span><div><div class="ic-title">Structural Flags</div><div class="ic-sub">Always-on checks</div></div></div>
         <ul>
-          ${hrtSpend > 0 ? `<li>🔴 <strong>HRT campaign spending ${fmt.cad(hrtSpend)} (14d)</strong> — LP gated until Jul 6</li>` : '<li>✅ HRT campaign not spending (correct)</li>'}
-          ${(brandCamps[0]&&brandCamps[0].top_is!=null&&brandCamps[0].top_is<85) ? `<li>🔴 Brand Top IS: ${brandCamps[0].top_is}% — below 85% target</li>` : '<li>✅ Brand IS within target</li>'}
-          ${worstCPA ? `<li>📉 Worst CPA: <strong>${worstCPA.campaign.replace(/_/g,' ')}</strong> at ${fmt.cad(worstCPA.cpa14)} (14d)</li>` : ''}
+          <li>${hrtSpend > 0 ? `🔴 <strong>HRT spending ${fmtCAD(hrtSpend)} (14d)</strong> — LP gated until Jul 6, pause immediately` : '✅ HRT campaign not spending (correct)'}</li>
+          <li>${brandIS != null && brandIS < 80 ? `🔴 Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong> — below 80% target` : brandIS != null ? `✅ Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong>` : '— Brand IS: no yesterday data'}</li>
+          <li>${worst && worst.cpa14 > 300 ? `📉 Worst CPA: <strong>${shortCamp(worst.campaign).substring(0,34)}</strong> at ${fmtCAD2(worst.cpa14)} (14d)` : '✅ No campaigns above $300 CPA (14d)'}</li>
         </ul>
       </div>
     </div>
 
     <div class="bottom-line">
-      <div class="bl-title">📋 Bottom Line — ${d.date_yesterday}</div>
+      <div class="bl-title">Bottom Line</div>
       <div class="bl-body">
-        Yesterday: <strong>${fmt.cad(totalCostY)}</strong> spend, <strong>${totalPurchY.toFixed(1)}</strong> purchases, <strong>${fmt.cad2(totalCPAY)}</strong> CPA.
-        7d CPA <strong>${fmt.cad2(totalCPA7)}</strong> — ${totalCPA7&&totalCPA7<=100?'✅ on target':totalCPA7&&totalCPA7<=150?'⚠️ above $100 — monitor':'🔴 above $150 — investigate'}.
-        Brand accounts for <strong>${totalCost14>0?(brandSpend14/totalCost14*100).toFixed(0):'0'}%</strong> of 14d spend.
-        ${hrtSpend>0?'🔴 HRT campaign still spending — pause immediately.':''}
+        Yesterday spent <strong>${fmtCAD(ty.cost)}</strong> for <strong>${ty.purchases != null ? ty.purchases.toFixed(1) : '—'} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.
+        7d CPA is <strong>${fmtCAD2(t7.cpa)}</strong> — ${t7.cpa && t7.cpa <= 175 ? '✅ on target' : t7.cpa && t7.cpa <= 225 ? '⚠️ watch closely' : '🔴 above target — act now'}.
+        14d total: <strong>${fmtCAD(t14.cost)}</strong> spend, <strong>${fmtNum(Math.round(t14.purchases || 0))} purchases</strong>, <strong>${fmtCAD2(t14.cpa)} blended CPA</strong>.
+        ${hrtSpend > 0 ? '<br>🔴 <strong>HRT campaign spending — PAUSE IMMEDIATELY.</strong>' : ''}
       </div>
     </div>
   `;
 }
 
-// ── Render Campaigns & Time Periods ────────────────────────────────────────
-function renderCampaigns(d){
+// ─── TAB 2: Campaigns ─────────────────────────────────────────────────────────
+function renderCampaigns(d) {
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
-  const t14 = totals['14d']||{};
-  const t7 = totals['7d']||{};
-  const ty = totals.yesterday||{};
-  const daily = d.daily || [];
+  const t14 = totals['14d'] || {};
+  const t7  = totals['7d']  || {};
+  const ty  = totals.yesterday || {};
+  const daily = (d.daily || []).filter(r => r.date !== '2026-06-15'); // exclude today partial
 
-  // Summary time period table
-  const periodRows = [
-    {label:'Yesterday', ...ty},
-    {label:'Last 7 Days', ...t7},
-    {label:'Last 14 Days', ...t14},
+  // ── Account Summary: 3 periods × all metrics ──
+  const periods = [
+    {label:'Yesterday',      d:ty},
+    {label:'Last 7 Days',    d:t7},
+    {label:'Last 14 Days',   d:t14},
   ];
+  const summaryRows = periods.map(p => {
+    const r = p.d;
+    return `<tr>
+      <td><strong>${p.label}</strong></td>
+      <td class="r">${fmtCAD(r.cost)}</td>
+      <td class="r">${fmtNum(r.clicks)}</td>
+      <td class="r">${fmtNum(r.impressions)}</td>
+      <td class="r">${r.ctr != null ? r.ctr.toFixed(2)+'%' : '—'}</td>
+      <td class="r">${r.cpc != null ? '$'+r.cpc.toFixed(2) : '—'}</td>
+      <td class="r">${r.purchases != null ? r.purchases.toFixed(1) : '—'}</td>
+      <td class="r">${cpaTag(r.cpa)}</td>
+    </tr>`;
+  }).join('');
 
-  const periodHTML = periodRows.map(r=>`<tr>
-    <td><strong>${r.label}</strong></td>
-    <td class="r">${fmt.cad(r.cost)}</td>
-    <td class="r">${fmt.num(r.clicks)}</td>
-    <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
-    <td class="r">${cpaTag(r.cpa)}</td>
-  </tr>`).join('');
-
-  // Campaign table — Report 1 style (matched to original CSV + funnel columns)
-  const campRows = camps.map(c=>`<tr>
-    <td title="${c.campaign}">${c.campaign.replace(/_/g,' ').substring(0,40)} ${campTypeTag(c.campaign)}</td>
-    <td class="r">${fmt.num(c.yest_impressions||0)}</td>
-    <td class="r">${fmt.num(c.yest_clicks||0)}</td>
-    <td class="r">${c.yest_ctr!=null?c.yest_ctr.toFixed(1)+'%':'—'}</td>
-    <td class="r">${c.yest_cpc!=null?'$'+c.yest_cpc.toFixed(2):'—'}</td>
-    <td class="r">${fmt.cad(c.yest_cost)}</td>
-    <td class="r">${funnelPct(c.funnel_appts_per_click)}</td>
-    <td class="r">${funnelPct(c.funnel_forms_per_appt)}</td>
-    <td class="r">${funnelPct(c.funnel_purchases_per_form)}</td>
-    <td class="r">${c.yest_roas!=null?c.yest_roas.toFixed(2)+'x':'—'}</td>
-    <td class="r">${c.top_is!=null?c.top_is.toFixed(1)+'%':'N/A'}</td>
-    <td class="r">${c.budget_lost_is!=null?c.budget_lost_is.toFixed(1)+'%':'N/A'}</td>
+  // ── Campaign table (Report 1) ──
+  const campRows = camps.map(c => `<tr>
+    <td style="max-width:260px;overflow:hidden;text-overflow:ellipsis;" title="${c.campaign}">
+      ${campTypeTag(c.campaign, c.type)} ${shortCamp(c.campaign).substring(0,38)}
+    </td>
+    <td class="r">${fmtNum(c.yest_impressions || 0)}</td>
+    <td class="r">${fmtNum(c.yest_clicks || 0)}</td>
+    <td class="r">${c.yest_ctr != null ? c.yest_ctr.toFixed(1)+'%' : '—'}</td>
+    <td class="r">${c.yest_cpc != null ? '$'+c.yest_cpc.toFixed(2) : '—'}</td>
+    <td class="r">${fmtCAD(c.yest_cost)}</td>
+    <td class="r">${c.funnel_appts_per_click != null ? c.funnel_appts_per_click.toFixed(1)+'%' : '—'}</td>
+    <td class="r">${c.funnel_forms_per_appt != null ? c.funnel_forms_per_appt.toFixed(1)+'%' : '—'}</td>
+    <td class="r">${c.funnel_purchases_per_form != null ? c.funnel_purchases_per_form.toFixed(1)+'%' : '—'}</td>
+    <td class="r">${c.yest_roas != null ? c.yest_roas.toFixed(2)+'x' : '—'}</td>
+    <td class="r">${c.top_is != null ? c.top_is.toFixed(1)+'%' : '—'}</td>
+    <td class="r">${c.budget_lost_is != null ? c.budget_lost_is.toFixed(1)+'%' : '—'}</td>
     <td class="r">${cpaTag(c.yest_cpa)}</td>
     <td class="r">${cpaTag(c.cpa_7d)}</td>
     <td class="r">${cpaTag(c.cpa_14d)}</td>
   </tr>`).join('');
 
-  // Daily table
-  const dailyRows = daily.slice(-14).map(r=>`<tr>
+  // ── Daily table: ALL metrics ──
+  const dailyRows = daily.map(r => `<tr>
     <td>${r.date}</td>
-    <td class="r">${fmt.cad(r.cost)}</td>
-    <td class="r">${fmt.num(r.clicks)}</td>
-    <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
+    <td class="r">${fmtCAD(r.cost)}</td>
+    <td class="r">${fmtNum(r.clicks)}</td>
+    <td class="r">${fmtNum(r.impressions)}</td>
+    <td class="r">${r.clicks && r.impressions ? (r.clicks/r.impressions*100).toFixed(2)+'%' : '—'}</td>
+    <td class="r">${r.clicks && r.cost ? '$'+(r.cost/r.clicks).toFixed(2) : '—'}</td>
+    <td class="r">${r.purchases != null ? r.purchases.toFixed(1) : '—'}</td>
     <td class="r">${cpaTag(r.cpa)}</td>
   </tr>`).join('');
 
-  $('campaigns').innerHTML = `
-    <div class="sec">Account Summary — Yesterday / 7d / 14d</div>
+  $e('campaigns').innerHTML = `
+    <div class="sec">Account Summary</div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Period</th><th class="r">Spend</th><th class="r">Clicks</th><th class="r">Purchases*</th><th class="r">CPA</th></tr></thead>
-        <tbody>${periodHTML}</tbody>
+        <thead><tr>
+          <th>Period</th>
+          <th class="r">Spend</th>
+          <th class="r">Clicks</th>
+          <th class="r">Impressions</th>
+          <th class="r">CTR</th>
+          <th class="r">Avg CPC</th>
+          <th class="r">Purchases*</th>
+          <th class="r">CPA</th>
+        </tr></thead>
+        <tbody>${summaryRows}</tbody>
       </table>
     </div>
-    <p style="font-size:10px;color:var(--muted);margin-bottom:14px;">*[gtag] purchase only — not raw conversions field</p>
+    <p class="footnote">*[gtag] purchase only — not raw conversions field</p>
 
-    <div class="sec">Report 1: Campaign Summary — Yesterday (${d.date_yesterday})</div>
+    <div class="sec">Campaign Breakdown — Yesterday (${d.date_yesterday})</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
           <th>Campaign</th>
-          <th class="r">Impr.</th><th class="r">Clicks</th><th class="r">CTR</th><th class="r">Avg CPC</th><th class="r">Cost</th>
-          <th class="r">Appts/Clicks</th><th class="r">Forms/Appts</th><th class="r">Purch/Forms</th>
-          <th class="r">ROAS</th><th class="r">Top IS</th><th class="r">Bgt Lost IS</th>
-          <th class="r">CPA (Yest)</th><th class="r">CPA (7d)</th><th class="r">CPA (14d)</th>
+          <th class="r">Impr.</th>
+          <th class="r">Clicks</th>
+          <th class="r">CTR</th>
+          <th class="r">CPC</th>
+          <th class="r">Cost</th>
+          <th class="r">Appts/Clicks</th>
+          <th class="r">Forms/Appts</th>
+          <th class="r">Purch/Forms</th>
+          <th class="r">ROAS</th>
+          <th class="r">Top IS</th>
+          <th class="r">Bgt Lost IS</th>
+          <th class="r">CPA Yest</th>
+          <th class="r">CPA 7d</th>
+          <th class="r">CPA 14d</th>
         </tr></thead>
         <tbody>${campRows}</tbody>
       </table>
     </div>
-    <p style="font-size:10px;color:var(--muted);margin-bottom:14px;">Funnel columns sourced from PostHog (utm_source=google_paid, 14d). ROAS = Windsor value ÷ 100. CPA = [gtag] purchase only.</p>
+    <p class="footnote">Funnel columns = PostHog 14d (utm_source=google_paid) · ROAS = Windsor ÷ 100 · CPA = [gtag] purchase only</p>
 
     <div class="sec">Daily Breakdown — Last 14 Days</div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Date</th><th class="r">Spend</th><th class="r">Clicks</th><th class="r">Purchases*</th><th class="r">CPA</th></tr></thead>
+        <thead><tr>
+          <th>Date</th>
+          <th class="r">Spend</th>
+          <th class="r">Clicks</th>
+          <th class="r">Impressions</th>
+          <th class="r">CTR</th>
+          <th class="r">Avg CPC</th>
+          <th class="r">Purchases*</th>
+          <th class="r">CPA</th>
+        </tr></thead>
         <tbody>${dailyRows}</tbody>
       </table>
     </div>
+    <p class="footnote">*[gtag] purchase only</p>
   `;
 }
 
-// ── Render Site Funnel ──────────────────────────────────────────────────────
-function renderFunnel(d){
+// ─── TAB 3: Site Funnel ────────────────────────────────────────────────────────
+function renderFunnel(d) {
   const channels = d.channel_funnel || [];
-  const daily14 = d.daily14_funnel || [];
+  const daily14  = (d.daily14_funnel || []).filter(r => r.date !== '2026-06-15');
 
-  const chanRows = channels.map(c=>{
-    const apptCVR = c.sessions > 0 ? (c.appt_sessions/c.sessions*100).toFixed(1) : '—';
-    const formCVR = c.appt_sessions > 0 ? (c.form_sessions/c.appt_sessions*100).toFixed(1) : '—';
-    const purchCVR = c.form_sessions > 0 ? (c.purchase_sessions/c.form_sessions*100).toFixed(1) : '—';
-    const blendedCVR = c.sessions > 0 ? (c.purchase_sessions/c.sessions*100).toFixed(2) : '—';
+  // Channel table — only % ratios, no raw appt/form counts, CVR = purchases/sessions
+  const chanRows = channels.map(c => {
+    const apptRate  = c.sessions > 0 ? (c.appt_sessions / c.sessions * 100).toFixed(1) : '—';
+    const formRate  = c.appt_sessions > 0 ? (c.form_sessions / c.appt_sessions * 100).toFixed(1) : '—';
+    const purchRate = c.form_sessions > 0 ? (c.purchase_sessions / c.form_sessions * 100).toFixed(1) : '—';
+    const cvr       = c.sessions > 0 ? (c.purchase_sessions / c.sessions * 100).toFixed(2) : '—'; // purchases/sessions
     return `<tr>
       <td><strong>${c.channel}</strong></td>
-      <td class="r">${fmt.num(c.sessions)}</td>
-      <td class="r">${fmt.num(c.appt_sessions)}</td>
-      <td class="r">${fmt.num(c.form_sessions)}</td>
-      <td class="r">${fmt.num(c.purchase_sessions)}</td>
-      <td class="r">${apptCVR}%</td>
-      <td class="r">${formCVR}%</td>
-      <td class="r">${purchCVR}%</td>
-      <td class="r"><strong>${blendedCVR}%</strong></td>
+      <td class="r">${fmtNum(c.sessions)}</td>
+      <td class="r">${apptRate}%</td>
+      <td class="r">${formRate}%</td>
+      <td class="r">${purchRate}%</td>
+      <td class="r"><strong>${cvr}%</strong></td>
     </tr>`;
   }).join('');
 
-  const labels = daily14.slice(0,-1).map(r=>r.date.slice(5));
-  const apptRate = daily14.slice(0,-1).map(r=>r.sessions>0?(r.appt_sessions/r.sessions*100).toFixed(2):0);
-  const formRate = daily14.slice(0,-1).map(r=>r.appt_sessions>0?(r.form_sessions/r.appt_sessions*100).toFixed(2):0);
-  const purchRate = daily14.slice(0,-1).map(r=>r.form_sessions>0?(r.purchase_sessions/r.form_sessions*100).toFixed(2):0);
-  const blendedRate = daily14.slice(0,-1).map(r=>r.sessions>0?(r.purchase_sessions/r.sessions*100).toFixed(2):0);
+  // Daily funnel table — only % ratios, CVR = purchases/sessions
+  const dailyFunnelRows = daily14.map(r => {
+    const apptRate  = r.sessions > 0 ? (r.appt_sessions / r.sessions * 100).toFixed(1) : '—';
+    const formRate  = r.appt_sessions > 0 ? (r.form_sessions / r.appt_sessions * 100).toFixed(1) : '—';
+    const purchRate = r.form_sessions > 0 ? (r.purchase_sessions / r.form_sessions * 100).toFixed(1) : '—';
+    const cvr       = r.sessions > 0 ? (r.purchase_sessions / r.sessions * 100).toFixed(2) : '—';
+    return `<tr>
+      <td>${r.date}</td>
+      <td class="r">${fmtNum(r.sessions)}</td>
+      <td class="r">${apptRate}%</td>
+      <td class="r">${formRate}%</td>
+      <td class="r">${purchRate}%</td>
+      <td class="r"><strong>${cvr}%</strong></td>
+    </tr>`;
+  }).join('');
 
-  $('funnel').innerHTML = `
-    <div class="sec">Report 3: Channel Funnel — Last 30 Days (Session-scoped, PostHog)</div>
+  // Chart data
+  const labels    = daily14.map(r => r.date.slice(5));
+  const apptR     = daily14.map(r => r.sessions > 0 ? +(r.appt_sessions/r.sessions*100).toFixed(2) : 0);
+  const formR     = daily14.map(r => r.appt_sessions > 0 ? +(r.form_sessions/r.appt_sessions*100).toFixed(2) : 0);
+  const purchR    = daily14.map(r => r.form_sessions > 0 ? +(r.purchase_sessions/r.form_sessions*100).toFixed(2) : 0);
+  const cvrR      = daily14.map(r => r.sessions > 0 ? +(r.purchase_sessions/r.sessions*100).toFixed(2) : 0);
+
+  $e('funnel').innerHTML = `
+    <div class="sec">Channel Funnel — Last 30 Days (session-scoped)</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
           <th>Channel</th>
-          <th class="r">Sessions</th><th class="r">Appt Sessions</th><th class="r">Form Sessions</th><th class="r">Purch Sessions</th>
-          <th class="r">Appts/Sessions</th><th class="r">Forms/Appts</th><th class="r">Purch/Forms</th><th class="r">Blended CVR</th>
+          <th class="r">Sessions</th>
+          <th class="r">Appts / Sessions</th>
+          <th class="r">Forms / Appts</th>
+          <th class="r">Purch / Forms</th>
+          <th class="r">CVR (Purch/Sessions)</th>
         </tr></thead>
         <tbody>${chanRows}</tbody>
       </table>
     </div>
-    <p style="font-size:10px;color:var(--muted);margin-bottom:14px;">Session-scoped: each session counted once at its entry channel. CVR = purchase sessions / total sessions.</p>
+    <p class="footnote">Session-scoped: each session attributed to its entry channel. CVR = purchase sessions ÷ total sessions.</p>
 
-    <div class="sec">Report 4: Site Funnel Time Series — Last 14 Days</div>
+    <div class="sec">Daily Funnel Rates — Last 14 Days</div>
     <div class="chart-wrap">
-      <h3>Funnel Step Rates Over Time (all channels)</h3>
-      <canvas id="funnelChart" height="90"></canvas>
+      <h3>Funnel Step Conversion Rates Over Time</h3>
+      <canvas id="funnelChart" height="85"></canvas>
     </div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Date</th><th class="r">Sessions</th><th class="r">Appt Sessions</th><th class="r">Form Sessions</th><th class="r">Purch Sessions</th><th class="r">Appts/Sessions</th><th class="r">Purch/Forms</th><th class="r">Blended CVR</th></tr></thead>
-        <tbody>${daily14.slice(0,-1).map(r=>{
-          const a = r.sessions>0?(r.appt_sessions/r.sessions*100).toFixed(1):0;
-          const p = r.form_sessions>0?(r.purchase_sessions/r.form_sessions*100).toFixed(1):0;
-          const b = r.sessions>0?(r.purchase_sessions/r.sessions*100).toFixed(2):0;
-          return `<tr><td>${r.date}</td><td class="r">${fmt.num(r.sessions)}</td><td class="r">${r.appt_sessions}</td><td class="r">${r.form_sessions}</td><td class="r">${r.purchase_sessions}</td><td class="r">${a}%</td><td class="r">${p}%</td><td class="r"><strong>${b}%</strong></td></tr>`;
-        }).join('')}</tbody>
+        <thead><tr>
+          <th>Date</th>
+          <th class="r">Sessions</th>
+          <th class="r">Appts / Sessions</th>
+          <th class="r">Forms / Appts</th>
+          <th class="r">Purch / Forms</th>
+          <th class="r">CVR (Purch/Sessions)</th>
+        </tr></thead>
+        <tbody>${dailyFunnelRows}</tbody>
       </table>
     </div>
+    <p class="footnote">All channels combined. CVR = purchase sessions ÷ sessions.</p>
   `;
 
-  const ctx = document.getElementById('funnelChart');
-  if(ctx&&labels.length>0){
-    new Chart(ctx,{
-      type:'line',
-      data:{labels,datasets:[
-        {label:'Appts/Sessions %',data:apptRate,borderColor:'#3C3489',backgroundColor:'rgba(60,52,137,.07)',tension:.3,yAxisID:'y',pointRadius:3},
-        {label:'Forms/Appts %',data:formRate,borderColor:'#085041',backgroundColor:'rgba(8,80,65,.07)',tension:.3,yAxisID:'y',pointRadius:3},
-        {label:'Purch/Forms %',data:purchRate,borderColor:'#e67e22',backgroundColor:'rgba(230,126,34,.07)',tension:.3,yAxisID:'y',pointRadius:3},
-        {label:'Blended CVR %',data:blendedRate,borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,.06)',tension:.3,yAxisID:'y2',pointRadius:3,borderDash:[5,3]},
-      ]},
-      options:{responsive:true,interaction:{mode:'index',intersect:false},
-        plugins:{legend:{position:'top',labels:{font:{size:11}}}},
-        scales:{
-          y:{type:'linear',position:'left',title:{display:true,text:'Funnel Step %'}},
-          y2:{type:'linear',position:'right',title:{display:true,text:'Blended CVR %'},grid:{drawOnChartArea:false}},
+  // Render chart after DOM is ready
+  setTimeout(() => {
+    const ctx = document.getElementById('funnelChart');
+    if (ctx && labels.length) {
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {label:'Appts / Sessions %', data:apptR, borderColor:'#3C3489', backgroundColor:'rgba(60,52,137,.06)', tension:.3, yAxisID:'y', pointRadius:3},
+            {label:'Forms / Appts %',    data:formR, borderColor:'#085041', backgroundColor:'rgba(8,80,65,.06)',  tension:.3, yAxisID:'y', pointRadius:3},
+            {label:'Purch / Forms %',    data:purchR,borderColor:'#e67e22', backgroundColor:'rgba(230,126,34,.06)',tension:.3,yAxisID:'y', pointRadius:3},
+            {label:'CVR (Purch/Sessions) %',data:cvrR,borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,.05)',tension:.3,yAxisID:'y2',pointRadius:3,borderDash:[5,3]},
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: {mode:'index', intersect:false},
+          plugins: {legend: {position:'top', labels:{font:{size:11}}}},
+          scales: {
+            y:  {type:'linear', position:'left',  title:{display:true, text:'Funnel Step %'}},
+            y2: {type:'linear', position:'right', title:{display:true, text:'CVR %'}, grid:{drawOnChartArea:false}},
+          }
         }
-      }
-    });
-  }
+      });
+    }
+  }, 50);
 }
 
-// ── Load data.json ──────────────────────────────────────────────────────────
-async function loadData(){
+// ─── Bootstrap ────────────────────────────────────────────────────────────────
+async function loadData() {
   const url = `https://raw.githubusercontent.com/novelrahman-dev/mm-google-ads-summary/main/data.json?t=${Date.now()}`;
-  try{
+  try {
     const res = await fetch(url);
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    $('meta').textContent = `Data as of: ${data.generated_at}`;
+    $e('meta').textContent = `Generated: ${data.generated_at}`;
     renderInsights(data);
     renderCampaigns(data);
     renderFunnel(data);
-  }catch(err){
-    const msg = `<div class="error-state">⚠️ Could not load data.json<br><small>${err.message}</small><br><br>Type "pull morning data" in Claude to refresh.</div>`;
-    ['insights','campaigns','funnel'].forEach(id=>$(id).innerHTML=msg);
+  } catch(err) {
+    const msg = `<div class="error-box">⚠️ Could not load data.json<br><small>${err.message}</small><br><br>Run "pull morning data" in Claude to refresh.</div>`;
+    ['insights','campaigns','funnel'].forEach(id => $e(id).innerHTML = msg);
   }
 }
 loadData();
