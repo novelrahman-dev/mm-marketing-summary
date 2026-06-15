@@ -18,7 +18,8 @@
         "appts_per_click": 7.3,
         "forms_per_appt": 40.0,
         "purch_per_form": 70.0
-      }
+      },
+      "roas": 1.31
     },
     "7d": {
       "cost": 20131.89,
@@ -35,7 +36,8 @@
         "appts_per_click": 10.4,
         "forms_per_appt": 27.7,
         "purch_per_form": 50.3
-      }
+      },
+      "roas": 1.14
     },
     "14d": {
       "cost": 38188.49,
@@ -52,7 +54,8 @@
         "appts_per_click": 9.4,
         "forms_per_appt": 27.1,
         "purch_per_form": 50.3
-      }
+      },
+      "roas": 1.56
     }
   },
   "report1_campaigns": [
@@ -447,7 +450,9 @@
       "ph_appts": 84,
       "ph_forms": 25,
       "ph_purchases": 15,
-      "appts_per_click": 7.7
+      "appts_per_click": 7.7,
+      "roas": 2.59,
+      "revenue": 6864.79
     },
     {
       "date": "2026-06-02",
@@ -461,7 +466,9 @@
       "ph_appts": 118,
       "ph_forms": 25,
       "ph_purchases": 15,
-      "appts_per_click": 11.1
+      "appts_per_click": 11.1,
+      "roas": 2.93,
+      "revenue": 7353.39
     },
     {
       "date": "2026-06-03",
@@ -475,7 +482,9 @@
       "ph_appts": 83,
       "ph_forms": 27,
       "ph_purchases": 15,
-      "appts_per_click": 7.6
+      "appts_per_click": 7.6,
+      "roas": 2.86,
+      "revenue": 7043.04
     },
     {
       "date": "2026-06-04",
@@ -489,7 +498,9 @@
       "ph_appts": 86,
       "ph_forms": 24,
       "ph_purchases": 15,
-      "appts_per_click": 7.3
+      "appts_per_click": 7.3,
+      "roas": 2.09,
+      "revenue": 5884.93
     },
     {
       "date": "2026-06-05",
@@ -503,7 +514,9 @@
       "ph_appts": 89,
       "ph_forms": 19,
       "ph_purchases": 7,
-      "appts_per_click": 10.0
+      "appts_per_click": 10.0,
+      "roas": 1.32,
+      "revenue": 3300.45
     },
     {
       "date": "2026-06-06",
@@ -517,7 +530,9 @@
       "ph_appts": 67,
       "ph_forms": 23,
       "ph_purchases": 8,
-      "appts_per_click": 8.1
+      "appts_per_click": 8.1,
+      "roas": 1.47,
+      "revenue": 3373.02
     },
     {
       "date": "2026-06-07",
@@ -531,7 +546,9 @@
       "ph_appts": 86,
       "ph_forms": 20,
       "ph_purchases": 7,
-      "appts_per_click": 8.8
+      "appts_per_click": 8.8,
+      "roas": 0.98,
+      "revenue": 2766.69
     },
     {
       "date": "2026-06-08",
@@ -545,7 +562,9 @@
       "ph_appts": 115,
       "ph_forms": 41,
       "ph_purchases": 16,
-      "appts_per_click": 11.8
+      "appts_per_click": 11.8,
+      "roas": 1.36,
+      "revenue": 4332.26
     },
     {
       "date": "2026-06-09",
@@ -559,7 +578,9 @@
       "ph_appts": 67,
       "ph_forms": 22,
       "ph_purchases": 10,
-      "appts_per_click": 10.8
+      "appts_per_click": 10.8,
+      "roas": 1.54,
+      "revenue": 3387.59
     },
     {
       "date": "2026-06-10",
@@ -573,7 +594,9 @@
       "ph_appts": 55,
       "ph_forms": 14,
       "ph_purchases": 9,
-      "appts_per_click": 9.5
+      "appts_per_click": 9.5,
+      "roas": 1.24,
+      "revenue": 2622.28
     },
     {
       "date": "2026-06-11",
@@ -587,7 +610,9 @@
       "ph_appts": 125,
       "ph_forms": 20,
       "ph_purchases": 9,
-      "appts_per_click": 14.9
+      "appts_per_click": 14.9,
+      "roas": 1.34,
+      "revenue": 4138.19
     },
     {
       "date": "2026-06-12",
@@ -601,7 +626,9 @@
       "ph_appts": 84,
       "ph_forms": 22,
       "ph_purchases": 12,
-      "appts_per_click": 8.0
+      "appts_per_click": 8.0,
+      "roas": 0.82,
+      "revenue": 3443.78
     },
     {
       "date": "2026-06-13",
@@ -615,7 +642,9 @@
       "ph_appts": 70,
       "ph_forms": 18,
       "ph_purchases": 9,
-      "appts_per_click": 9.9
+      "appts_per_click": 9.9,
+      "roas": 0.62,
+      "revenue": 1771.6
     },
     {
       "date": "2026-06-14",
@@ -629,7 +658,9 @@
       "ph_appts": 50,
       "ph_forms": 20,
       "ph_purchases": 14,
-      "appts_per_click": 7.3
+      "appts_per_click": 7.3,
+      "roas": 1.31,
+      "revenue": 3257.42
     }
   ],
   "channel_funnel": [
