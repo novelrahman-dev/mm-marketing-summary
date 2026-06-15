@@ -10,7 +10,16 @@
       "purchases": 11.0,
       "cpa": 226.05,
       "ctr": 9.85,
-      "cpc": 3.65
+      "cpc": 3.65,
+      "funnel": {
+        "sessions": 1679,
+        "appt_sessions": 116,
+        "form_sessions": 34,
+        "purchase_sessions": 35,
+        "appts_per_session": 6.9,
+        "forms_per_appt": 29.3,
+        "purch_per_form": 102.9
+      }
     },
     "7d": {
       "cost": 20131.89,
@@ -19,7 +28,16 @@
       "purchases": 85.78,
       "cpa": 234.69,
       "ctr": 9.14,
-      "cpc": 3.69
+      "cpc": 3.69,
+      "funnel": {
+        "sessions": 15779,
+        "appt_sessions": 1214,
+        "form_sessions": 335,
+        "purchase_sessions": 220,
+        "appts_per_session": 7.7,
+        "forms_per_appt": 27.6,
+        "purch_per_form": 65.7
+      }
     },
     "14d": {
       "cost": 38188.49,
@@ -28,7 +46,16 @@
       "purchases": 199.34,
       "cpa": 191.57,
       "ctr": 9.07,
-      "cpc": 3.03
+      "cpc": 3.03,
+      "funnel": {
+        "sessions": 35042,
+        "appt_sessions": 2518,
+        "form_sessions": 719,
+        "purchase_sessions": 396,
+        "appts_per_session": 7.2,
+        "forms_per_appt": 28.6,
+        "purch_per_form": 55.1
+      }
     }
   },
   "report1_campaigns": [
@@ -417,7 +444,14 @@
       "clicks": 1097,
       "impressions": 11028,
       "purchases": 18.56,
-      "cpa": 142.81
+      "cpa": 142.81,
+      "sessions": 2654,
+      "appt_sessions": 175,
+      "form_sessions": 54,
+      "purchase_sessions": 32,
+      "appts_per_session": 6.6,
+      "forms_per_appt": 30.9,
+      "purch_per_form": 59.3
     },
     {
       "date": "2026-06-02",
@@ -425,7 +459,14 @@
       "clicks": 1065,
       "impressions": 11371,
       "purchases": 22.15,
-      "cpa": 113.3
+      "cpa": 113.3,
+      "sessions": 2798,
+      "appt_sessions": 168,
+      "form_sessions": 51,
+      "purchase_sessions": 31,
+      "appts_per_session": 6.0,
+      "forms_per_appt": 30.4,
+      "purch_per_form": 60.8
     },
     {
       "date": "2026-06-03",
@@ -433,7 +474,14 @@
       "clicks": 1095,
       "impressions": 12326,
       "purchases": 22.09,
-      "cpa": 111.48
+      "cpa": 111.48,
+      "sessions": 3618,
+      "appt_sessions": 184,
+      "form_sessions": 54,
+      "purchase_sessions": 27,
+      "appts_per_session": 5.1,
+      "forms_per_appt": 29.3,
+      "purch_per_form": 50.0
     },
     {
       "date": "2026-06-04",
@@ -441,7 +489,14 @@
       "clicks": 1181,
       "impressions": 13840,
       "purchases": 16.31,
-      "cpa": 172.64
+      "cpa": 172.64,
+      "sessions": 3068,
+      "appt_sessions": 177,
+      "form_sessions": 55,
+      "purchase_sessions": 24,
+      "appts_per_session": 5.8,
+      "forms_per_appt": 31.1,
+      "purch_per_form": 43.6
     },
     {
       "date": "2026-06-05",
@@ -449,7 +504,14 @@
       "clicks": 890,
       "impressions": 10042,
       "purchases": 11.19,
-      "cpa": 223.44
+      "cpa": 223.44,
+      "sessions": 2832,
+      "appt_sessions": 244,
+      "form_sessions": 64,
+      "purchase_sessions": 21,
+      "appts_per_session": 8.6,
+      "forms_per_appt": 26.2,
+      "purch_per_form": 32.8
     },
     {
       "date": "2026-06-06",
@@ -457,7 +519,14 @@
       "clicks": 829,
       "impressions": 9249,
       "purchases": 11.47,
-      "cpa": 200.05
+      "cpa": 200.05,
+      "sessions": 2151,
+      "appt_sessions": 184,
+      "form_sessions": 54,
+      "purchase_sessions": 19,
+      "appts_per_session": 8.6,
+      "forms_per_appt": 29.3,
+      "purch_per_form": 35.2
     },
     {
       "date": "2026-06-07",
@@ -465,7 +534,14 @@
       "clicks": 982,
       "impressions": 11298,
       "purchases": 11.79,
-      "cpa": 239.45
+      "cpa": 239.45,
+      "sessions": 2142,
+      "appt_sessions": 172,
+      "form_sessions": 52,
+      "purchase_sessions": 22,
+      "appts_per_session": 8.0,
+      "forms_per_appt": 30.2,
+      "purch_per_form": 42.3
     },
     {
       "date": "2026-06-08",
@@ -473,7 +549,14 @@
       "clicks": 978,
       "impressions": 8679,
       "purchases": 18.67,
-      "cpa": 170.62
+      "cpa": 170.62,
+      "sessions": 2857,
+      "appt_sessions": 239,
+      "form_sessions": 67,
+      "purchase_sessions": 30,
+      "appts_per_session": 8.4,
+      "forms_per_appt": 28.0,
+      "purch_per_form": 44.8
     },
     {
       "date": "2026-06-09",
@@ -481,7 +564,14 @@
       "clicks": 621,
       "impressions": 5519,
       "purchases": 14.37,
-      "cpa": 153.08
+      "cpa": 153.08,
+      "sessions": 2369,
+      "appt_sessions": 218,
+      "form_sessions": 73,
+      "purchase_sessions": 38,
+      "appts_per_session": 9.2,
+      "forms_per_appt": 33.5,
+      "purch_per_form": 52.1
     },
     {
       "date": "2026-06-10",
@@ -489,7 +579,14 @@
       "clicks": 581,
       "impressions": 6129,
       "purchases": 8.89,
-      "cpa": 237.88
+      "cpa": 237.88,
+      "sessions": 2230,
+      "appt_sessions": 183,
+      "form_sessions": 44,
+      "purchase_sessions": 30,
+      "appts_per_session": 8.2,
+      "forms_per_appt": 24.0,
+      "purch_per_form": 68.2
     },
     {
       "date": "2026-06-11",
@@ -497,7 +594,14 @@
       "clicks": 837,
       "impressions": 10402,
       "purchases": 13.73,
-      "cpa": 224.92
+      "cpa": 224.92,
+      "sessions": 2495,
+      "appt_sessions": 184,
+      "form_sessions": 39,
+      "purchase_sessions": 26,
+      "appts_per_session": 7.4,
+      "forms_per_appt": 21.2,
+      "purch_per_form": 66.7
     },
     {
       "date": "2026-06-12",
@@ -505,7 +609,14 @@
       "clicks": 1049,
       "impressions": 14054,
       "purchases": 13.09,
-      "cpa": 320.84
+      "cpa": 320.84,
+      "sessions": 2461,
+      "appt_sessions": 151,
+      "form_sessions": 43,
+      "purchase_sessions": 38,
+      "appts_per_session": 6.1,
+      "forms_per_appt": 28.5,
+      "purch_per_form": 88.4
     },
     {
       "date": "2026-06-13",
@@ -513,7 +624,14 @@
       "clicks": 710,
       "impressions": 7994,
       "purchases": 6.03,
-      "cpa": 473.87
+      "cpa": 473.87,
+      "sessions": 1688,
+      "appt_sessions": 123,
+      "form_sessions": 35,
+      "purchase_sessions": 23,
+      "appts_per_session": 7.3,
+      "forms_per_appt": 28.5,
+      "purch_per_form": 65.7
     },
     {
       "date": "2026-06-14",
@@ -521,7 +639,14 @@
       "clicks": 682,
       "impressions": 6926,
       "purchases": 11.0,
-      "cpa": 226.05
+      "cpa": 226.05,
+      "sessions": 1679,
+      "appt_sessions": 116,
+      "form_sessions": 34,
+      "purchase_sessions": 35,
+      "appts_per_session": 6.9,
+      "forms_per_appt": 29.3,
+      "purch_per_form": 102.9
     }
   ],
   "channel_funnel": [
