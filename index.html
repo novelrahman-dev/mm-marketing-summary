@@ -233,7 +233,7 @@ function renderCampaigns(d){
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
   const t14=totals['14d']||{}, t7=totals['7d']||{}, ty=totals.yesterday||{};
-  const daily = (d.daily||[]).filter(r=>r.date!=='2026-06-15');
+  const daily = d.daily||[];
 
   // ── Full shared column header (same across all 3 tables)
   const fullHdr = `
@@ -373,7 +373,7 @@ function renderCampaigns(d){
 // ─── SITE FUNNEL ──────────────────────────────────────────────────────────────
 function renderFunnel(d){
   const channels = d.channel_funnel || [];
-  const daily14  = (d.daily14_funnel||[]).filter(r=>r.date!=='2026-06-15');
+  const daily14  = d.daily14_funnel||[];
 
   const chanRows = channels.map(c=>{
     const apptR  = c.sessions>0?(c.appt_sessions/c.sessions*100).toFixed(1):'—';
