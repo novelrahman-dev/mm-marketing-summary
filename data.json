@@ -623,6 +623,214 @@
       "purch_per_form": 52.9
     }
   ],
-  "channel_funnel": [],
-  "daily14_funnel": []
+  "channel_funnel": [
+    {
+      "channel": "google_paid",
+      "appt_sessions": 1304,
+      "form_sessions": 344,
+      "purchase_sessions": 177,
+      "appts_per_session": null,
+      "forms_per_appt": 26.4,
+      "purch_per_form": 51.5,
+      "cvr": null
+    },
+    {
+      "channel": "fb",
+      "appt_sessions": 270,
+      "form_sessions": 57,
+      "purchase_sessions": 9,
+      "appts_per_session": null,
+      "forms_per_appt": 21.1,
+      "purch_per_form": 15.8,
+      "cvr": null
+    },
+    {
+      "channel": "ig",
+      "appt_sessions": 124,
+      "form_sessions": 34,
+      "purchase_sessions": 5,
+      "appts_per_session": null,
+      "forms_per_appt": 27.4,
+      "purch_per_form": 14.7,
+      "cvr": null
+    },
+    {
+      "channel": "google",
+      "appt_sessions": 7,
+      "form_sessions": 2,
+      "purchase_sessions": 0,
+      "appts_per_session": null,
+      "forms_per_appt": 28.6,
+      "purch_per_form": 0.0,
+      "cvr": null
+    },
+    {
+      "channel": "bing",
+      "appt_sessions": 41,
+      "form_sessions": 7,
+      "purchase_sessions": 4,
+      "appts_per_session": null,
+      "forms_per_appt": 17.1,
+      "purch_per_form": 57.1,
+      "cvr": null
+    },
+    {
+      "channel": "chatgpt.com",
+      "appt_sessions": 54,
+      "form_sessions": 17,
+      "purchase_sessions": 7,
+      "appts_per_session": null,
+      "forms_per_appt": 31.5,
+      "purch_per_form": 41.2,
+      "cvr": null
+    },
+    {
+      "channel": "paid_social_media",
+      "appt_sessions": 9,
+      "form_sessions": 5,
+      "purchase_sessions": 1,
+      "appts_per_session": null,
+      "forms_per_appt": 55.6,
+      "purch_per_form": 20.0,
+      "cvr": null
+    },
+    {
+      "channel": "(direct/organic)",
+      "appt_sessions": 2499,
+      "form_sessions": 470,
+      "purchase_sessions": 291,
+      "appts_per_session": null,
+      "forms_per_appt": 18.8,
+      "purch_per_form": 61.9,
+      "cvr": null
+    }
+  ],
+  "daily14_funnel": [
+    {
+      "date": "2026-06-02",
+      "appt_sessions": 118,
+      "form_sessions": 25,
+      "purchase_sessions": 15,
+      "appts_per_session": null,
+      "forms_per_appt": 21.2,
+      "purch_per_form": 60.0
+    },
+    {
+      "date": "2026-06-03",
+      "appt_sessions": 83,
+      "form_sessions": 27,
+      "purchase_sessions": 15,
+      "appts_per_session": null,
+      "forms_per_appt": 32.5,
+      "purch_per_form": 55.6
+    },
+    {
+      "date": "2026-06-04",
+      "appt_sessions": 86,
+      "form_sessions": 24,
+      "purchase_sessions": 15,
+      "appts_per_session": null,
+      "forms_per_appt": 27.9,
+      "purch_per_form": 62.5
+    },
+    {
+      "date": "2026-06-05",
+      "appt_sessions": 89,
+      "form_sessions": 19,
+      "purchase_sessions": 7,
+      "appts_per_session": null,
+      "forms_per_appt": 21.3,
+      "purch_per_form": 36.8
+    },
+    {
+      "date": "2026-06-06",
+      "appt_sessions": 67,
+      "form_sessions": 23,
+      "purchase_sessions": 8,
+      "appts_per_session": null,
+      "forms_per_appt": 34.3,
+      "purch_per_form": 34.8
+    },
+    {
+      "date": "2026-06-07",
+      "appt_sessions": 86,
+      "form_sessions": 20,
+      "purchase_sessions": 7,
+      "appts_per_session": null,
+      "forms_per_appt": 23.3,
+      "purch_per_form": 35.0
+    },
+    {
+      "date": "2026-06-08",
+      "appt_sessions": 115,
+      "form_sessions": 41,
+      "purchase_sessions": 16,
+      "appts_per_session": null,
+      "forms_per_appt": 35.7,
+      "purch_per_form": 39.0
+    },
+    {
+      "date": "2026-06-09",
+      "appt_sessions": 67,
+      "form_sessions": 22,
+      "purchase_sessions": 10,
+      "appts_per_session": null,
+      "forms_per_appt": 32.8,
+      "purch_per_form": 45.5
+    },
+    {
+      "date": "2026-06-10",
+      "appt_sessions": 55,
+      "form_sessions": 14,
+      "purchase_sessions": 9,
+      "appts_per_session": null,
+      "forms_per_appt": 25.5,
+      "purch_per_form": 64.3
+    },
+    {
+      "date": "2026-06-11",
+      "appt_sessions": 125,
+      "form_sessions": 20,
+      "purchase_sessions": 9,
+      "appts_per_session": null,
+      "forms_per_appt": 16.0,
+      "purch_per_form": 45.0
+    },
+    {
+      "date": "2026-06-12",
+      "appt_sessions": 84,
+      "form_sessions": 22,
+      "purchase_sessions": 12,
+      "appts_per_session": null,
+      "forms_per_appt": 26.2,
+      "purch_per_form": 54.5
+    },
+    {
+      "date": "2026-06-13",
+      "appt_sessions": 70,
+      "form_sessions": 18,
+      "purchase_sessions": 9,
+      "appts_per_session": null,
+      "forms_per_appt": 25.7,
+      "purch_per_form": 50.0
+    },
+    {
+      "date": "2026-06-14",
+      "appt_sessions": 50,
+      "form_sessions": 20,
+      "purchase_sessions": 14,
+      "appts_per_session": null,
+      "forms_per_appt": 40.0,
+      "purch_per_form": 70.0
+    },
+    {
+      "date": "2026-06-15",
+      "appt_sessions": 103,
+      "form_sessions": 17,
+      "purchase_sessions": 9,
+      "appts_per_session": null,
+      "forms_per_appt": 16.5,
+      "purch_per_form": 52.9
+    }
+  ]
 }
