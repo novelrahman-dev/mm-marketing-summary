@@ -626,83 +626,102 @@
   "channel_funnel": [
     {
       "channel": "google_paid",
-      "appt_sessions": 1304,
-      "form_sessions": 344,
-      "purchase_sessions": 177,
-      "appts_per_session": null,
-      "forms_per_appt": 26.4,
-      "purch_per_form": 51.5,
-      "cvr": null
+      "sessions": 28992,
+      "appt_sessions": 2638,
+      "form_sessions": 691,
+      "purchase_sessions": 347,
+      "appts_per_session": 9.1,
+      "forms_per_appt": 26.2,
+      "purch_per_form": 50.2,
+      "cvr": 1.2
     },
     {
       "channel": "fb",
-      "appt_sessions": 270,
-      "form_sessions": 57,
-      "purchase_sessions": 9,
-      "appts_per_session": null,
-      "forms_per_appt": 21.1,
-      "purch_per_form": 15.8,
-      "cvr": null
+      "sessions": 3472,
+      "appt_sessions": 371,
+      "form_sessions": 87,
+      "purchase_sessions": 19,
+      "appts_per_session": 10.7,
+      "forms_per_appt": 23.5,
+      "purch_per_form": 21.8,
+      "cvr": 0.55
     },
     {
       "channel": "ig",
-      "appt_sessions": 124,
-      "form_sessions": 34,
-      "purchase_sessions": 5,
-      "appts_per_session": null,
-      "forms_per_appt": 27.4,
-      "purch_per_form": 14.7,
-      "cvr": null
+      "sessions": 2299,
+      "appt_sessions": 172,
+      "form_sessions": 45,
+      "purchase_sessions": 6,
+      "appts_per_session": 7.5,
+      "forms_per_appt": 26.2,
+      "purch_per_form": 13.3,
+      "cvr": 0.26
     },
     {
-      "channel": "google",
-      "appt_sessions": 7,
-      "form_sessions": 2,
+      "channel": "facebook",
+      "sessions": 2355,
+      "appt_sessions": 13,
+      "form_sessions": 1,
       "purchase_sessions": 0,
-      "appts_per_session": null,
-      "forms_per_appt": 28.6,
+      "appts_per_session": 0.6,
+      "forms_per_appt": 7.7,
       "purch_per_form": 0.0,
-      "cvr": null
+      "cvr": 0.0
     },
     {
       "channel": "bing",
+      "sessions": 820,
       "appt_sessions": 41,
       "form_sessions": 7,
       "purchase_sessions": 4,
-      "appts_per_session": null,
+      "appts_per_session": 5.0,
       "forms_per_appt": 17.1,
       "purch_per_form": 57.1,
-      "cvr": null
+      "cvr": 0.49
     },
     {
       "channel": "chatgpt.com",
-      "appt_sessions": 54,
-      "form_sessions": 17,
-      "purchase_sessions": 7,
-      "appts_per_session": null,
-      "forms_per_appt": 31.5,
-      "purch_per_form": 41.2,
-      "cvr": null
+      "sessions": 245,
+      "appt_sessions": 82,
+      "form_sessions": 28,
+      "purchase_sessions": 14,
+      "appts_per_session": 33.5,
+      "forms_per_appt": 34.1,
+      "purch_per_form": 50.0,
+      "cvr": 5.71
     },
     {
       "channel": "paid_social_media",
+      "sessions": 339,
       "appt_sessions": 9,
       "form_sessions": 5,
       "purchase_sessions": 1,
-      "appts_per_session": null,
+      "appts_per_session": 2.7,
       "forms_per_appt": 55.6,
       "purch_per_form": 20.0,
-      "cvr": null
+      "cvr": 0.29
+    },
+    {
+      "channel": "google",
+      "sessions": 140,
+      "appt_sessions": 17,
+      "form_sessions": 3,
+      "purchase_sessions": 0,
+      "appts_per_session": 12.1,
+      "forms_per_appt": 17.6,
+      "purch_per_form": 0.0,
+      "cvr": 0.0
     },
     {
       "channel": "(direct/organic)",
-      "appt_sessions": 2499,
-      "form_sessions": 470,
-      "purchase_sessions": 291,
-      "appts_per_session": null,
-      "forms_per_appt": 18.8,
-      "purch_per_form": 61.9,
-      "cvr": null
+      "sessions": 39176,
+      "appt_sessions": 5089,
+      "form_sessions": 840,
+      "purchase_sessions": 481,
+      "appts_per_session": 13.0,
+      "forms_per_appt": 16.5,
+      "purch_per_form": 57.3,
+      "cvr": 1.23
     }
   ],
   "daily14_funnel": [
