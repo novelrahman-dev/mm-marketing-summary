@@ -373,23 +373,58 @@ function renderCampaigns(d){
 // ─── SITE FUNNEL ──────────────────────────────────────────────────────────────
 function renderFunnel(d){
   const channels = d.channel_funnel || [];
-  const daily14  = d.daily14_funnel||[];
+  const daily14  = d.daily14_funnel || [];
+  const ga4_channels = d.ga4_channel_funnel || [];
+  const landing_pages = d.landing_page_funnel || [];
+  const overlap_matrix = d.channel_overlap || {};
+  const overlap_channels = d.channel_overlap_channels || [];
 
-  const chanRows = channels.map(c=>{
-    const apptR  = c.sessions>0?(c.appt_sessions/c.sessions*100).toFixed(1):'—';
-    const formR  = c.appt_sessions>0?(c.form_sessions/c.appt_sessions*100).toFixed(1):'—';
-    const purchR = c.form_sessions>0?(c.purchase_sessions/c.form_sessions*100).toFixed(1):'—';
-    const cvr    = c.sessions>0?(c.purchase_sessions/c.sessions*100).toFixed(2):'—';
+  // ── GA4 Channel Table (replaces PostHog CTE channel table)
+  const chanRows = ga4_channels.map(c=>{
+    const cvr = c.sessions>0?(c.conversions_purchase/c.sessions*100).toFixed(2):'—';
+    const cvrNum = c.sessions>0?c.conversions_purchase/c.sessions*100:0;
+    const cvrColor = cvrNum>=1.5?'color:#085041;font-weight:700':cvrNum>=0.8?'color:#d4a017;font-weight:700':'color:#c0392b';
     return `<tr>
       <td><strong>${c.channel}</strong></td>
       <td class="r">${fmtNum(c.sessions)}</td>
-      <td class="r">${apptR!=='—'?apptR+'%':'—'}</td>
-      <td class="r">${formR!=='—'?formR+'%':'—'}</td>
-      <td class="r">${purchR!=='—'?purchR+'%':'—'}</td>
-      <td class="r"><strong>${cvr!=='—'?cvr+'%':'—'}</strong></td>
+      <td class="r">${(c.engagement_rate*100).toFixed(1)}%</td>
+      <td class="r">${(c.bounce_rate*100).toFixed(1)}%</td>
+      <td class="r">${c.avg_duration}</td>
+      <td class="r">${c.conversions_purchase}</td>
+      <td class="r" style="${cvrColor}">${cvr!=='—'?cvr+'%':'—'}</td>
     </tr>`;
   }).join('');
 
+  // ── Landing Page Funnel Table
+  const lpRows = landing_pages.map(p=>{
+    const cvrNum = p.cvr||0;
+    const cvrColor = cvrNum>=5?'color:#085041;font-weight:700':cvrNum>=1?'color:#d4a017;font-weight:700':'color:#c0392b';
+    return `<tr>
+      <td><strong>${p.page}</strong></td>
+      <td class="r">${fmtNum(p.sessions)}</td>
+      <td class="r">${p.engagement_rate}%</td>
+      <td class="r">${p.bounce_rate}%</td>
+      <td class="r">${p.avg_duration}</td>
+      <td class="r">${p.purchases}</td>
+      <td class="r" style="${cvrColor}">${p.cvr}%</td>
+    </tr>`;
+  }).join('');
+
+  // ── Channel Overlap Matrix
+  const matrixHeader = overlap_channels.map(ch=>`<th class="r" style="font-size:10px;white-space:nowrap">${ch.replace('Cross-network','Cross-net').replace('Organic ','Org. ').replace('Paid ','Pd. ')}</th>`).join('');
+  const matrixRows = overlap_channels.map(acq=>{
+    const cells = overlap_channels.map(last=>{
+      const key = `${acq}|${last}`;
+      const pct = overlap_matrix[key]||0;
+      const isDiag = acq===last;
+      const bg = isDiag?'background:#e8e4f8;font-weight:700':pct>20?'background:#d5ede9':pct>5?'background:#f0f9f7':'';
+      return `<td class="r" style="font-size:11px;${bg}">${pct>0?pct+'%':'—'}</td>`;
+    }).join('');
+    const label = acq.replace('Cross-network','Cross-net').replace('Organic ','Org. ').replace('Paid ','Pd. ');
+    return `<tr><td style="font-size:11px;white-space:nowrap"><strong>${label}</strong></td>${cells}</tr>`;
+  }).join('');
+
+  // ── Daily Funnel (PostHog session-scoped, all channels)
   const dailyFunnelRows = daily14.map(r=>{
     const apptR  = r.sessions>0?(r.appt_sessions/r.sessions*100).toFixed(1):'—';
     const formR  = r.appt_sessions>0?(r.form_sessions/r.appt_sessions*100).toFixed(1):'—';
@@ -412,23 +447,54 @@ function renderFunnel(d){
   const cvrR   = daily14.map(r=>r.sessions>0?+(r.purchase_sessions/r.sessions*100).toFixed(2):0);
 
   $e('funnel').innerHTML = `
-    <div class="sec">Channel Funnel — Last 30 Days (session-scoped)</div>
+    <div class="sec">Channel Performance — Last 30 Days (GA4)</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr>
           <th>Channel</th>
           <th class="r">Sessions</th>
-          <th class="r">Appts / Sessions</th>
-          <th class="r">Forms / Appts</th>
-          <th class="r">Purch / Forms</th>
-          <th class="r">CVR (Purch / Sessions)</th>
+          <th class="r">Engagement Rate</th>
+          <th class="r">Bounce Rate</th>
+          <th class="r">Avg Duration</th>
+          <th class="r">Purchases</th>
+          <th class="r">CVR</th>
         </tr></thead>
         <tbody>${chanRows}</tbody>
       </table>
     </div>
-    <p class="footnote">Session-scoped: each session attributed to its entry channel. CVR = purchase sessions ÷ sessions.</p>
+    <p class="footnote">Source: GA4. CVR = GA4 purchase key events ÷ sessions. Duration = avg session duration.</p>
 
-    <div class="sec">Daily Funnel Rates — Last 14 Days</div>
+    <div class="sec">Landing Page Funnel — Last 30 Days (GA4)</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>Page Type</th>
+          <th class="r">Sessions</th>
+          <th class="r">Engagement Rate</th>
+          <th class="r">Bounce Rate</th>
+          <th class="r">Avg Duration</th>
+          <th class="r">Purchases</th>
+          <th class="r">CVR</th>
+        </tr></thead>
+        <tbody>${lpRows}</tbody>
+      </table>
+    </div>
+    <p class="footnote">Source: GA4. Pages grouped by type (Home, Blog Post, City Page, etc). CVR = purchases ÷ sessions.</p>
+
+    <div class="sec">Channel Overlap Matrix — Last 30 Days (GA4)</div>
+    <p style="font-size:12px;color:#666;margin:0 0 8px">Y axis = First-touch acquisition channel. X axis = Channel of return sessions. Cells show % of acquisition sessions that returned via each channel. Diagonal = same-channel loyalty.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th style="font-size:10px">Acquired via →<br>Returned via ↓</th>
+          ${matrixHeader}
+        </tr></thead>
+        <tbody>${matrixRows}</tbody>
+      </table>
+    </div>
+    <p class="footnote">Source: GA4 first_user_default_channel_group vs session_default_channel_group. Shows cross-channel halo effect — high off-diagonal values indicate channels driving return visits via other channels.</p>
+
+    <div class="sec">Daily Booking Funnel — Last 14 Days (PostHog, all channels)</div>
     <div class="chart-wrap">
       <h3>Funnel Step Conversion Rates Over Time</h3>
       <canvas id="funnelChart" height="85"></canvas>
@@ -446,7 +512,7 @@ function renderFunnel(d){
         <tbody>${dailyFunnelRows}</tbody>
       </table>
     </div>
-    <p class="footnote">All channels combined. CVR = purchase sessions ÷ sessions.</p>`;
+    <p class="footnote">Source: PostHog session-scoped CTE, all channels. CVR = purchase sessions ÷ sessions.</p>`;
 
   setTimeout(()=>{
     const ctx = document.getElementById('funnelChart');
@@ -458,11 +524,18 @@ function renderFunnel(d){
         {label:'CVR %',           data:cvrR, borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,.05)',tension:.3,yAxisID:'y2',pointRadius:3,borderDash:[5,3]},
       ]},options:{responsive:true,interaction:{mode:'index',intersect:false},
         plugins:{legend:{position:'top',labels:{font:{size:11}}}},
-        scales:{y:{type:'linear',position:'left',title:{display:true,text:'Funnel Step %'}},
-                y2:{type:'linear',position:'right',title:{display:true,text:'CVR %'},grid:{drawOnChartArea:false}}}}});
+        scales:{
+          y:{type:'linear',display:true,position:'left',title:{display:true,text:'Funnel Step %'},
+             ticks:{callback:v=>v+'%'}},
+          y2:{type:'linear',display:true,position:'right',title:{display:true,text:'CVR %'},
+              grid:{drawOnChartArea:false},ticks:{callback:v=>v+'%'}}
+        }
+      }});
     }
   },50);
 }
+
+
 
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
 async function loadData(){
