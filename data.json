@@ -739,13 +739,13 @@
   ],
   "ga4_channel_funnel": [
     {
-      "channel": "Paid Search",
-      "sessions": 13907,
-      "engaged_sessions": 8936,
-      "engagement_rate": 0.6426,
-      "bounce_rate": 0.3574,
-      "avg_duration": "3:47",
-      "conversions_purchase": 239
+      "channel": "Cross-network",
+      "sessions": 17812,
+      "engaged_sessions": 10164,
+      "engagement_rate": 0.5706,
+      "bounce_rate": 0.4294,
+      "avg_duration": "2:53",
+      "conversions_purchase": 135
     },
     {
       "channel": "Organic Search",
@@ -757,13 +757,13 @@
       "conversions_purchase": 205
     },
     {
-      "channel": "Cross-network",
-      "sessions": 17812,
-      "engaged_sessions": 10164,
-      "engagement_rate": 0.5706,
-      "bounce_rate": 0.4294,
-      "avg_duration": "2:53",
-      "conversions_purchase": 135
+      "channel": "Paid Search",
+      "sessions": 13907,
+      "engaged_sessions": 8936,
+      "engagement_rate": 0.6426,
+      "bounce_rate": 0.3574,
+      "avg_duration": "3:47",
+      "conversions_purchase": 239
     },
     {
       "channel": "Direct",
@@ -773,6 +773,15 @@
       "bounce_rate": 0.5065,
       "avg_duration": "3:35",
       "conversions_purchase": 167
+    },
+    {
+      "channel": "Paid Social",
+      "sessions": 4846,
+      "engaged_sessions": 834,
+      "engagement_rate": 0.1721,
+      "bounce_rate": 0.8279,
+      "avg_duration": "0:32",
+      "conversions_purchase": 4
     },
     {
       "channel": "Referral",
@@ -802,13 +811,13 @@
       "conversions_purchase": 7
     },
     {
-      "channel": "Paid Social",
-      "sessions": 4846,
-      "engaged_sessions": 834,
-      "engagement_rate": 0.1721,
-      "bounce_rate": 0.8279,
-      "avg_duration": "0:32",
-      "conversions_purchase": 4
+      "channel": "Partnerships",
+      "sessions": 285,
+      "engaged_sessions": 229,
+      "engagement_rate": 0.8035,
+      "bounce_rate": 0.1965,
+      "avg_duration": "4:46",
+      "conversions_purchase": 5
     },
     {
       "channel": "AI Assistant",
