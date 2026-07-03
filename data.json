@@ -742,8 +742,8 @@
       "channel": "Organic Search",
       "sessions": 16228,
       "engaged_sessions": 9970,
-      "engagement_rate": 61.4,
-      "bounce_rate": 38.6,
+      "engagement_rate": 0.614,
+      "bounce_rate": 0.386,
       "avg_duration": "3:27",
       "conversions_purchase": 208
     },
@@ -751,8 +751,8 @@
       "channel": "Paid Search",
       "sessions": 14412,
       "engaged_sessions": 9307,
-      "engagement_rate": 64.6,
-      "bounce_rate": 35.4,
+      "engagement_rate": 0.646,
+      "bounce_rate": 0.354,
       "avg_duration": "3:51",
       "conversions_purchase": 277
     },
@@ -760,8 +760,8 @@
       "channel": "Cross-network",
       "sessions": 13794,
       "engaged_sessions": 8115,
-      "engagement_rate": 58.8,
-      "bounce_rate": 41.2,
+      "engagement_rate": 0.588,
+      "bounce_rate": 0.412,
       "avg_duration": "2:55",
       "conversions_purchase": 128
     },
@@ -769,8 +769,8 @@
       "channel": "Direct",
       "sessions": 13946,
       "engaged_sessions": 6885,
-      "engagement_rate": 49.4,
-      "bounce_rate": 50.6,
+      "engagement_rate": 0.494,
+      "bounce_rate": 0.506,
       "avg_duration": "3:25",
       "conversions_purchase": 164
     },
@@ -778,8 +778,8 @@
       "channel": "Referral",
       "sessions": 3459,
       "engaged_sessions": 2096,
-      "engagement_rate": 60.6,
-      "bounce_rate": 39.4,
+      "engagement_rate": 0.606,
+      "bounce_rate": 0.394,
       "avg_duration": "4:27",
       "conversions_purchase": 12
     },
@@ -787,8 +787,8 @@
       "channel": "Organic Social",
       "sessions": 3330,
       "engaged_sessions": 1097,
-      "engagement_rate": 32.9,
-      "bounce_rate": 67.1,
+      "engagement_rate": 0.329,
+      "bounce_rate": 0.671,
       "avg_duration": "1:25",
       "conversions_purchase": 36
     },
@@ -796,8 +796,8 @@
       "channel": "Paid Social",
       "sessions": 3188,
       "engaged_sessions": 790,
-      "engagement_rate": 24.8,
-      "bounce_rate": 75.2,
+      "engagement_rate": 0.248,
+      "bounce_rate": 0.752,
       "avg_duration": "0:50",
       "conversions_purchase": 6
     },
@@ -805,8 +805,8 @@
       "channel": "Organic Shopping",
       "sessions": 837,
       "engaged_sessions": 533,
-      "engagement_rate": 63.7,
-      "bounce_rate": 36.3,
+      "engagement_rate": 0.637,
+      "bounce_rate": 0.363,
       "avg_duration": "4:08",
       "conversions_purchase": 2
     },
@@ -814,8 +814,8 @@
       "channel": "Paid Other",
       "sessions": 768,
       "engaged_sessions": 396,
-      "engagement_rate": 51.6,
-      "bounce_rate": 48.4,
+      "engagement_rate": 0.516,
+      "bounce_rate": 0.484,
       "avg_duration": "3:23",
       "conversions_purchase": 13
     },
@@ -823,8 +823,8 @@
       "channel": "AI Assistant",
       "sessions": 288,
       "engaged_sessions": 197,
-      "engagement_rate": 68.4,
-      "bounce_rate": 31.6,
+      "engagement_rate": 0.684,
+      "bounce_rate": 0.316,
       "avg_duration": "4:22",
       "conversions_purchase": 14
     },
@@ -832,8 +832,8 @@
       "channel": "Organic Video",
       "sessions": 401,
       "engaged_sessions": 46,
-      "engagement_rate": 11.5,
-      "bounce_rate": 88.5,
+      "engagement_rate": 0.115,
+      "bounce_rate": 0.885,
       "avg_duration": "0:26",
       "conversions_purchase": 1
     },
@@ -841,8 +841,8 @@
       "channel": "Unassigned",
       "sessions": 0,
       "engaged_sessions": 40,
-      "engagement_rate": 23.3,
-      "bounce_rate": 76.7,
+      "engagement_rate": 0.233,
+      "bounce_rate": 0.767,
       "avg_duration": "4:14",
       "conversions_purchase": 6
     },
@@ -850,8 +850,8 @@
       "channel": "Partnerships",
       "sessions": 343,
       "engaged_sessions": 277,
-      "engagement_rate": 80.8,
-      "bounce_rate": 19.2,
+      "engagement_rate": 0.808,
+      "bounce_rate": 0.192,
       "avg_duration": "4:52",
       "conversions_purchase": 6
     }
@@ -860,8 +860,8 @@
     {
       "page": "Home",
       "sessions": 19010,
-      "engagement_rate": 54.7,
-      "bounce_rate": 45.3,
+      "engagement_rate": 0.547,
+      "bounce_rate": 0.453,
       "avg_duration": "3:17",
       "purchases": 345,
       "cvr": 1.81
@@ -869,8 +869,8 @@
     {
       "page": "City Page",
       "sessions": 9805,
-      "engagement_rate": 65.1,
-      "bounce_rate": 34.9,
+      "engagement_rate": 0.651,
+      "bounce_rate": 0.349,
       "avg_duration": "3:24",
       "purchases": 150,
       "cvr": 1.53
@@ -878,8 +878,8 @@
     {
       "page": "Blog Post",
       "sessions": 9123,
-      "engagement_rate": 50.4,
-      "bounce_rate": 49.6,
+      "engagement_rate": 0.504,
+      "bounce_rate": 0.496,
       "avg_duration": "2:18",
       "purchases": 4,
       "cvr": 0.04
@@ -887,8 +887,8 @@
     {
       "page": "Login",
       "sessions": 6247,
-      "engagement_rate": 71.4,
-      "bounce_rate": 28.6,
+      "engagement_rate": 0.714,
+      "bounce_rate": 0.286,
       "avg_duration": "4:47",
       "purchases": 9,
       "cvr": 0.14
@@ -896,8 +896,8 @@
     {
       "page": "Home (FR)",
       "sessions": 6033,
-      "engagement_rate": 56.1,
-      "bounce_rate": 43.9,
+      "engagement_rate": 0.561,
+      "bounce_rate": 0.439,
       "avg_duration": "2:48",
       "purchases": 83,
       "cvr": 1.38
@@ -905,8 +905,8 @@
     {
       "page": "What We Treat",
       "sessions": 3409,
-      "engagement_rate": 64.0,
-      "bounce_rate": 36.0,
+      "engagement_rate": 0.64,
+      "bounce_rate": 0.36,
       "avg_duration": "3:00",
       "purchases": 41,
       "cvr": 1.2
@@ -914,8 +914,8 @@
     {
       "page": "Dashboard",
       "sessions": 2665,
-      "engagement_rate": 64.1,
-      "bounce_rate": 35.9,
+      "engagement_rate": 0.641,
+      "bounce_rate": 0.359,
       "avg_duration": "4:36",
       "purchases": 2,
       "cvr": 0.08
@@ -923,8 +923,8 @@
     {
       "page": "Book Initial",
       "sessions": 1992,
-      "engagement_rate": 44.8,
-      "bounce_rate": 55.2,
+      "engagement_rate": 0.448,
+      "bounce_rate": 0.552,
       "avg_duration": "4:21",
       "purchases": 172,
       "cvr": 8.63
@@ -932,8 +932,8 @@
     {
       "page": "Quiz",
       "sessions": 1365,
-      "engagement_rate": 43.7,
-      "bounce_rate": 56.3,
+      "engagement_rate": 0.437,
+      "bounce_rate": 0.563,
       "avg_duration": "2:57",
       "purchases": 23,
       "cvr": 1.68
@@ -941,8 +941,8 @@
     {
       "page": "Intake",
       "sessions": 1131,
-      "engagement_rate": 55.9,
-      "bounce_rate": 44.1,
+      "engagement_rate": 0.559,
+      "bounce_rate": 0.441,
       "avg_duration": "6:22",
       "purchases": 0,
       "cvr": 0.0
@@ -950,8 +950,8 @@
     {
       "page": "Medication Page",
       "sessions": 927,
-      "engagement_rate": 57.6,
-      "bounce_rate": 42.4,
+      "engagement_rate": 0.576,
+      "bounce_rate": 0.424,
       "avg_duration": "1:42",
       "purchases": 1,
       "cvr": 0.11
@@ -959,8 +959,8 @@
     {
       "page": "Book Follow-up",
       "sessions": 883,
-      "engagement_rate": 62.7,
-      "bounce_rate": 37.3,
+      "engagement_rate": 0.627,
+      "bounce_rate": 0.373,
       "avg_duration": "3:46",
       "purchases": 0,
       "cvr": 0.0
@@ -968,8 +968,8 @@
     {
       "page": "Team Page",
       "sessions": 796,
-      "engagement_rate": 46.7,
-      "bounce_rate": 53.3,
+      "engagement_rate": 0.467,
+      "bounce_rate": 0.533,
       "avg_duration": "2:33",
       "purchases": 6,
       "cvr": 0.75
@@ -977,8 +977,8 @@
     {
       "page": "FAQ",
       "sessions": 521,
-      "engagement_rate": 40.3,
-      "bounce_rate": 59.7,
+      "engagement_rate": 0.403,
+      "bounce_rate": 0.597,
       "avg_duration": "2:43",
       "purchases": 7,
       "cvr": 1.34
@@ -986,8 +986,8 @@
     {
       "page": "Careers",
       "sessions": 490,
-      "engagement_rate": 50.0,
-      "bounce_rate": 50.0,
+      "engagement_rate": 0.5,
+      "bounce_rate": 0.5,
       "avg_duration": "2:23",
       "purchases": 1,
       "cvr": 0.2
@@ -995,8 +995,8 @@
     {
       "page": "Reviews",
       "sessions": 204,
-      "engagement_rate": 70.1,
-      "bounce_rate": 29.9,
+      "engagement_rate": 0.701,
+      "bounce_rate": 0.299,
       "avg_duration": "4:25",
       "purchases": 7,
       "cvr": 3.43
