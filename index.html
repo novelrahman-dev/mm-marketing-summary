@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Menopause — Google Ads Dashboard</title>
+<title>Modern Menopause — Marketing Dashboard</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root{
@@ -11,14 +11,15 @@
   --radius:10px;--purple-bg:#EEEDFE;--purple-border:#c5c3f5;--purple-text:#3C3489;
   --teal-bg:#E1F5EE;--teal-text:#085041;--amber-bg:#FAEEDA;--amber-text:#6B4C00;
   --red-bg:#FEEDED;--red-text:#8B1A1A;--green-bg:#E6F4EA;--green-text:#1A5C2A;
+  --blue-bg:#E8F1FE;--blue-text:#1A3A8B;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:13px;}
 header{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
 header h1{font-size:15px;font-weight:700;white-space:nowrap;}
 #meta{font-size:11px;color:var(--muted);white-space:nowrap;}
-nav{display:flex;gap:2px;padding:10px 24px 0;border-bottom:1px solid var(--border);background:#fff;}
-nav button{padding:8px 16px;border:none;background:none;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:600;}
+nav{display:flex;gap:2px;padding:10px 24px 0;border-bottom:1px solid var(--border);background:#fff;overflow-x:auto;}
+nav button{padding:8px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:600;white-space:nowrap;}
 nav button.active{color:var(--text);border-bottom-color:#3C3489;}
 nav button:hover:not(.active){color:var(--text);}
 .tab{display:none;padding:20px 24px;}
@@ -40,6 +41,11 @@ nav button:hover:not(.active){color:var(--text);}
 .tag-good{background:var(--green-bg);color:var(--green-text);}
 .tag-warn{background:var(--amber-bg);color:var(--amber-text);}
 .tag-bad{background:var(--red-bg);color:var(--red-text);}
+.tag-scaling{background:var(--green-bg);color:var(--green-text);}
+.tag-testing{background:var(--amber-bg);color:var(--amber-text);}
+.tag-holding{background:var(--purple-bg);color:var(--purple-text);}
+.tag-new{background:var(--blue-bg);color:var(--blue-text);}
+.tag-hidden{background:#f0f0ef;color:var(--muted);}
 
 .tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;margin-bottom:6px;}
 table{width:100%;border-collapse:collapse;font-size:11.5px;}
@@ -82,6 +88,24 @@ tr:hover td{background:#fafaf8;}
 .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:6px;}
 .chart-wrap h3{font-size:12px;font-weight:700;margin-bottom:12px;}
 
+.funnel-steps{display:flex;gap:0;margin:12px 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.funnel-step{flex:1;padding:14px 12px;text-align:center;border-right:1px solid var(--border);}
+.funnel-step:last-child{border-right:none;}
+.funnel-step .fs-label{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:600;margin-bottom:4px;}
+.funnel-step .fs-val{font-size:18px;font-weight:800;}
+.funnel-step .fs-rate{font-size:10px;color:var(--muted);margin-top:2px;}
+
+.creative-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.creative-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;}
+.cc-rank{font-size:10px;font-weight:700;color:var(--muted);margin-bottom:6px;}
+.cc-name{font-size:11px;font-weight:700;line-height:1.3;margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.cc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.cc-metric{font-size:10px;color:var(--muted);}
+.cc-metric strong{color:var(--text);font-size:11px;}
+.cc-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:3px;}
+.cc-tag{font-size:9px;padding:1px 5px;border-radius:3px;background:#f0f0ef;color:var(--muted);font-weight:600;}
+
+.no-data{text-align:center;padding:40px 20px;color:var(--muted);font-size:12px;}
 .error-box{background:var(--red-bg);border:1px solid #f5c0c0;border-radius:var(--radius);padding:16px 20px;margin:20px 0;color:var(--red-text);}
 .loading{text-align:center;padding:60px 20px;color:var(--muted);}
 </style>
@@ -89,19 +113,23 @@ tr:hover td{background:#fafaf8;}
 <body>
 
 <header>
-  <h1>🌿 Modern Menopause — Google Ads Dashboard</h1>
+  <h1>🌿 Modern Menopause — Marketing Dashboard</h1>
   <span id="meta">Loading…</span>
 </header>
 
 <nav>
-  <button class="active" onclick="showTab('insights',this)">💡 Insights</button>
-  <button onclick="showTab('campaigns',this)">📊 Campaigns</button>
+  <button class="active" onclick="showTab('insights-sem',this)">💡 Insights — SEM</button>
+  <button onclick="showTab('insights-social',this)">📱 Insights — Social</button>
+  <button onclick="showTab('campaigns-adwords',this)">📊 Campaigns — Adwords</button>
+  <button onclick="showTab('campaigns-facebook',this)">📘 Campaigns — Facebook</button>
   <button onclick="showTab('funnel',this)">🌐 Site Funnel</button>
 </nav>
 
-<div id="insights" class="tab active"><div class="loading">Loading…</div></div>
-<div id="campaigns" class="tab"><div class="loading">Loading…</div></div>
-<div id="funnel" class="tab"><div class="loading">Loading…</div></div>
+<div id="insights-sem"    class="tab active"><div class="loading">Loading…</div></div>
+<div id="insights-social" class="tab"><div class="loading">Loading…</div></div>
+<div id="campaigns-adwords"  class="tab"><div class="loading">Loading…</div></div>
+<div id="campaigns-facebook" class="tab"><div class="loading">Loading…</div></div>
+<div id="funnel"          class="tab"><div class="loading">Loading…</div></div>
 
 <script>
 const $e = id => document.getElementById(id);
@@ -109,7 +137,8 @@ const $e = id => document.getElementById(id);
 const fmtCAD  = v => v == null ? '—' : '$' + Number(v).toLocaleString('en-CA',{minimumFractionDigits:0,maximumFractionDigits:0});
 const fmtCAD2 = v => v == null ? '—' : '$' + Number(v).toFixed(2);
 const fmtNum  = v => v == null ? '—' : Number(v).toLocaleString();
-const fmtPct  = (v,d=2) => v == null ? '—' : Number(v).toFixed(d)+'%';
+const fmtPct  = (v,d=1) => v == null ? '—' : Number(v).toFixed(d)+'%';
+const fmtX    = v => v == null ? '—' : Number(v).toFixed(2)+'x';
 
 function showTab(id, btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -117,10 +146,19 @@ function showTab(id, btn){
   $e(id).classList.add('active'); btn.classList.add('active');
 }
 
+// ── CPA tags: Google target ≤$175
 function cpaTag(cpa){
   if(cpa==null) return '<span style="color:var(--muted)">—</span>';
   if(cpa<=100)  return `<span class="tag tag-good">${fmtCAD2(cpa)}</span>`;
   if(cpa<=175)  return `<span class="tag tag-warn">${fmtCAD2(cpa)}</span>`;
+  return `<span class="tag tag-bad">${fmtCAD2(cpa)}</span>`;
+}
+
+// ── CPA tags: Facebook target ≤$100
+function cpaTagFB(cpa){
+  if(cpa==null) return '<span style="color:var(--muted)">—</span>';
+  if(cpa<=100)  return `<span class="tag tag-good">${fmtCAD2(cpa)}</span>`;
+  if(cpa<=150)  return `<span class="tag tag-warn">${fmtCAD2(cpa)}</span>`;
   return `<span class="tag tag-bad">${fmtCAD2(cpa)}</span>`;
 }
 
@@ -131,21 +169,29 @@ function campTag(name, type){
   return '<span class="tag tag-nb">NB</span>';
 }
 
-function sc(name){ return name.replace(/_/g,' '); }
+function spendStateTag(state){
+  const s = (state||'').toLowerCase();
+  const labels = {scaling:'🚀 Scaling',testing:'🧪 Testing',holding:'⏸ Holding',new:'✨ New',hidden:'👁 Hidden'};
+  const cls = {scaling:'tag-scaling',testing:'tag-testing',holding:'tag-holding',new:'tag-new',hidden:'tag-hidden'};
+  return `<span class="tag ${cls[s]||'tag-hidden'}">${labels[s]||state||'—'}</span>`;
+}
 
-// ─── INSIGHTS ────────────────────────────────────────────────────────────────
-function renderInsights(d){
+function sc(name){ return name.replace(/_/g,' '); }
+function dash(v)  { return v==null||v===0?'—':v; }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INSIGHTS — SEM
+// ═══════════════════════════════════════════════════════════════════════════
+function renderInsightsSEM(d){
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
   const t14=totals['14d']||{}, t7=totals['7d']||{}, ty=totals.yesterday||{};
-  // CVR from GA4 channel table (Paid Search = Google Search + Brand)
   const ga4ch = d.ga4_channel_funnel || [];
   const gpGA4 = ga4ch.find(c=>c.channel==='Paid Search');
   const gCVR = gpGA4 ? (gpGA4.conversions_purchase/gpGA4.sessions*100).toFixed(2) : null;
   const dow = new Date(d.date_yesterday).getDay();
   const target = (dow===0||dow===6) ? 2000 : 3000;
   const pacePct = ty.cost ? ty.cost/target*100 : 0;
-  const paceColor = pacePct>110?'#c0392b':pacePct>=85?'#27ae60':'#e67e22';
 
   const withPurch = camps.filter(c=>c.purchases_14d>0.5)
     .map(c=>({...c,cpa14:c.cost_14d/c.purchases_14d}))
@@ -158,7 +204,6 @@ function renderInsights(d){
   const brandIS = brandCamp ? brandCamp.top_is : null;
   const best = withPurch[0], worst = withPurch[withPurch.length-1];
 
-  // Narrative — Google Ads
   let lines = [];
   if(t7.cpa) lines.push(`<strong>7d CPA is ${fmtCAD2(t7.cpa)}</strong> — ${t7.cpa<=175?'✅ within':'⚠️ above'} the $175 target. 14d blended CPA is <strong>${fmtCAD2(t14.cpa)}</strong> across <strong>${Math.round(t14.purchases||0)} purchases</strong>.`);
   lines.push(`Yesterday: <strong>${fmtCAD(ty.cost)}</strong> spend (${pacePct.toFixed(0)}% of ${fmtCAD(target)} ${(dow===0||dow===6)?'weekend':'weekday'} target), <strong>${ty.purchases!=null?ty.purchases.toFixed(1):'—'} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.`);
@@ -167,26 +212,21 @@ function renderInsights(d){
   else if(investigate.length>0) lines.push(`⚠️ <strong>${investigate.length} campaign${investigate.length>1?'s':''}</strong> running above $175 CPA (7d) — see Investigate card.`);
   else lines.push(`✅ No structural flags. All campaigns within acceptable parameters.`);
 
-  // Site insights from GA4 + landing pages
   const lp = d.landing_page_funnel || [];
-  const topLPbyPurch = lp.filter(p=>p.purchases>0).sort((a,b)=>b.cvr-a.cvr);
-  const topLPbyVol = lp.filter(p=>p.sessions>1000).sort((a,b)=>b.sessions-a.sessions);
   const blogLP = lp.find(p=>p.page==='Blog Post');
   const bookLP = lp.find(p=>p.page==='Book Initial');
   const cityLP = lp.find(p=>p.page==='City Page');
-  const homeLP = lp.find(p=>p.page==='Home');
   const partnershipCh = ga4ch.find(c=>c.channel==='Partnerships');
   const aiCh = ga4ch.find(c=>c.channel==='AI Assistant');
   const paidSocialCh = ga4ch.find(c=>c.channel==='Paid Social');
-  const paidSearchCh = ga4ch.find(c=>c.channel==='Paid Search');
 
   let siteLines = [];
-  if(bookLP) siteLines.push(`🎯 <strong>Book Initial Assessment</strong> is your highest-converting landing page at <strong>${bookLP.cvr}% CVR</strong> — 8× higher than the site average. ${bookLP.sessions.toLocaleString()} sessions drove <strong>${bookLP.purchases} purchases</strong> (30d).`);
-  if(cityLP) siteLines.push(`📍 <strong>City Pages</strong> convert at <strong>${cityLP.cvr}% CVR</strong> with ${cityLP.sessions.toLocaleString()} sessions — your best high-volume page type after direct booking. Strong engagement at ${cityLP.engagement_rate}%.`);
-  if(blogLP) siteLines.push(`📝 <strong>Blog Posts</strong> drive ${blogLP.sessions.toLocaleString()} sessions (30d) but convert at only <strong>${blogLP.cvr}% CVR</strong>. High-volume, low-conversion — pure awareness traffic. Consider stronger CTAs or internal links to booking pages.`);
-  if(partnershipCh) siteLines.push(`🤝 <strong>Partnerships (Venngo)</strong> is showing strong early signals: <strong>${(partnershipCh.engagement_rate*100).toFixed(0)}% engagement rate</strong> and <strong>${(partnershipCh.conversions_purchase/partnershipCh.sessions*100).toFixed(2)}% CVR</strong> — matching Paid Search quality at ${partnershipCh.sessions} sessions. Worth scaling.`);
-  if(aiCh) siteLines.push(`🤖 <strong>AI Assistant</strong> (ChatGPT referrals) has the highest CVR of any channel at <strong>${(aiCh.conversions_purchase/aiCh.sessions*100).toFixed(2)}%</strong> with ${(aiCh.engagement_rate*100).toFixed(0)}% engagement. Only ${aiCh.sessions} sessions but ultra-high intent — this audience already trusts the brand.`);
-  if(paidSocialCh) siteLines.push(`📱 <strong>Paid Social</strong> has a <strong>${(paidSocialCh.bounce_rate*100).toFixed(0)}% bounce rate</strong> and <strong>${(paidSocialCh.conversions_purchase/paidSocialCh.sessions*100).toFixed(2)}% CVR</strong> — by far the weakest channel quality. Meta traffic is not converting at the booking level despite session volume.`);
+  if(bookLP) siteLines.push(`🎯 <strong>Book Initial Assessment</strong> is your highest-converting landing page at <strong>${bookLP.cvr}% CVR</strong>. ${bookLP.sessions.toLocaleString()} sessions drove <strong>${bookLP.purchases} purchases</strong> (30d).`);
+  if(cityLP) siteLines.push(`📍 <strong>City Pages</strong> convert at <strong>${cityLP.cvr}% CVR</strong> with ${cityLP.sessions.toLocaleString()} sessions — best high-volume page type after direct booking.`);
+  if(blogLP) siteLines.push(`📝 <strong>Blog Posts</strong> drive ${blogLP.sessions.toLocaleString()} sessions but convert at <strong>${blogLP.cvr}% CVR</strong> — awareness traffic only. Consider stronger CTAs linking to booking pages.`);
+  if(partnershipCh) siteLines.push(`🤝 <strong>Partnerships (Venngo)</strong>: <strong>${(partnershipCh.engagement_rate*100).toFixed(0)}% engagement</strong>, <strong>${(partnershipCh.conversions_purchase/partnershipCh.sessions*100).toFixed(2)}% CVR</strong> — matching Paid Search quality. Worth scaling.`);
+  if(aiCh) siteLines.push(`🤖 <strong>AI Assistant</strong> has the highest CVR of any channel at <strong>${(aiCh.conversions_purchase/aiCh.sessions*100).toFixed(2)}%</strong> — ultra-high intent, only ${aiCh.sessions} sessions but converts.`);
+  if(paidSocialCh) siteLines.push(`📱 <strong>Paid Social</strong> has a <strong>${(paidSocialCh.bounce_rate*100).toFixed(0)}% bounce rate</strong> and <strong>${(paidSocialCh.conversions_purchase/paidSocialCh.sessions*100).toFixed(2)}% CVR</strong> — weakest channel quality on site. Meta traffic not converting at booking level.`);
 
   const campPaceRows = camps.filter(c=>c.yest_cost>0)
     .sort((a,b)=>b.yest_cost-a.yest_cost)
@@ -201,7 +241,7 @@ function renderInsights(d){
       </div>`;
     }).join('');
 
-  $e('insights').innerHTML = `
+  $e('insights-sem').innerHTML = `
     <div class="sec">Account Snapshot — ${d.date_yesterday}</div>
     <div class="cards">
       <div class="card"><div class="lbl">Yesterday Spend</div><div class="val">${fmtCAD(ty.cost)}</div><div class="sub">${pacePct.toFixed(0)}% of ${fmtCAD(target)} target</div></div>
@@ -212,11 +252,8 @@ function renderInsights(d){
       <div class="card"><div class="lbl">Google Paid CVR</div><div class="val">${gCVR!=null?gCVR+'%':'—'}</div><div class="sub">purchases / sessions (30d)</div></div>
     </div>
 
-    <div class="sec">What to Look For Today</div>
-    <div class="narrative">
-      <h3>📋 Morning Briefing — ${d.date_yesterday}</h3>
-      ${lines.map(l=>`<p>${l}</p>`).join('')}
-    </div>
+    <div class="sec">Morning Briefing — ${d.date_yesterday}</div>
+    <div class="narrative"><h3>📋 Google Ads Summary</h3>${lines.map(l=>`<p>${l}</p>`).join('')}</div>
 
     <div class="sec">Site & Channel Insights (GA4, 30d)</div>
     <div class="narrative" style="background:#f0f9f7;border-left:3px solid #085041">
@@ -225,7 +262,7 @@ function renderInsights(d){
     </div>
 
     <div class="sec">Yesterday Spend Pacing vs ${fmtCAD(target)} ${(dow===0||dow===6)?'Weekend':'Weekday'} Target</div>
-    <div class="tbl-wrap" style="padding:10px 14px;">${campPaceRows}</div>
+    <div class="tbl-wrap" style="padding:10px 14px;">${campPaceRows||'<p class="no-data">No spend data</p>'}</div>
 
     <div class="sec">Action Cards</div>
     <div class="insight-grid">
@@ -245,7 +282,7 @@ function renderInsights(d){
         <div class="ic-head"><span class="ic-icon">🚨</span><div><div class="ic-title">Structural Flags</div><div class="ic-sub">Always-on checks</div></div></div>
         <ul>
           <li>${hrtSpend>0?`🔴 <strong>HRT spending ${fmtCAD(hrtSpend)} (14d)</strong> — LP gated Jul 6, PAUSE`:'✅ HRT not spending (correct)'}</li>
-          <li>${brandIS!=null&&brandIS<80?`🔴 Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong> — below 80%`:brandIS!=null?`✅ Brand Top IS: <strong>${brandIS.toFixed(1)}%</strong>`:'— Brand IS: no yesterday data'}</li>
+          <li>${brandIS!=null&&brandIS<80?`🔴 Brand Top IS: <strong>${(brandIS*100).toFixed(1)}%</strong> — below 80%`:brandIS!=null?`✅ Brand Top IS: <strong>${(brandIS*100).toFixed(1)}%</strong>`:'— Brand IS: no yesterday data'}</li>
           <li>${worst&&worst.cpa14>300?`📉 Worst: <strong>${sc(worst.campaign).substring(0,34)}</strong> ${fmtCAD2(worst.cpa14)} CPA (14d)`:'✅ No campaigns above $300 CPA (14d)'}</li>
         </ul>
       </div>
@@ -257,42 +294,199 @@ function renderInsights(d){
     </div>`;
 }
 
-// ─── CAMPAIGNS ────────────────────────────────────────────────────────────────
-function renderCampaigns(d){
+// ═══════════════════════════════════════════════════════════════════════════
+// INSIGHTS — SOCIAL
+// ═══════════════════════════════════════════════════════════════════════════
+function renderInsightsSocial(d){
+  const fb = d.fb_totals || {};
+  const t14 = fb['14d']||{}, t7 = fb['7d']||{}, ty = fb.yesterday||{};
+  const fn14 = t14.funnel||{}, fn7 = t7.funnel||{}, fny = ty.funnel||{};
+  const motion = d.motion_creatives || [];
+  const motionTags = d.motion_tag_performance || {};
+  const motionStates = d.motion_spend_states || {};
+
+  const hasData = ty.spend != null;
+
+  if(!hasData){
+    $e('insights-social').innerHTML = `
+      <div class="narrative" style="background:#f0f9f7;border-left:3px solid #3C3489;">
+        <h3>📱 Facebook Insights</h3>
+        <p>Facebook data will appear here after the next morning update once the FB pipeline steps are added.</p>
+        <p>Run <strong>pull morning data</strong> after the skill file is updated to populate this tab.</p>
+      </div>`;
+    return;
+  }
+
+  // Scroll funnel totals from Windsor (pixel data)
+  const scroll50_14 = t14.scroll50||0, scroll90_14 = t14.scroll90||0, scroll99_14 = t14.scroll99||0;
+  const ctaClickRate = t14.link_clicks ? (scroll50_14/t14.link_clicks*100).toFixed(1) : null;
+  const formRate     = scroll50_14 ? (scroll90_14/scroll50_14*100).toFixed(1) : null;
+  const apptRate     = scroll99_14 ? (scroll99_14/t14.link_clicks*100).toFixed(2) : null;
+
+  // Top creatives by CPA (motion)
+  const withConv = motion.filter(c=>c.scroll99_count>0).sort((a,b)=>a.cpa-b.cpa);
+  const top3 = withConv.slice(0,3);
+  const scale = motion.filter(c=>c.cpa!=null&&c.cpa<=100&&c.spend>100);
+  const watch = motion.filter(c=>c.cpa!=null&&c.cpa>100);
+  const fatigued = motion.filter(c=>c.wow_change&&parseFloat(c.wow_change)<-20&&c.cpa>100);
+
+  // Build narrative
+  let fbLines = [];
+  if(t7.cpa!=null) fbLines.push(`<strong>7d CPA is ${fmtCAD2(t7.cpa)}</strong> — ${t7.cpa<=100?'✅ within':'⚠️ above'} the $100 target. 14d blended CPA is <strong>${fmtCAD2(t14.cpa)}</strong> across <strong>${scroll99_14} scroll99 purchases</strong>.`);
+  fbLines.push(`Yesterday: <strong>${fmtCAD(ty.spend)}</strong> spend, <strong>${ty.purchases||0} purchases</strong> at <strong>${fmtCAD2(ty.cpa)} CPA</strong>.`);
+  if(scale.length>0) fbLines.push(`🟢 <strong>${scale.length} creative${scale.length>1?'s':''}</strong> at or below $100 CPA — scale opportunities available.`);
+  if(fatigued.length>0) fbLines.push(`⚠️ <strong>${fatigued.length} creative${fatigued.length>1?'s':''}</strong> showing fatigue (WoW spend declining + CPA above target).`);
+  else fbLines.push(`✅ No creative fatigue flags detected.`);
+
+  // Creative cards
+  const creativeCardsHTML = top3.length ? `
+    <div class="creative-cards">
+      ${top3.map((c,i)=>{
+        const tags = c.tags||{};
+        const tagList = [tags.asset_type, tags.messaging_theme, tags.visual_format].filter(Boolean);
+        return `<div class="creative-card">
+          <div class="cc-rank">#${i+1} by CPA (14d) ${spendStateTag(c.spend_state)}</div>
+          <div class="cc-name" title="${c.ad_name}">${c.ad_name||'—'}</div>
+          <div class="cc-metrics">
+            <div class="cc-metric"><strong>${fmtCAD2(c.cpa)}</strong><br>CPA (scroll99)</div>
+            <div class="cc-metric"><strong>${fmtCAD(c.spend)}</strong><br>Spend (14d)</div>
+            <div class="cc-metric"><strong>${c.scroll99_count}</strong><br>Purchases</div>
+            <div class="cc-metric"><strong>${c.thumbstop_ratio!=null?(c.thumbstop_ratio*100).toFixed(1)+'%':'—'}</strong><br>Thumbstop</div>
+          </div>
+          <div class="cc-tags">${tagList.map(t=>`<span class="cc-tag">${t}</span>`).join('')}</div>
+        </div>`;
+      }).join('')}
+    </div>` : `<p class="no-data">No Motion creative data yet. Populate fb_totals via pipeline first.</p>`;
+
+  // Tag performance table
+  const tagCategories = [
+    {key:'messaging_theme', label:'Messaging Theme'},
+    {key:'hook_tactic',     label:'Hook Tactic'},
+    {key:'asset_type',      label:'Asset Type'},
+    {key:'visual_format',   label:'Visual Format'},
+  ];
+  const tagTableRows = tagCategories.flatMap(cat=>{
+    const rows = (motionTags[cat.key]||[]).sort((a,b)=>a.cpa-b.cpa);
+    return rows.map((r,i)=>`<tr>
+      <td>${i===0?`<strong>${cat.label}</strong>`:''}</td>
+      <td>${r.tag}</td>
+      <td class="r">${fmtCAD(r.spend)}</td>
+      <td class="r">${r.scroll99_count}</td>
+      <td class="r">${cpaTagFB(r.cpa)}</td>
+    </tr>`);
+  }).join('');
+
+  // Spend state summary
+  const stateHTML = Object.entries(motionStates).length ?
+    Object.entries(motionStates).map(([s,n])=>`${spendStateTag(s)} <span style="font-size:11px">${n} ad${n!==1?'s':''}</span>`).join('  &nbsp;') :
+    '<span style="color:var(--muted);font-size:12px">No state data yet</span>';
+
+  $e('insights-social').innerHTML = `
+    <div class="sec">Account Snapshot — ${d.date_yesterday}</div>
+    <div class="cards">
+      <div class="card"><div class="lbl">Yesterday Spend</div><div class="val">${fmtCAD(ty.spend)}</div><div class="sub">Meta Ads (CAD)</div></div>
+      <div class="card"><div class="lbl">Yesterday CPA</div><div class="val">${fmtCAD2(ty.cpa)}</div><div class="sub">scroll99 (confirmed appt)</div></div>
+      <div class="card"><div class="lbl">7d CPA</div><div class="val">${fmtCAD2(t7.cpa)}</div><div class="sub">target ≤ $100</div></div>
+      <div class="card"><div class="lbl">14d Spend</div><div class="val">${fmtCAD(t14.spend)}</div><div class="sub">${scroll99_14} scroll99 purchases</div></div>
+      <div class="card"><div class="lbl">14d CPA</div><div class="val">${fmtCAD2(t14.cpa)}</div><div class="sub">blended all campaigns</div></div>
+      <div class="card"><div class="lbl">14d ROAS</div><div class="val">${t14.roas!=null?t14.roas.toFixed(2)+'x':'—'}</div><div class="sub">scroll99 × $295 / spend</div></div>
+    </div>
+
+    <div class="sec">Morning Briefing — ${d.date_yesterday}</div>
+    <div class="narrative" style="border-left:3px solid #1877F2"><h3>📱 Facebook Ads Summary</h3>${fbLines.map(l=>`<p>${l}</p>`).join('')}</div>
+
+    <div class="sec">Funnel Health — Last 14 Days (Pixel)</div>
+    <div class="funnel-steps">
+      <div class="funnel-step">
+        <div class="fs-label">Link Clicks</div>
+        <div class="fs-val">${fmtNum(t14.link_clicks)}</div>
+        <div class="fs-rate">from ${fmtNum(t14.impressions)} impr.</div>
+      </div>
+      <div class="funnel-step">
+        <div class="fs-label">→ CTA Click (scroll50)</div>
+        <div class="fs-val">${fmtNum(scroll50_14)}</div>
+        <div class="fs-rate">${ctaClickRate!=null?ctaClickRate+'% of clicks':'—'}</div>
+      </div>
+      <div class="funnel-step">
+        <div class="fs-label">→ Form Submit (scroll90)</div>
+        <div class="fs-val">${fmtNum(scroll90_14)}</div>
+        <div class="fs-rate">${formRate!=null?formRate+'% of scroll50':'—'}</div>
+      </div>
+      <div class="funnel-step">
+        <div class="fs-label">→ Purchase (scroll99)</div>
+        <div class="fs-val">${fmtNum(scroll99_14)}</div>
+        <div class="fs-rate">${apptRate!=null?apptRate+'% of clicks':'—'}</div>
+      </div>
+    </div>
+    <p class="footnote">Pixel funnel — scroll50 = CTA clicked, scroll90 = form submitted, scroll99 = payment confirmed</p>
+
+    <div class="sec">PostHog Funnel — Last 14 Days (utm_source = paid_social_media)</div>
+    <div class="funnel-steps">
+      <div class="funnel-step"><div class="fs-label">Appts Clicked</div><div class="fs-val">${fmtNum(fn14.ph_appts)}</div><div class="fs-rate">${fn14.appts_per_click!=null?fn14.appts_per_click.toFixed(1)+'% of clicks':'—'}</div></div>
+      <div class="funnel-step"><div class="fs-label">Forms Submitted</div><div class="fs-val">${fmtNum(fn14.ph_forms)}</div><div class="fs-rate">${fn14.forms_per_appt!=null?fn14.forms_per_appt.toFixed(1)+'% of appts':'—'}</div></div>
+      <div class="funnel-step"><div class="fs-label">Purchases</div><div class="fs-val">${fmtNum(fn14.ph_purchases)}</div><div class="fs-rate">${fn14.purch_per_form!=null?fn14.purch_per_form.toFixed(1)+'% of forms':'—'}</div></div>
+    </div>
+
+    <div class="sec">Creative Intelligence — Top Performers (Motion, 14d)</div>
+    <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-size:11px;color:var(--muted);font-weight:600;">Creative States:</span>
+      ${stateHTML}
+    </div>
+    ${creativeCardsHTML}
+
+    ${tagTableRows ? `
+    <div class="sec">Creative Tag Performance (Motion, 14d)</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Tag Value</th><th class="r">Spend</th><th class="r">scroll99</th><th class="r">CPA</th></tr></thead>
+        <tbody>${tagTableRows}</tbody>
+      </table>
+    </div>
+    <p class="footnote">Sorted by CPA within each category. Goal metric = scroll99_cost (CPA on confirmed appointments).</p>
+    ` : ''}
+
+    <div class="sec">Action Cards</div>
+    <div class="insight-grid">
+      <div class="ic">
+        <div class="ic-head"><span class="ic-icon">🟢</span><div><div class="ic-title">Scale — CPA ≤ $100</div><div class="ic-sub">Creatives with confirmed ROI</div></div></div>
+        <ul>${scale.length ? scale.slice(0,4).map(c=>`<li>${spendStateTag(c.spend_state)} <strong>${(c.ad_name||'').substring(0,38)}</strong><br><span class="dim">CPA: <strong>${fmtCAD2(c.cpa)}</strong> · Spend: ${fmtCAD(c.spend)} · WoW: ${c.wow_change||'—'}%</span></li>`).join('') : '<li>No creatives at or below $100 CPA yet</li>'}</ul>
+      </div>
+      <div class="ic">
+        <div class="ic-head"><span class="ic-icon">🔴</span><div><div class="ic-title">Watch / Cut — CPA > $100</div><div class="ic-sub">Review spend efficiency</div></div></div>
+        <ul>${watch.length ? watch.slice(0,4).map(c=>`<li>${cpaTagFB(c.cpa)} <strong>${(c.ad_name||'').substring(0,38)}</strong><br><span class="dim">Spend: ${fmtCAD(c.spend)} · WoW: ${c.wow_change||'—'}%</span></li>`).join('') : '<li>✅ All creatives at or below target</li>'}</ul>
+      </div>
+      <div class="ic">
+        <div class="ic-head"><span class="ic-icon">🎨</span><div><div class="ic-title">Top Messaging Theme</div><div class="ic-sub">Best-converting angle (14d)</div></div></div>
+        <ul>${(motionTags.messaging_theme||[]).slice(0,3).map(t=>`<li><strong>${t.tag}</strong><br><span class="dim">CPA: ${fmtCAD2(t.cpa)} · scroll99: ${t.scroll99_count} · Spend: ${fmtCAD(t.spend)}</span></li>`).join('') || '<li>No Motion tag data yet</li>'}</ul>
+      </div>
+      <div class="ic">
+        <div class="ic-head"><span class="ic-icon">⚡</span><div><div class="ic-title">Creative Fatigue</div><div class="ic-sub">WoW declining + CPA above target</div></div></div>
+        <ul>${fatigued.length ? fatigued.slice(0,3).map(c=>`<li>📉 <strong>${(c.ad_name||'').substring(0,38)}</strong><br><span class="dim">WoW: ${c.wow_change}% · CPA: ${fmtCAD2(c.cpa)} · ${spendStateTag(c.spend_state)}</span></li>`).join('') : '<li>✅ No creative fatigue detected</li>'}</ul>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CAMPAIGNS — ADWORDS
+// ═══════════════════════════════════════════════════════════════════════════
+function renderCampaignsAdwords(d){
   const camps = d.report1_campaigns || [];
   const totals = d.totals || {};
   const t14=totals['14d']||{}, t7=totals['7d']||{}, ty=totals.yesterday||{};
   const daily = d.daily||[];
 
-  // ── Full shared column header (same across all 3 tables)
   const fullHdr = `
-    <th class="r">Impr.</th>
-    <th class="r">Clicks</th>
-    <th class="r">CTR</th>
-    <th class="r">Avg CPC</th>
-    <th class="r">Spend</th>
-    <th class="r">Appts/Clicks</th>
-    <th class="r">Forms/Appts</th>
-    <th class="r">Purch/Forms</th>
-    <th class="r">ROAS</th>
-    <th class="r">Top IS</th>
-    <th class="r">Bgt Lost IS</th>
-    <th class="r">Purchases*</th>
-    <th class="r">CPA</th>`;
+    <th class="r">Impr.</th><th class="r">Clicks</th><th class="r">CTR</th><th class="r">Avg CPC</th>
+    <th class="r">Spend</th><th class="r">Appts/Clicks</th><th class="r">Forms/Appts</th>
+    <th class="r">Purch/Forms</th><th class="r">ROAS</th><th class="r">Top IS</th>
+    <th class="r">Bgt Lost IS</th><th class="r">Purchases*</th><th class="r">CPA</th>`;
 
-  // ── Account Summary (3 rows — funnel/IS/ROAS show — at account level) ──
-  const periods = [
-    {label:'Yesterday',    r:ty},
-    {label:'Last 7 Days',  r:t7},
-    {label:'Last 14 Days', r:t14},
-  ];
+  const periods = [{label:'Yesterday',r:ty},{label:'Last 7 Days',r:t7},{label:'Last 14 Days',r:t14}];
   const summaryRows = periods.map(p=>{
-    const r=p.r;
-    const fn=r.funnel||{};
+    const r=p.r; const fn=r.funnel||{};
     return `<tr>
       <td><strong>${p.label}</strong></td>
-      <td class="r">${fmtNum(r.impressions)}</td>
-      <td class="r">${fmtNum(r.clicks)}</td>
+      <td class="r">${fmtNum(r.impressions)}</td><td class="r">${fmtNum(r.clicks)}</td>
       <td class="r">${r.ctr!=null?r.ctr.toFixed(2)+'%':'—'}</td>
       <td class="r">${r.cpc!=null?'$'+r.cpc.toFixed(2):'—'}</td>
       <td class="r">${fmtCAD(r.cost)}</td>
@@ -300,20 +494,17 @@ function renderCampaigns(d){
       <td class="r">${fn.forms_per_appt!=null?fn.forms_per_appt.toFixed(1)+'%':'—'}</td>
       <td class="r">${fn.purch_per_form!=null?fn.purch_per_form.toFixed(1)+'%':'—'}</td>
       <td class="r">${r.roas!=null?r.roas.toFixed(2)+'x':'—'}</td>
-      <td class="r">—</td>
-      <td class="r">—</td>
+      <td class="r">—</td><td class="r">—</td>
       <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
       <td class="r">${cpaTag(r.cpa)}</td>
     </tr>`;
   }).join('');
 
-  // ── Campaign table — full cols + 3 CPA columns ──
   const campRows = camps.map(c=>`<tr>
     <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;" title="${c.campaign}">
       ${campTag(c.campaign,c.type)} ${sc(c.campaign).substring(0,36)}
     </td>
-    <td class="r">${fmtNum(c.yest_impressions||0)}</td>
-    <td class="r">${fmtNum(c.yest_clicks||0)}</td>
+    <td class="r">${fmtNum(c.yest_impressions||0)}</td><td class="r">${fmtNum(c.yest_clicks||0)}</td>
     <td class="r">${c.yest_ctr!=null?c.yest_ctr.toFixed(1)+'%':'—'}</td>
     <td class="r">${c.yest_cpc!=null?'$'+c.yest_cpc.toFixed(2):'—'}</td>
     <td class="r">${fmtCAD(c.yest_cost)}</td>
@@ -321,19 +512,17 @@ function renderCampaigns(d){
     <td class="r">${c.funnel_forms_per_appt!=null?c.funnel_forms_per_appt.toFixed(1)+'%':'—'}</td>
     <td class="r">${c.funnel_purchases_per_form!=null?c.funnel_purchases_per_form.toFixed(1)+'%':'—'}</td>
     <td class="r">${c.yest_roas!=null?c.yest_roas.toFixed(2)+'x':'—'}</td>
-    <td class="r">${c.top_is!=null?c.top_is.toFixed(1)+'%':'—'}</td>
-    <td class="r">${c.budget_lost_is!=null?c.budget_lost_is.toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.top_is!=null?(c.top_is*100).toFixed(1)+'%':'—'}</td>
+    <td class="r">${c.budget_lost_is!=null?(c.budget_lost_is*100).toFixed(1)+'%':'—'}</td>
     <td class="r">${c.yest_purchases!=null?c.yest_purchases.toFixed(1):'—'}</td>
     <td class="r">${cpaTag(c.yest_cpa)}</td>
     <td class="r">${cpaTag(c.cpa_7d)}</td>
     <td class="r">${cpaTag(c.cpa_14d)}</td>
   </tr>`).join('');
 
-  // ── Daily Breakdown — full cols with funnel rates from PostHog daily14_funnel ──
   const dailyRows = daily.map(r=>`<tr>
     <td>${r.date}</td>
-    <td class="r">${fmtNum(r.impressions)}</td>
-    <td class="r">${fmtNum(r.clicks)}</td>
+    <td class="r">${fmtNum(r.impressions)}</td><td class="r">${fmtNum(r.clicks)}</td>
     <td class="r">${r.clicks&&r.impressions?(r.clicks/r.impressions*100).toFixed(2)+'%':'—'}</td>
     <td class="r">${r.clicks&&r.cost?'$'+(r.cost/r.clicks).toFixed(2):'—'}</td>
     <td class="r">${fmtCAD(r.cost)}</td>
@@ -341,74 +530,179 @@ function renderCampaigns(d){
     <td class="r">${r.forms_per_appt!=null?r.forms_per_appt.toFixed(1)+'%':'—'}</td>
     <td class="r">${r.purch_per_form!=null?r.purch_per_form.toFixed(1)+'%':'—'}</td>
     <td class="r">${r.roas!=null?r.roas.toFixed(2)+'x':'—'}</td>
-    <td class="r">—</td>
-    <td class="r">—</td>
+    <td class="r">—</td><td class="r">—</td>
     <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
     <td class="r">${cpaTag(r.cpa)}</td>
   </tr>`).join('');
 
-  $e('campaigns').innerHTML = `
+  $e('campaigns-adwords').innerHTML = `
     <div class="sec">Account Summary</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Period</th>
-          ${fullHdr}
-        </tr></thead>
-        <tbody>${summaryRows}</tbody>
-      </table>
-    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Period</th>${fullHdr}</tr></thead>
+      <tbody>${summaryRows}</tbody>
+    </table></div>
     <p class="footnote">*[gtag] purchase only — not raw conversions field</p>
 
     <div class="sec">Campaign Breakdown — Yesterday (${d.date_yesterday})</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Campaign</th>
-          <th class="r">Impr.</th>
-          <th class="r">Clicks</th>
-          <th class="r">CTR</th>
-          <th class="r">CPC</th>
-          <th class="r">Cost</th>
-          <th class="r">Appts/Clicks</th>
-          <th class="r">Forms/Appts</th>
-          <th class="r">Purch/Forms</th>
-          <th class="r">ROAS</th>
-          <th class="r">Top IS</th>
-          <th class="r">Bgt Lost IS</th>
-          <th class="r">Purchases*</th>
-          <th class="r">CPA Yest</th>
-          <th class="r">CPA 7d</th>
-          <th class="r">CPA 14d</th>
-        </tr></thead>
-        <tbody>${campRows}</tbody>
-      </table>
-    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr>
+        <th>Campaign</th><th class="r">Impr.</th><th class="r">Clicks</th><th class="r">CTR</th>
+        <th class="r">CPC</th><th class="r">Cost</th><th class="r">Appts/Clicks</th>
+        <th class="r">Forms/Appts</th><th class="r">Purch/Forms</th><th class="r">ROAS</th>
+        <th class="r">Top IS</th><th class="r">Bgt Lost IS</th><th class="r">Purchases*</th>
+        <th class="r">CPA Yest</th><th class="r">CPA 7d</th><th class="r">CPA 14d</th>
+      </tr></thead>
+      <tbody>${campRows}</tbody>
+    </table></div>
     <p class="footnote">Funnel columns = PostHog 14d (utm_source=google_paid) · ROAS = Windsor ÷ 100 · *[gtag] purchase only</p>
 
     <div class="sec">Daily Breakdown — Last 14 Days</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Date</th>
-          ${fullHdr}
-        </tr></thead>
-        <tbody>${dailyRows}</tbody>
-      </table>
-    </div>
-    <p class="footnote">Funnel columns from PostHog events (utm_source=google), clicks from Windsor. IS and ROAS are campaign-level only. *[gtag] purchase only</p>`;
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Date</th>${fullHdr}</tr></thead>
+      <tbody>${dailyRows}</tbody>
+    </table></div>
+    <p class="footnote">Funnel columns from PostHog events (utm_source=google). IS and ROAS are campaign-level only. *[gtag] purchase only</p>`;
 }
 
-// ─── SITE FUNNEL ──────────────────────────────────────────────────────────────
-function renderFunnel(d){
-  const channels = d.channel_funnel || [];
-  const daily14  = d.daily14_funnel || [];
-  const ga4_channels = d.ga4_channel_funnel || [];
-  const landing_pages = d.landing_page_funnel || [];
-  const overlap_matrix = d.channel_overlap || {};
-  const overlap_channels = d.channel_overlap_channels || [];
+// ═══════════════════════════════════════════════════════════════════════════
+// CAMPAIGNS — FACEBOOK
+// ═══════════════════════════════════════════════════════════════════════════
+function renderCampaignsFacebook(d){
+  const fb = d.fb_totals || {};
+  const t14 = fb['14d']||{}, t7 = fb['7d']||{}, ty = fb.yesterday||{};
+  const fbAds   = d.fb_ads   || [];
+  const fbDaily = d.fb_daily || [];
 
-  // ── GA4 Channel Table (replaces PostHog CTE channel table)
+  const hasData = ty.spend != null;
+  if(!hasData){
+    $e('campaigns-facebook').innerHTML = `
+      <div class="narrative" style="border-left:3px solid #1877F2">
+        <h3>📘 Facebook Campaigns</h3>
+        <p>Facebook campaign data will appear here after the next morning update once FB pipeline steps (FB-1 through FB-4) are added to the skill file and run.</p>
+      </div>`;
+    return;
+  }
+
+  // ── Shared column header
+  const fbHdr = `
+    <th class="r">Impr.</th><th class="r">Freq.</th><th class="r">Thumbstop%</th>
+    <th class="r">Hold Rate%</th><th class="r">Link Clicks</th><th class="r">CPM Reach</th>
+    <th class="r">CTR</th><th class="r">CPC</th><th class="r">Spend</th>
+    <th class="r">Appts/Clicks</th><th class="r">Forms/Appts</th><th class="r">Purch/Forms</th>
+    <th class="r">ROAS</th><th class="r">Purchases</th><th class="r">CPA</th>`;
+
+  function fbRow(r, label){
+    const fn = r.funnel||{};
+    return `<tr>
+      <td><strong>${label}</strong></td>
+      <td class="r">${fmtNum(r.impressions)}</td>
+      <td class="r">${r.frequency!=null?r.frequency.toFixed(2):'—'}</td>
+      <td class="r">${r.thumbstop_pct!=null?(r.thumbstop_pct*100).toFixed(1)+'%':'—'}</td>
+      <td class="r">${r.hold_rate_pct!=null?(r.hold_rate_pct*100).toFixed(1)+'%':'—'}</td>
+      <td class="r">${fmtNum(r.link_clicks)}</td>
+      <td class="r">${r.cpp!=null?'$'+r.cpp.toFixed(2):'—'}</td>
+      <td class="r">${r.ctr!=null?(r.ctr*100).toFixed(2)+'%':'—'}</td>
+      <td class="r">${r.cpc!=null?'$'+r.cpc.toFixed(2):'—'}</td>
+      <td class="r">${fmtCAD(r.spend)}</td>
+      <td class="r">${fn.appts_per_click!=null?fn.appts_per_click.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.forms_per_appt!=null?fn.forms_per_appt.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.purch_per_form!=null?fn.purch_per_form.toFixed(1)+'%':'—'}</td>
+      <td class="r">${r.roas!=null?r.roas.toFixed(2)+'x':'—'}</td>
+      <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
+      <td class="r">${cpaTagFB(r.cpa)}</td>
+    </tr>`;
+  }
+
+  const summaryRows = [
+    fbRow(ty,'Yesterday'),
+    fbRow(t7,'Last 7 Days'),
+    fbRow(t14,'Last 14 Days'),
+  ].join('');
+
+  // ── Ad Summary (yesterday)
+  const adRows = fbAds.length ? fbAds.sort((a,b)=>(b.spend||0)-(a.spend||0)).map(a=>{
+    const fn = a.funnel||{};
+    return `<tr>
+      <td style="max-width:60px;font-size:10px;color:var(--muted)">${a.ad_id||'—'}</td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;" title="${a.ad_name||''}">${(a.ad_name||'').substring(0,32)}</td>
+      <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;font-size:10px;color:var(--muted);" title="${a.campaign||''}">${(a.campaign||'').substring(0,20)}</td>
+      <td class="r">${fmtNum(a.impressions)}</td>
+      <td class="r">${a.frequency!=null?a.frequency.toFixed(2):'—'}</td>
+      <td class="r">${a.thumbstop_pct!=null?(a.thumbstop_pct*100).toFixed(1)+'%':'—'}</td>
+      <td class="r">${a.hold_rate_pct!=null?(a.hold_rate_pct*100).toFixed(1)+'%':'—'}</td>
+      <td class="r">${fmtNum(a.link_clicks)}</td>
+      <td class="r">${a.cpp!=null?'$'+a.cpp.toFixed(2):'—'}</td>
+      <td class="r">${a.ctr!=null?(a.ctr*100).toFixed(2)+'%':'—'}</td>
+      <td class="r">${a.cpc!=null?'$'+a.cpc.toFixed(2):'—'}</td>
+      <td class="r">${fmtCAD(a.spend)}</td>
+      <td class="r">${fn.appts_per_click!=null?fn.appts_per_click.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.forms_per_appt!=null?fn.forms_per_appt.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.purch_per_form!=null?fn.purch_per_form.toFixed(1)+'%':'—'}</td>
+      <td class="r">${a.roas!=null?a.roas.toFixed(2)+'x':'—'}</td>
+      <td class="r">${a.purchases!=null?a.purchases.toFixed(1):'—'}</td>
+      <td class="r">${cpaTagFB(a.cpa)}</td>
+    </tr>`;
+  }).join('') : '<tr><td colspan="19" style="text-align:center;color:var(--muted);padding:20px">No ad data for yesterday</td></tr>';
+
+  // ── Daily rows
+  const dailyRows = fbDaily.length ? fbDaily.map(r=>{
+    const fn = r.funnel||{};
+    return `<tr>
+      <td>${r.date}</td>
+      <td class="r">${fmtNum(r.impressions)}</td>
+      <td class="r">${r.frequency!=null?r.frequency.toFixed(2):'—'}</td>
+      <td class="r">${r.thumbstop_pct!=null?(r.thumbstop_pct*100).toFixed(1)+'%':'—'}</td>
+      <td class="r">${r.hold_rate_pct!=null?(r.hold_rate_pct*100).toFixed(1)+'%':'—'}</td>
+      <td class="r">${fmtNum(r.link_clicks)}</td>
+      <td class="r">${r.cpp!=null?'$'+r.cpp.toFixed(2):'—'}</td>
+      <td class="r">${r.ctr!=null?(r.ctr*100).toFixed(2)+'%':'—'}</td>
+      <td class="r">${r.cpc!=null?'$'+r.cpc.toFixed(2):'—'}</td>
+      <td class="r">${fmtCAD(r.spend)}</td>
+      <td class="r">${fn.appts_per_click!=null?fn.appts_per_click.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.forms_per_appt!=null?fn.forms_per_appt.toFixed(1)+'%':'—'}</td>
+      <td class="r">${fn.purch_per_form!=null?fn.purch_per_form.toFixed(1)+'%':'—'}</td>
+      <td class="r">${r.roas!=null?r.roas.toFixed(2)+'x':'—'}</td>
+      <td class="r">${r.purchases!=null?r.purchases.toFixed(1):'—'}</td>
+      <td class="r">${cpaTagFB(r.cpa)}</td>
+    </tr>`;
+  }).join('') : '<tr><td colspan="16" style="text-align:center;color:var(--muted);padding:20px">No daily data yet</td></tr>';
+
+  $e('campaigns-facebook').innerHTML = `
+    <div class="sec">Account Summary</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Period</th>${fbHdr}</tr></thead>
+      <tbody>${summaryRows}</tbody>
+    </table></div>
+    <p class="footnote">Thumbstop% = 3s video plays ÷ impressions (video ads only; — for static). Hold Rate% = 50% plays ÷ 3s plays. CPM Reach = spend ÷ reach × 1000. ROAS = scroll99 × $295 ÷ spend.</p>
+
+    <div class="sec">Ad Summary — Yesterday (${d.date_yesterday})</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr>
+        <th style="font-size:10px">Ad ID</th><th>Ad Name</th><th>Campaign</th>
+        ${fbHdr}
+      </tr></thead>
+      <tbody>${adRows}</tbody>
+    </table></div>
+    <p class="footnote">PostHog funnel matched via utm_medium=ad_name (primary template) or utm_content=ad_name (PROMO campaigns). Purchases = scroll99 pixel. ROAS = scroll99 × $295 ÷ spend.</p>
+
+    <div class="sec">Daily Breakdown — Last 14 Days</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Date</th>${fbHdr}</tr></thead>
+      <tbody>${dailyRows}</tbody>
+    </table></div>
+    <p class="footnote">Thumbstop% and Hold Rate% averaged across all ads per day. PostHog funnel = all paid social UTM sources. Purchases = scroll99 pixel.</p>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SITE FUNNEL (unchanged)
+// ═══════════════════════════════════════════════════════════════════════════
+function renderFunnel(d){
+  const daily14     = d.daily14_funnel      || [];
+  const ga4_channels= d.ga4_channel_funnel  || [];
+  const landing_pages=d.landing_page_funnel || [];
+  const overlap_matrix   = d.channel_overlap         || {};
+  const overlap_channels = d.channel_overlap_channels|| [];
+
   const chanRows = ga4_channels.map(c=>{
     const cvr = c.sessions>0?(c.conversions_purchase/c.sessions*100).toFixed(2):'—';
     const cvrNum = c.sessions>0?c.conversions_purchase/c.sessions*100:0;
@@ -424,44 +718,40 @@ function renderFunnel(d){
     </tr>`;
   }).join('');
 
-  // ── Landing Page Funnel Table
   const lpRows = landing_pages.map(p=>{
-    const cvrNum = p.cvr||0;
-    const cvrColor = cvrNum>=5?'color:#085041;font-weight:700':cvrNum>=1?'color:#d4a017;font-weight:700':'color:#c0392b';
+    const cvrNum=p.cvr||0;
+    const cvrColor=cvrNum>=5?'color:#085041;font-weight:700':cvrNum>=1?'color:#d4a017;font-weight:700':'color:#c0392b';
     return `<tr>
       <td><strong>${p.page}</strong></td>
       <td class="r">${fmtNum(p.sessions)}</td>
-      <td class="r">${p.engagement_rate}%</td>
-      <td class="r">${p.bounce_rate}%</td>
+      <td class="r">${(p.engagement_rate*100).toFixed(1)}%</td>
+      <td class="r">${(p.bounce_rate*100).toFixed(1)}%</td>
       <td class="r">${p.avg_duration}</td>
       <td class="r">${p.purchases}</td>
       <td class="r" style="${cvrColor}">${p.cvr}%</td>
     </tr>`;
   }).join('');
 
-  // ── Channel Overlap Matrix
   const matrixHeader = overlap_channels.map(ch=>`<th class="r" style="font-size:10px;white-space:nowrap">${ch.replace('Cross-network','Cross-net').replace('Organic ','Org. ').replace('Paid ','Pd. ')}</th>`).join('');
   const matrixRows = overlap_channels.map(acq=>{
     const cells = overlap_channels.map(last=>{
-      const key = `${acq}|${last}`;
-      const pct = overlap_matrix[key]||0;
-      const isDiag = acq===last;
-      const bg = isDiag?'background:#e8e4f8;font-weight:700':pct>20?'background:#d5ede9':pct>5?'background:#f0f9f7':'';
+      const key=`${acq}|${last}`;
+      const pct=overlap_matrix[key]||0;
+      const isDiag=acq===last;
+      const bg=isDiag?'background:#e8e4f8;font-weight:700':pct>20?'background:#d5ede9':pct>5?'background:#f0f9f7':'';
       return `<td class="r" style="font-size:11px;${bg}">${pct>0?pct+'%':'—'}</td>`;
     }).join('');
-    const label = acq.replace('Cross-network','Cross-net').replace('Organic ','Org. ').replace('Paid ','Pd. ');
+    const label=acq.replace('Cross-network','Cross-net').replace('Organic ','Org. ').replace('Paid ','Pd. ');
     return `<tr><td style="font-size:11px;white-space:nowrap"><strong>${label}</strong></td>${cells}</tr>`;
   }).join('');
 
-  // ── Daily Funnel (PostHog session-scoped, all channels)
   const dailyFunnelRows = daily14.map(r=>{
     const apptR  = r.sessions>0?(r.appt_sessions/r.sessions*100).toFixed(1):'—';
     const formR  = r.appt_sessions>0?(r.form_sessions/r.appt_sessions*100).toFixed(1):'—';
     const purchR = r.form_sessions>0?(r.purchase_sessions/r.form_sessions*100).toFixed(1):'—';
     const cvr    = r.sessions>0?(r.purchase_sessions/r.sessions*100).toFixed(2):'—';
     return `<tr>
-      <td>${r.date}</td>
-      <td class="r">${fmtNum(r.sessions)}</td>
+      <td>${r.date}</td><td class="r">${fmtNum(r.sessions)}</td>
       <td class="r">${apptR!=='—'?apptR+'%':'—'}</td>
       <td class="r">${formR!=='—'?formR+'%':'—'}</td>
       <td class="r">${purchR!=='—'?purchR+'%':'—'}</td>
@@ -477,70 +767,36 @@ function renderFunnel(d){
 
   $e('funnel').innerHTML = `
     <div class="sec">Channel Performance — Last 30 Days (GA4)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Channel</th>
-          <th class="r">Sessions</th>
-          <th class="r">Engagement Rate</th>
-          <th class="r">Bounce Rate</th>
-          <th class="r">Avg Duration</th>
-          <th class="r">Purchases</th>
-          <th class="r">CVR</th>
-        </tr></thead>
-        <tbody>${chanRows}</tbody>
-      </table>
-    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Channel</th><th class="r">Sessions</th><th class="r">Engagement Rate</th><th class="r">Bounce Rate</th><th class="r">Avg Duration</th><th class="r">Purchases</th><th class="r">CVR</th></tr></thead>
+      <tbody>${chanRows}</tbody>
+    </table></div>
     <p class="footnote">Source: GA4. CVR = GA4 purchase key events ÷ sessions. Duration = avg session duration.</p>
 
     <div class="sec">Landing Page Funnel — Last 30 Days (GA4)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Page Type</th>
-          <th class="r">Sessions</th>
-          <th class="r">Engagement Rate</th>
-          <th class="r">Bounce Rate</th>
-          <th class="r">Avg Duration</th>
-          <th class="r">Purchases</th>
-          <th class="r">CVR</th>
-        </tr></thead>
-        <tbody>${lpRows}</tbody>
-      </table>
-    </div>
-    <p class="footnote">Source: GA4. Pages grouped by type (Home, Blog Post, City Page, etc). CVR = purchases ÷ sessions.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Page Type</th><th class="r">Sessions</th><th class="r">Engagement Rate</th><th class="r">Bounce Rate</th><th class="r">Avg Duration</th><th class="r">Purchases</th><th class="r">CVR</th></tr></thead>
+      <tbody>${lpRows}</tbody>
+    </table></div>
+    <p class="footnote">Source: GA4. Pages grouped by type. CVR = purchases ÷ sessions.</p>
 
     <div class="sec">Channel Overlap Matrix — Last 30 Days (GA4)</div>
-    <p style="font-size:12px;color:#666;margin:0 0 8px">Y axis = First-touch acquisition channel. X axis = Channel of return sessions. Cells show % of acquisition sessions that returned via each channel. Diagonal = same-channel loyalty.</p>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th style="font-size:10px">Acquired via →<br>Returned via ↓</th>
-          ${matrixHeader}
-        </tr></thead>
-        <tbody>${matrixRows}</tbody>
-      </table>
-    </div>
-    <p class="footnote">Source: GA4 first_user_default_channel_group vs session_default_channel_group. Shows cross-channel halo effect — high off-diagonal values indicate channels driving return visits via other channels.</p>
+    <p style="font-size:12px;color:#666;margin:0 0 8px">Y axis = First-touch acquisition channel. X axis = Channel of return sessions. Diagonal = same-channel loyalty.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th style="font-size:10px">Acquired via →<br>Returned via ↓</th>${matrixHeader}</tr></thead>
+      <tbody>${matrixRows}</tbody>
+    </table></div>
+    <p class="footnote">Source: GA4. Off-diagonal values = cross-channel halo effect.</p>
 
     <div class="sec">Daily Booking Funnel — Last 14 Days (PostHog, all channels)</div>
     <div class="chart-wrap">
       <h3>Funnel Step Conversion Rates Over Time</h3>
       <canvas id="funnelChart" height="85"></canvas>
     </div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr>
-          <th>Date</th>
-          <th class="r">Sessions</th>
-          <th class="r">Appts / Sessions</th>
-          <th class="r">Forms / Appts</th>
-          <th class="r">Purch / Forms</th>
-          <th class="r">CVR (Purch / Sessions)</th>
-        </tr></thead>
-        <tbody>${dailyFunnelRows}</tbody>
-      </table>
-    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Date</th><th class="r">Sessions</th><th class="r">Appts / Sessions</th><th class="r">Forms / Appts</th><th class="r">Purch / Forms</th><th class="r">CVR (Purch / Sessions)</th></tr></thead>
+      <tbody>${dailyFunnelRows}</tbody>
+    </table></div>
     <p class="footnote">Source: PostHog session-scoped CTE, all channels. CVR = purchase sessions ÷ sessions.</p>`;
 
   setTimeout(()=>{
@@ -554,33 +810,32 @@ function renderFunnel(d){
       ]},options:{responsive:true,interaction:{mode:'index',intersect:false},
         plugins:{legend:{position:'top',labels:{font:{size:11}}}},
         scales:{
-          y:{type:'linear',display:true,position:'left',title:{display:true,text:'Funnel Step %'},
-             ticks:{callback:v=>v+'%'}},
-          y2:{type:'linear',display:true,position:'right',title:{display:true,text:'CVR %'},
-              grid:{drawOnChartArea:false},ticks:{callback:v=>v+'%'}}
+          y:{type:'linear',display:true,position:'left',title:{display:true,text:'Funnel Step %'},ticks:{callback:v=>v+'%'}},
+          y2:{type:'linear',display:true,position:'right',title:{display:true,text:'CVR %'},grid:{drawOnChartArea:false},ticks:{callback:v=>v+'%'}}
         }
       }});
     }
   },50);
 }
 
-
-
-// ─── Bootstrap ────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+// BOOTSTRAP
+// ═══════════════════════════════════════════════════════════════════════════
 async function loadData(){
-  // GitHub API bypasses raw CDN cache (raw.githubusercontent.com caches up to 5min+)
-  const url=`https://api.github.com/repos/novelrahman-dev/mm-google-ads-summary/contents/data.json`;
+  const url=`https://api.github.com/repos/novelrahman-dev/mm-marketing-summary/contents/data.json`;
   try{
     const res=await fetch(url,{headers:{Accept:'application/vnd.github.raw+json'}});
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     const data=await res.json();
     $e('meta').textContent=`Generated: ${data.generated_at}`;
-    renderInsights(data);
-    renderCampaigns(data);
+    renderInsightsSEM(data);
+    renderInsightsSocial(data);
+    renderCampaignsAdwords(data);
+    renderCampaignsFacebook(data);
     renderFunnel(data);
   }catch(err){
     const msg=`<div class="error-box">⚠️ Could not load data.json<br><small>${err.message}</small><br><br>Run "pull morning data" in Claude to refresh.</div>`;
-    ['insights','campaigns','funnel'].forEach(id=>$e(id).innerHTML=msg);
+    ['insights-sem','insights-social','campaigns-adwords','campaigns-facebook','funnel'].forEach(id=>$e(id).innerHTML=msg);
   }
 }
 loadData();
