@@ -1063,5 +1063,81 @@
     "Referral",
     "Organic Social",
     "AI Assistant"
-  ]
+  ],
+  "fb_totals": {
+    "yesterday": {
+      "spend": null,
+      "impressions": 0,
+      "reach": 0,
+      "frequency": null,
+      "link_clicks": 0,
+      "cpp": null,
+      "thumbstop_pct": null,
+      "hold_rate_pct": null,
+      "ctr": null,
+      "cpc": null,
+      "purchases": null,
+      "cpa": null,
+      "roas": null,
+      "funnel": {
+        "ph_appts": 0,
+        "ph_forms": 0,
+        "ph_purchases": 0,
+        "appts_per_click": null,
+        "forms_per_appt": null,
+        "purch_per_form": null
+      }
+    },
+    "7d": {
+      "spend": null,
+      "impressions": 0,
+      "reach": 0,
+      "frequency": null,
+      "link_clicks": 0,
+      "cpp": null,
+      "thumbstop_pct": null,
+      "hold_rate_pct": null,
+      "ctr": null,
+      "cpc": null,
+      "purchases": null,
+      "cpa": null,
+      "roas": null,
+      "funnel": {
+        "ph_appts": 0,
+        "ph_forms": 0,
+        "ph_purchases": 0,
+        "appts_per_click": null,
+        "forms_per_appt": null,
+        "purch_per_form": null
+      }
+    },
+    "14d": {
+      "spend": null,
+      "impressions": 0,
+      "reach": 0,
+      "frequency": null,
+      "link_clicks": 0,
+      "cpp": null,
+      "thumbstop_pct": null,
+      "hold_rate_pct": null,
+      "ctr": null,
+      "cpc": null,
+      "purchases": null,
+      "cpa": null,
+      "roas": null,
+      "funnel": {
+        "ph_appts": 0,
+        "ph_forms": 0,
+        "ph_purchases": 0,
+        "appts_per_click": null,
+        "forms_per_appt": null,
+        "purch_per_form": null
+      }
+    }
+  },
+  "fb_ads": [],
+  "fb_daily": [],
+  "motion_creatives": [],
+  "motion_tag_performance": {},
+  "motion_spend_states": {}
 }
