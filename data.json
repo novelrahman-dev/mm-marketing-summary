@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-03 23:57 UTC",
+ "generated_at": "2026-07-04 00:20 UTC",
  "date_yesterday": "2026-07-02",
  "date_range_14d": "2026-06-19 to 2026-07-02",
  "totals": {
@@ -16,9 +16,9 @@
     "ph_appts": 78,
     "ph_forms": 30,
     "ph_purchases": 19,
-    "appts_per_click": 0.1003,
-    "forms_per_appt": 0.3846,
-    "purch_per_form": 0.6333
+    "appts_per_click": 10.03,
+    "forms_per_appt": 38.46,
+    "purch_per_form": 63.33
    }
   },
   "7d": {
@@ -34,9 +34,9 @@
     "ph_appts": 595,
     "ph_forms": 169,
     "ph_purchases": 119,
-    "appts_per_click": 0.1154,
-    "forms_per_appt": 0.284,
-    "purch_per_form": 0.7041
+    "appts_per_click": 11.54,
+    "forms_per_appt": 28.4,
+    "purch_per_form": 70.41
    }
   },
   "14d": {
@@ -52,9 +52,9 @@
     "ph_appts": 1315,
     "ph_forms": 374,
     "ph_purchases": 252,
-    "appts_per_click": 0.1179,
-    "forms_per_appt": 0.2844,
-    "purch_per_form": 0.6738
+    "appts_per_click": 11.79,
+    "forms_per_appt": 28.44,
+    "purch_per_form": 67.38
    }
   }
  },
@@ -64,7 +64,7 @@
    "type": "PERFORMANCE_MAX",
    "yest_impressions": 8322,
    "yest_clicks": 318,
-   "yest_ctr": 0.0382,
+   "yest_ctr": 3.82,
    "yest_cpc": 2.36,
    "yest_cost": 749.93,
    "yest_purchases": 5.0,
@@ -83,16 +83,16 @@
    "ph_appts": 330,
    "ph_forms": 119,
    "ph_purchases": 53,
-   "funnel_appts_per_click": 0.0637,
-   "funnel_forms_per_appt": 0.3606,
-   "funnel_purchases_per_form": 0.4454
+   "funnel_appts_per_click": 6.37,
+   "funnel_forms_per_appt": 36.06,
+   "funnel_purchases_per_form": 44.54
   },
   {
    "campaign": "Search_QC_FR_Treatments_tCPA_Portfolio_bid_Account_default [NB]",
    "type": "SEARCH",
    "yest_impressions": 452,
    "yest_clicks": 49,
-   "yest_ctr": 0.1084,
+   "yest_ctr": 10.84,
    "yest_cpc": 5.6,
    "yest_cost": 274.58,
    "yest_purchases": 0.0,
@@ -111,16 +111,16 @@
    "ph_appts": 79,
    "ph_forms": 10,
    "ph_purchases": 8,
-   "funnel_appts_per_click": 0.0892,
-   "funnel_forms_per_appt": 0.1266,
-   "funnel_purchases_per_form": 0.8
+   "funnel_appts_per_click": 8.92,
+   "funnel_forms_per_appt": 12.66,
+   "funnel_purchases_per_form": 80.0
   },
   {
    "campaign": "Search_CA_Max_clicks [Brand]",
    "type": "SEARCH",
    "yest_impressions": 355,
    "yest_clicks": 129,
-   "yest_ctr": 0.3634,
+   "yest_ctr": 36.34,
    "yest_cpc": 2.06,
    "yest_cost": 266.26,
    "yest_purchases": 4.61,
@@ -139,16 +139,16 @@
    "ph_appts": 361,
    "ph_forms": 103,
    "ph_purchases": 111,
-   "funnel_appts_per_click": 0.2131,
-   "funnel_forms_per_appt": 0.2853,
-   "funnel_purchases_per_form": 1.0777
+   "funnel_appts_per_click": 21.31,
+   "funnel_forms_per_appt": 28.53,
+   "funnel_purchases_per_form": 107.77
   },
   {
    "campaign": "Search_QC_FR_Clinique_Hormonotherapie_tCPA [NB]",
    "type": "SEARCH",
    "yest_impressions": 152,
    "yest_clicks": 34,
-   "yest_ctr": 0.2237,
+   "yest_ctr": 22.37,
    "yest_cpc": 4.12,
    "yest_cost": 140.25,
    "yest_purchases": 0.0,
@@ -167,16 +167,16 @@
    "ph_appts": 114,
    "ph_forms": 11,
    "ph_purchases": 9,
-   "funnel_appts_per_click": 0.191,
-   "funnel_forms_per_appt": 0.0965,
-   "funnel_purchases_per_form": 0.8182
+   "funnel_appts_per_click": 19.1,
+   "funnel_forms_per_appt": 9.65,
+   "funnel_purchases_per_form": 81.82
   },
   {
    "campaign": "Search_CA_Treatments_tCPA [NB]",
    "type": "SEARCH",
    "yest_impressions": 282,
    "yest_clicks": 28,
-   "yest_ctr": 0.0993,
+   "yest_ctr": 9.93,
    "yest_cpc": 5.26,
    "yest_cost": 147.16,
    "yest_purchases": 1.88,
@@ -195,16 +195,16 @@
    "ph_appts": 53,
    "ph_forms": 18,
    "ph_purchases": 9,
-   "funnel_appts_per_click": 0.1052,
-   "funnel_forms_per_appt": 0.3396,
-   "funnel_purchases_per_form": 0.5
+   "funnel_appts_per_click": 10.52,
+   "funnel_forms_per_appt": 33.96,
+   "funnel_purchases_per_form": 50.0
   },
   {
    "campaign": "Search_ON_AB_Clinic_tCPA [NB]",
    "type": "SEARCH",
    "yest_impressions": 627,
    "yest_clicks": 75,
-   "yest_ctr": 0.1196,
+   "yest_ctr": 11.96,
    "yest_cpc": 1.98,
    "yest_cost": 148.84,
    "yest_purchases": 0.0,
@@ -223,16 +223,16 @@
    "ph_appts": 106,
    "ph_forms": 17,
    "ph_purchases": 5,
-   "funnel_appts_per_click": 0.1094,
-   "funnel_forms_per_appt": 0.1604,
-   "funnel_purchases_per_form": 0.2941
+   "funnel_appts_per_click": 10.94,
+   "funnel_forms_per_appt": 16.04,
+   "funnel_purchases_per_form": 29.41
   },
   {
    "campaign": "Search_ON_Menopause_clinic_tCPA [NB]",
    "type": "SEARCH",
    "yest_impressions": 213,
    "yest_clicks": 34,
-   "yest_ctr": 0.1596,
+   "yest_ctr": 15.96,
    "yest_cpc": 5.87,
    "yest_cost": 199.65,
    "yest_purchases": 0.0,
@@ -251,16 +251,16 @@
    "ph_appts": 33,
    "ph_forms": 15,
    "ph_purchases": 9,
-   "funnel_appts_per_click": 0.0842,
-   "funnel_forms_per_appt": 0.4545,
-   "funnel_purchases_per_form": 0.6
+   "funnel_appts_per_click": 8.42,
+   "funnel_forms_per_appt": 45.45,
+   "funnel_purchases_per_form": 60.0
   },
   {
    "campaign": "Search_CA_EN_Clinic_tCPA [NB]",
    "type": "SEARCH",
    "yest_impressions": 185,
    "yest_clicks": 62,
-   "yest_ctr": 0.3351,
+   "yest_ctr": 33.51,
    "yest_cpc": 2.3,
    "yest_cost": 142.55,
    "yest_purchases": 3.94,
@@ -279,16 +279,16 @@
    "ph_appts": 100,
    "ph_forms": 35,
    "ph_purchases": 14,
-   "funnel_appts_per_click": 0.2128,
-   "funnel_forms_per_appt": 0.35,
-   "funnel_purchases_per_form": 0.4
+   "funnel_appts_per_click": 21.28,
+   "funnel_forms_per_appt": 35.0,
+   "funnel_purchases_per_form": 40.0
   },
   {
    "campaign": "Search_CA_EN_HRT_Treatments_tCPA [NB]",
    "type": "SEARCH",
    "yest_impressions": 161,
    "yest_clicks": 14,
-   "yest_ctr": 0.087,
+   "yest_ctr": 8.7,
    "yest_cpc": 2.46,
    "yest_cost": 34.4,
    "yest_purchases": 0.94,
@@ -304,19 +304,19 @@
    "purchases_14d": 6.94,
    "cpa_14d": 131.96,
    "avg_roas_14d": 1.91,
-   "ph_appts": 74,
-   "ph_forms": 26,
-   "ph_purchases": 13,
-   "funnel_appts_per_click": 0.3558,
-   "funnel_forms_per_appt": 0.3514,
-   "funnel_purchases_per_form": 0.5
+   "ph_appts": 21,
+   "ph_forms": 8,
+   "ph_purchases": 4,
+   "funnel_appts_per_click": 10.1,
+   "funnel_forms_per_appt": 38.1,
+   "funnel_purchases_per_form": 50.0
   },
   {
    "campaign": "Search_CA_EN_Competitors [NB]",
    "type": "SEARCH",
    "yest_impressions": 217,
    "yest_clicks": 15,
-   "yest_ctr": 0.0691,
+   "yest_ctr": 6.91,
    "yest_cpc": 3.41,
    "yest_cost": 51.16,
    "yest_purchases": 0.0,
@@ -335,16 +335,16 @@
    "ph_appts": 3,
    "ph_forms": 2,
    "ph_purchases": 1,
-   "funnel_appts_per_click": 0.0185,
-   "funnel_forms_per_appt": 0.6667,
-   "funnel_purchases_per_form": 0.5
+   "funnel_appts_per_click": 1.85,
+   "funnel_forms_per_appt": 66.67,
+   "funnel_purchases_per_form": 50.0
   },
   {
    "campaign": "Search_CA_Treatments_tCPA [NB] LP_Test_Quiz_Promo",
    "type": "SEARCH",
    "yest_impressions": 116,
    "yest_clicks": 20,
-   "yest_ctr": 0.1724,
+   "yest_ctr": 17.24,
    "yest_cpc": 8.05,
    "yest_cost": 160.99,
    "yest_purchases": 2.0,
@@ -363,9 +363,9 @@
    "ph_appts": 1,
    "ph_forms": 5,
    "ph_purchases": 4,
-   "funnel_appts_per_click": 0.0104,
-   "funnel_forms_per_appt": 5.0,
-   "funnel_purchases_per_form": 0.8
+   "funnel_appts_per_click": 1.04,
+   "funnel_forms_per_appt": 500.0,
+   "funnel_purchases_per_form": 80.0
   }
  ],
  "daily": [
@@ -380,9 +380,9 @@
    "ph_appts": 122,
    "ph_forms": 31,
    "ph_purchases": 28,
-   "appts_per_click": 0.1451,
-   "forms_per_appt": 0.2541,
-   "purch_per_form": 0.9032
+   "appts_per_click": 14.51,
+   "forms_per_appt": 25.41,
+   "purch_per_form": 90.32
   },
   {
    "date": "2026-06-20",
@@ -395,9 +395,9 @@
    "ph_appts": 64,
    "ph_forms": 22,
    "ph_purchases": 17,
-   "appts_per_click": 0.0896,
-   "forms_per_appt": 0.3438,
-   "purch_per_form": 0.7727
+   "appts_per_click": 8.96,
+   "forms_per_appt": 34.38,
+   "purch_per_form": 77.27
   },
   {
    "date": "2026-06-21",
@@ -410,9 +410,9 @@
    "ph_appts": 81,
    "ph_forms": 20,
    "ph_purchases": 13,
-   "appts_per_click": 0.1081,
-   "forms_per_appt": 0.2469,
-   "purch_per_form": 0.65
+   "appts_per_click": 10.81,
+   "forms_per_appt": 24.69,
+   "purch_per_form": 65.0
   },
   {
    "date": "2026-06-22",
@@ -425,9 +425,9 @@
    "ph_appts": 115,
    "ph_forms": 41,
    "ph_purchases": 22,
-   "appts_per_click": 0.1358,
-   "forms_per_appt": 0.3565,
-   "purch_per_form": 0.5366
+   "appts_per_click": 13.58,
+   "forms_per_appt": 35.65,
+   "purch_per_form": 53.66
   },
   {
    "date": "2026-06-23",
@@ -440,9 +440,9 @@
    "ph_appts": 139,
    "ph_forms": 40,
    "ph_purchases": 25,
-   "appts_per_click": 0.1404,
-   "forms_per_appt": 0.2878,
-   "purch_per_form": 0.625
+   "appts_per_click": 14.04,
+   "forms_per_appt": 28.78,
+   "purch_per_form": 62.5
   },
   {
    "date": "2026-06-24",
@@ -455,9 +455,9 @@
    "ph_appts": 85,
    "ph_forms": 26,
    "ph_purchases": 13,
-   "appts_per_click": 0.0875,
-   "forms_per_appt": 0.3059,
-   "purch_per_form": 0.5
+   "appts_per_click": 8.75,
+   "forms_per_appt": 30.59,
+   "purch_per_form": 50.0
   },
   {
    "date": "2026-06-25",
@@ -470,9 +470,9 @@
    "ph_appts": 114,
    "ph_forms": 25,
    "ph_purchases": 15,
-   "appts_per_click": 0.1282,
-   "forms_per_appt": 0.2193,
-   "purch_per_form": 0.6
+   "appts_per_click": 12.82,
+   "forms_per_appt": 21.93,
+   "purch_per_form": 60.0
   },
   {
    "date": "2026-06-26",
@@ -485,9 +485,9 @@
    "ph_appts": 96,
    "ph_forms": 22,
    "ph_purchases": 16,
-   "appts_per_click": 0.12,
-   "forms_per_appt": 0.2292,
-   "purch_per_form": 0.7273
+   "appts_per_click": 12.0,
+   "forms_per_appt": 22.92,
+   "purch_per_form": 72.73
   },
   {
    "date": "2026-06-27",
@@ -500,9 +500,9 @@
    "ph_appts": 74,
    "ph_forms": 15,
    "ph_purchases": 11,
-   "appts_per_click": 0.1021,
-   "forms_per_appt": 0.2027,
-   "purch_per_form": 0.7333
+   "appts_per_click": 10.21,
+   "forms_per_appt": 20.27,
+   "purch_per_form": 73.33
   },
   {
    "date": "2026-06-28",
@@ -515,9 +515,9 @@
    "ph_appts": 58,
    "ph_forms": 17,
    "ph_purchases": 11,
-   "appts_per_click": 0.0825,
-   "forms_per_appt": 0.2931,
-   "purch_per_form": 0.6471
+   "appts_per_click": 8.25,
+   "forms_per_appt": 29.31,
+   "purch_per_form": 64.71
   },
   {
    "date": "2026-06-29",
@@ -530,9 +530,9 @@
    "ph_appts": 120,
    "ph_forms": 34,
    "ph_purchases": 22,
-   "appts_per_click": 0.1626,
-   "forms_per_appt": 0.2833,
-   "purch_per_form": 0.6471
+   "appts_per_click": 16.26,
+   "forms_per_appt": 28.33,
+   "purch_per_form": 64.71
   },
   {
    "date": "2026-06-30",
@@ -545,9 +545,9 @@
    "ph_appts": 116,
    "ph_forms": 29,
    "ph_purchases": 24,
-   "appts_per_click": 0.1394,
-   "forms_per_appt": 0.25,
-   "purch_per_form": 0.8276
+   "appts_per_click": 13.94,
+   "forms_per_appt": 25.0,
+   "purch_per_form": 82.76
   },
   {
    "date": "2026-07-01",
@@ -560,9 +560,9 @@
    "ph_appts": 53,
    "ph_forms": 22,
    "ph_purchases": 16,
-   "appts_per_click": 0.0917,
-   "forms_per_appt": 0.4151,
-   "purch_per_form": 0.7273
+   "appts_per_click": 9.17,
+   "forms_per_appt": 41.51,
+   "purch_per_form": 72.73
   },
   {
    "date": "2026-07-02",
@@ -575,9 +575,9 @@
    "ph_appts": 78,
    "ph_forms": 30,
    "ph_purchases": 19,
-   "appts_per_click": 0.1003,
-   "forms_per_appt": 0.3846,
-   "purch_per_form": 0.6333
+   "appts_per_click": 10.03,
+   "forms_per_appt": 38.46,
+   "purch_per_form": 63.33
   }
  ],
  "channel_funnel": [],
@@ -588,10 +588,10 @@
    "appt_sessions": 197,
    "form_sessions": 59,
    "purchase_sessions": 57,
-   "appts_per_session": 0.0938,
-   "forms_per_appt": 0.2995,
-   "purch_per_form": 0.9661,
-   "cvr": 0.0271
+   "appts_per_session": 9.38,
+   "forms_per_appt": 29.95,
+   "purch_per_form": 96.61,
+   "cvr": 2.71
   },
   {
    "date": "2026-06-20",
@@ -599,10 +599,10 @@
    "appt_sessions": 104,
    "form_sessions": 69,
    "purchase_sessions": 38,
-   "appts_per_session": 0.0624,
-   "forms_per_appt": 0.6635,
-   "purch_per_form": 0.5507,
-   "cvr": 0.0228
+   "appts_per_session": 6.24,
+   "forms_per_appt": 66.35,
+   "purch_per_form": 55.07,
+   "cvr": 2.28
   },
   {
    "date": "2026-06-21",
@@ -610,10 +610,10 @@
    "appt_sessions": 138,
    "form_sessions": 45,
    "purchase_sessions": 37,
-   "appts_per_session": 0.0841,
-   "forms_per_appt": 0.3261,
-   "purch_per_form": 0.8222,
-   "cvr": 0.0225
+   "appts_per_session": 8.41,
+   "forms_per_appt": 32.61,
+   "purch_per_form": 82.22,
+   "cvr": 2.25
   },
   {
    "date": "2026-06-22",
@@ -621,10 +621,10 @@
    "appt_sessions": 215,
    "form_sessions": 121,
    "purchase_sessions": 85,
-   "appts_per_session": 0.0836,
-   "forms_per_appt": 0.5628,
-   "purch_per_form": 0.7025,
-   "cvr": 0.033
+   "appts_per_session": 8.36,
+   "forms_per_appt": 56.28,
+   "purch_per_form": 70.25,
+   "cvr": 3.3
   },
   {
    "date": "2026-06-23",
@@ -632,10 +632,10 @@
    "appt_sessions": 194,
    "form_sessions": 73,
    "purchase_sessions": 92,
-   "appts_per_session": 0.0738,
-   "forms_per_appt": 0.3763,
-   "purch_per_form": 1.2603,
-   "cvr": 0.035
+   "appts_per_session": 7.38,
+   "forms_per_appt": 37.63,
+   "purch_per_form": 126.03,
+   "cvr": 3.5
   },
   {
    "date": "2026-06-24",
@@ -643,10 +643,10 @@
    "appt_sessions": 183,
    "form_sessions": 57,
    "purchase_sessions": 53,
-   "appts_per_session": 0.0732,
-   "forms_per_appt": 0.3115,
-   "purch_per_form": 0.9298,
-   "cvr": 0.0212
+   "appts_per_session": 7.32,
+   "forms_per_appt": 31.15,
+   "purch_per_form": 92.98,
+   "cvr": 2.12
   },
   {
    "date": "2026-06-25",
@@ -654,10 +654,10 @@
    "appt_sessions": 185,
    "form_sessions": 55,
    "purchase_sessions": 46,
-   "appts_per_session": 0.0763,
-   "forms_per_appt": 0.2973,
-   "purch_per_form": 0.8364,
-   "cvr": 0.019
+   "appts_per_session": 7.63,
+   "forms_per_appt": 29.73,
+   "purch_per_form": 83.64,
+   "cvr": 1.9
   },
   {
    "date": "2026-06-26",
@@ -665,10 +665,10 @@
    "appt_sessions": 169,
    "form_sessions": 50,
    "purchase_sessions": 47,
-   "appts_per_session": 0.0784,
-   "forms_per_appt": 0.2959,
-   "purch_per_form": 0.94,
-   "cvr": 0.0218
+   "appts_per_session": 7.84,
+   "forms_per_appt": 29.59,
+   "purch_per_form": 94.0,
+   "cvr": 2.18
   },
   {
    "date": "2026-06-27",
@@ -676,10 +676,10 @@
    "appt_sessions": 131,
    "form_sessions": 32,
    "purchase_sessions": 29,
-   "appts_per_session": 0.0794,
-   "forms_per_appt": 0.2443,
-   "purch_per_form": 0.9062,
-   "cvr": 0.0176
+   "appts_per_session": 7.94,
+   "forms_per_appt": 24.43,
+   "purch_per_form": 90.62,
+   "cvr": 1.76
   },
   {
    "date": "2026-06-28",
@@ -687,10 +687,10 @@
    "appt_sessions": 124,
    "form_sessions": 38,
    "purchase_sessions": 37,
-   "appts_per_session": 0.0739,
-   "forms_per_appt": 0.3065,
-   "purch_per_form": 0.9737,
-   "cvr": 0.022
+   "appts_per_session": 7.39,
+   "forms_per_appt": 30.65,
+   "purch_per_form": 97.37,
+   "cvr": 2.2
   },
   {
    "date": "2026-06-29",
@@ -698,10 +698,10 @@
    "appt_sessions": 182,
    "form_sessions": 62,
    "purchase_sessions": 64,
-   "appts_per_session": 0.079,
-   "forms_per_appt": 0.3407,
-   "purch_per_form": 1.0323,
-   "cvr": 0.0278
+   "appts_per_session": 7.9,
+   "forms_per_appt": 34.07,
+   "purch_per_form": 103.23,
+   "cvr": 2.78
   },
   {
    "date": "2026-06-30",
@@ -709,10 +709,10 @@
    "appt_sessions": 182,
    "form_sessions": 55,
    "purchase_sessions": 62,
-   "appts_per_session": 0.0785,
-   "forms_per_appt": 0.3022,
-   "purch_per_form": 1.1273,
-   "cvr": 0.0268
+   "appts_per_session": 7.85,
+   "forms_per_appt": 30.22,
+   "purch_per_form": 112.73,
+   "cvr": 2.68
   },
   {
    "date": "2026-07-01",
@@ -720,10 +720,10 @@
    "appt_sessions": 151,
    "form_sessions": 37,
    "purchase_sessions": 31,
-   "appts_per_session": 0.0967,
-   "forms_per_appt": 0.245,
-   "purch_per_form": 0.8378,
-   "cvr": 0.0198
+   "appts_per_session": 9.67,
+   "forms_per_appt": 24.5,
+   "purch_per_form": 83.78,
+   "cvr": 1.98
   },
   {
    "date": "2026-07-02",
@@ -731,10 +731,10 @@
    "appt_sessions": 147,
    "form_sessions": 46,
    "purchase_sessions": 53,
-   "appts_per_session": 0.0832,
-   "forms_per_appt": 0.3129,
-   "purch_per_form": 1.1522,
-   "cvr": 0.03
+   "appts_per_session": 8.32,
+   "forms_per_appt": 31.29,
+   "purch_per_form": 115.22,
+   "cvr": 3.0
   }
  ],
  "ga4_channel_funnel": [
@@ -864,7 +864,7 @@
    "bounce_rate": 0.4535,
    "avg_duration": "3:18",
    "purchases": 345,
-   "cvr": 0.0181
+   "cvr": 1.81
   },
   {
    "page": "City Page",
@@ -873,7 +873,7 @@
    "bounce_rate": 0.3418,
    "avg_duration": "3:24",
    "purchases": 134,
-   "cvr": 0.0144
+   "cvr": 1.44
   },
   {
    "page": "Blog Post",
@@ -882,7 +882,7 @@
    "bounce_rate": 0.4964,
    "avg_duration": "2:19",
    "purchases": 4,
-   "cvr": 0.0004
+   "cvr": 0.04
   },
   {
    "page": "Other",
@@ -891,7 +891,7 @@
    "bounce_rate": 0.6648,
    "avg_duration": "1:48",
    "purchases": 70,
-   "cvr": 0.0104
+   "cvr": 1.04
   },
   {
    "page": "Login",
@@ -900,7 +900,7 @@
    "bounce_rate": 0.2861,
    "avg_duration": "4:47",
    "purchases": 9,
-   "cvr": 0.0014
+   "cvr": 0.14
   },
   {
    "page": "Home (FR)",
@@ -909,7 +909,7 @@
    "bounce_rate": 0.4388,
    "avg_duration": "2:49",
    "purchases": 83,
-   "cvr": 0.0138
+   "cvr": 1.38
   },
   {
    "page": "What We Treat",
@@ -918,7 +918,7 @@
    "bounce_rate": 0.3534,
    "avg_duration": "3:04",
    "purchases": 40,
-   "cvr": 0.0126
+   "cvr": 1.26
   },
   {
    "page": "Dashboard",
@@ -927,7 +927,7 @@
    "bounce_rate": 0.3984,
    "avg_duration": "4:36",
    "purchases": 2,
-   "cvr": 0.0009
+   "cvr": 0.09
   },
   {
    "page": "Book Initial",
@@ -936,7 +936,7 @@
    "bounce_rate": 0.5641,
    "avg_duration": "4:13",
    "purchases": 139,
-   "cvr": 0.0814
+   "cvr": 8.14
   },
   {
    "page": "Quiz",
@@ -945,7 +945,7 @@
    "bounce_rate": 0.5589,
    "avg_duration": "2:59",
    "purchases": 21,
-   "cvr": 0.0161
+   "cvr": 1.61
   },
   {
    "page": "Intake",
@@ -972,7 +972,7 @@
    "bounce_rate": 0.4142,
    "avg_duration": "1:46",
    "purchases": 1,
-   "cvr": 0.0012
+   "cvr": 0.12
   },
   {
    "page": "Team Page",
@@ -981,7 +981,7 @@
    "bounce_rate": 0.5109,
    "avg_duration": "2:46",
    "purchases": 5,
-   "cvr": 0.0084
+   "cvr": 0.84
   },
   {
    "page": "Careers",
@@ -990,7 +990,7 @@
    "bounce_rate": 0.5,
    "avg_duration": "2:26",
    "purchases": 1,
-   "cvr": 0.0021
+   "cvr": 0.21
   },
   {
    "page": "FAQ",
@@ -999,7 +999,7 @@
    "bounce_rate": 0.6119,
    "avg_duration": "2:47",
    "purchases": 7,
-   "cvr": 0.016
+   "cvr": 1.6
   },
   {
    "page": "Reviews",
@@ -1008,7 +1008,7 @@
    "bounce_rate": 0.3041,
    "avg_duration": "4:17",
    "purchases": 6,
-   "cvr": 0.0309
+   "cvr": 3.09
   }
  ],
  "channel_overlap": {
@@ -1100,9 +1100,9 @@
     "ph_appts": 2,
     "ph_forms": 2,
     "ph_purchases": 1,
-    "appts_per_click": 0.0282,
-    "forms_per_appt": 1.0,
-    "purch_per_form": 0.5
+    "appts_per_click": 2.82,
+    "forms_per_appt": 100.0,
+    "purch_per_form": 50.0
    }
   },
   "7d": {
@@ -1126,9 +1126,9 @@
     "ph_appts": 45,
     "ph_forms": 14,
     "ph_purchases": 7,
-    "appts_per_click": 0.0688,
-    "forms_per_appt": 0.3111,
-    "purch_per_form": 0.5
+    "appts_per_click": 6.88,
+    "forms_per_appt": 31.11,
+    "purch_per_form": 50.0
    }
   },
   "14d": {
@@ -1152,9 +1152,9 @@
     "ph_appts": 108,
     "ph_forms": 44,
     "ph_purchases": 16,
-    "appts_per_click": 0.0767,
-    "forms_per_appt": 0.4074,
-    "purch_per_form": 0.3636
+    "appts_per_click": 7.67,
+    "forms_per_appt": 40.74,
+    "purch_per_form": 36.36
    }
   }
  },
@@ -1208,7 +1208,7 @@
     "ph_appts": 1,
     "ph_forms": 0,
     "ph_purchases": 0,
-    "appts_per_click": 0.0417,
+    "appts_per_click": 4.17,
     "forms_per_appt": 0.0,
     "purch_per_form": null
    }
@@ -1342,9 +1342,9 @@
     "ph_appts": 2,
     "ph_forms": 2,
     "ph_purchases": 1,
-    "appts_per_click": 0.0299,
-    "forms_per_appt": 1.0,
-    "purch_per_form": 0.5
+    "appts_per_click": 2.99,
+    "forms_per_appt": 100.0,
+    "purch_per_form": 50.0
    }
   },
   {
@@ -1366,8 +1366,8 @@
     "ph_appts": 9,
     "ph_forms": 5,
     "ph_purchases": 0,
-    "appts_per_click": 0.1233,
-    "forms_per_appt": 0.5556,
+    "appts_per_click": 12.33,
+    "forms_per_appt": 55.56,
     "purch_per_form": 0.0
    }
   },
@@ -1390,9 +1390,9 @@
     "ph_appts": 6,
     "ph_forms": 6,
     "ph_purchases": 1,
-    "appts_per_click": 0.1,
-    "forms_per_appt": 1.0,
-    "purch_per_form": 0.1667
+    "appts_per_click": 10.0,
+    "forms_per_appt": 100.0,
+    "purch_per_form": 16.67
    }
   },
   {
@@ -1414,9 +1414,9 @@
     "ph_appts": 12,
     "ph_forms": 2,
     "ph_purchases": 1,
-    "appts_per_click": 0.1026,
-    "forms_per_appt": 0.1667,
-    "purch_per_form": 0.5
+    "appts_per_click": 10.26,
+    "forms_per_appt": 16.67,
+    "purch_per_form": 50.0
    }
   },
   {
@@ -1438,9 +1438,9 @@
     "ph_appts": 12,
     "ph_forms": 5,
     "ph_purchases": 2,
-    "appts_per_click": 0.0719,
-    "forms_per_appt": 0.4167,
-    "purch_per_form": 0.4
+    "appts_per_click": 7.19,
+    "forms_per_appt": 41.67,
+    "purch_per_form": 40.0
    }
   },
   {
@@ -1462,9 +1462,9 @@
     "ph_appts": 15,
     "ph_forms": 6,
     "ph_purchases": 3,
-    "appts_per_click": 0.092,
-    "forms_per_appt": 0.4,
-    "purch_per_form": 0.5
+    "appts_per_click": 9.2,
+    "forms_per_appt": 40.0,
+    "purch_per_form": 50.0
    }
   },
   {
@@ -1486,9 +1486,9 @@
     "ph_appts": 7,
     "ph_forms": 4,
     "ph_purchases": 1,
-    "appts_per_click": 0.0654,
-    "forms_per_appt": 0.5714,
-    "purch_per_form": 0.25
+    "appts_per_click": 6.54,
+    "forms_per_appt": 57.14,
+    "purch_per_form": 25.0
    }
   },
   {
@@ -1510,9 +1510,9 @@
     "ph_appts": 4,
     "ph_forms": 1,
     "ph_purchases": 1,
-    "appts_per_click": 0.0404,
-    "forms_per_appt": 0.25,
-    "purch_per_form": 1.0
+    "appts_per_click": 4.04,
+    "forms_per_appt": 25.0,
+    "purch_per_form": 100.0
    }
   },
   {
@@ -1534,9 +1534,9 @@
     "ph_appts": 8,
     "ph_forms": 4,
     "ph_purchases": 2,
-    "appts_per_click": 0.069,
-    "forms_per_appt": 0.5,
-    "purch_per_form": 0.5
+    "appts_per_click": 6.9,
+    "forms_per_appt": 50.0,
+    "purch_per_form": 50.0
    }
   },
   {
@@ -1558,9 +1558,9 @@
     "ph_appts": 6,
     "ph_forms": 3,
     "ph_purchases": 1,
-    "appts_per_click": 0.0458,
-    "forms_per_appt": 0.5,
-    "purch_per_form": 0.3333
+    "appts_per_click": 4.58,
+    "forms_per_appt": 50.0,
+    "purch_per_form": 33.33
    }
   },
   {
@@ -1582,7 +1582,7 @@
     "ph_appts": 7,
     "ph_forms": 0,
     "ph_purchases": 0,
-    "appts_per_click": 0.0946,
+    "appts_per_click": 9.46,
     "forms_per_appt": 0.0,
     "purch_per_form": null
    }
@@ -1606,9 +1606,9 @@
     "ph_appts": 11,
     "ph_forms": 2,
     "ph_purchases": 2,
-    "appts_per_click": 0.1325,
-    "forms_per_appt": 0.1818,
-    "purch_per_form": 1.0
+    "appts_per_click": 13.25,
+    "forms_per_appt": 18.18,
+    "purch_per_form": 100.0
    }
   },
   {
@@ -1630,8 +1630,8 @@
     "ph_appts": 7,
     "ph_forms": 2,
     "ph_purchases": 0,
-    "appts_per_click": 0.0875,
-    "forms_per_appt": 0.2857,
+    "appts_per_click": 8.75,
+    "forms_per_appt": 28.57,
     "purch_per_form": 0.0
    }
   },
@@ -1654,9 +1654,9 @@
     "ph_appts": 2,
     "ph_forms": 2,
     "ph_purchases": 1,
-    "appts_per_click": 0.0282,
-    "forms_per_appt": 1.0,
-    "purch_per_form": 0.5
+    "appts_per_click": 2.82,
+    "forms_per_appt": 100.0,
+    "purch_per_form": 50.0
    }
   }
  ],
