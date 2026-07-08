@@ -2,24 +2,23 @@
  "generated_at": "2026-07-08 15:13 UTC",
  "date_yesterday": "2026-07-07",
  "date_range_14d": "2026-06-24 to 2026-07-07",
- "posthog_note": "PostHog MCP unavailable 2026-07-08; Steps 3-5 and FB-2-4 carry forward Jun 24\u2013Jul 6 data; Jul 7 PostHog values = 0",
  "totals": {
   "yesterday": {
    "cost": 3495.3,
    "clicks": 1019,
    "impressions": 10794,
    "purchases": 27.89,
-   "cpa": 125.31,
+   "cpa": 125.32,
    "ctr": 0.0944,
    "cpc": 3.43,
    "roas": 2.44,
    "funnel": {
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": 0.0,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 124,
+    "ph_forms": 43,
+    "ph_purchases": 28,
+    "appts_per_click": 12.17,
+    "forms_per_appt": 34.68,
+    "purch_per_form": 65.12
    }
   },
   "7d": {
@@ -27,17 +26,17 @@
    "clicks": 5249,
    "impressions": 56443,
    "purchases": 117.44,
-   "cpa": 138.09,
+   "cpa": 138.1,
    "ctr": 0.093,
    "cpc": 3.09,
    "roas": 2.08,
    "funnel": {
-    "ph_appts": 482,
-    "ph_forms": 170,
-    "ph_purchases": 101,
-    "appts_per_click": 9.18,
-    "forms_per_appt": 35.27,
-    "purch_per_form": 59.41
+    "ph_appts": 606,
+    "ph_forms": 213,
+    "ph_purchases": 129,
+    "appts_per_click": 11.55,
+    "forms_per_appt": 35.15,
+    "purch_per_form": 60.56
    }
   },
   "14d": {
@@ -50,12 +49,12 @@
    "cpc": 3.13,
    "roas": 1.92,
    "funnel": {
-    "ph_appts": 1145,
-    "ph_forms": 338,
-    "ph_purchases": 213,
-    "appts_per_click": 10.5,
-    "forms_per_appt": 29.52,
-    "purch_per_form": 63.02
+    "ph_appts": 1269,
+    "ph_forms": 381,
+    "ph_purchases": 241,
+    "appts_per_click": 11.63,
+    "forms_per_appt": 30.02,
+    "purch_per_form": 63.25
    }
   }
  },
@@ -81,12 +80,12 @@
    "purchases_14d": 71.63,
    "cpa_14d": 161.24,
    "avg_roas_14d": 1.68,
-   "ph_appts": 339,
-   "ph_forms": 129,
-   "ph_purchases": 56,
-   "funnel_appts_per_click": 7.13,
-   "funnel_forms_per_appt": 38.05,
-   "funnel_purchases_per_form": 43.41
+   "ph_appts": 322,
+   "ph_forms": 123,
+   "ph_purchases": 57,
+   "funnel_appts_per_click": 6.78,
+   "funnel_forms_per_appt": 38.2,
+   "funnel_purchases_per_form": 46.34
   },
   {
    "campaign": "Search_QC_FR_Treatments_tCPA_Portfolio_bid_Account_default [NB]",
@@ -109,12 +108,12 @@
    "purchases_14d": 13.98,
    "cpa_14d": 329.81,
    "avg_roas_14d": 0.89,
-   "ph_appts": 93,
-   "ph_forms": 11,
-   "ph_purchases": 7,
-   "funnel_appts_per_click": 11.48,
-   "funnel_forms_per_appt": 11.83,
-   "funnel_purchases_per_form": 63.64
+   "ph_appts": 94,
+   "ph_forms": 15,
+   "ph_purchases": 10,
+   "funnel_appts_per_click": 11.6,
+   "funnel_forms_per_appt": 15.96,
+   "funnel_purchases_per_form": 66.67
   },
   {
    "campaign": "Search_CA_Max_clicks [Brand]",
@@ -137,12 +136,12 @@
    "purchases_14d": 60.77,
    "cpa_14d": 56.41,
    "avg_roas_14d": 4.89,
-   "ph_appts": 367,
-   "ph_forms": 103,
-   "ph_purchases": 110,
-   "funnel_appts_per_click": 23.74,
-   "funnel_forms_per_appt": 28.07,
-   "funnel_purchases_per_form": 106.8
+   "ph_appts": 345,
+   "ph_forms": 92,
+   "ph_purchases": 104,
+   "funnel_appts_per_click": 22.32,
+   "funnel_forms_per_appt": 26.67,
+   "funnel_purchases_per_form": 113.04
   },
   {
    "campaign": "Search_QC_FR_Clinique_Hormonotherapie_tCPA [NB]",
@@ -165,12 +164,12 @@
    "purchases_14d": 13.2,
    "cpa_14d": 192.68,
    "avg_roas_14d": 1.53,
-   "ph_appts": 104,
-   "ph_forms": 14,
-   "ph_purchases": 8,
-   "funnel_appts_per_click": 20.76,
-   "funnel_forms_per_appt": 13.46,
-   "funnel_purchases_per_form": 57.14
+   "ph_appts": 91,
+   "ph_forms": 16,
+   "ph_purchases": 9,
+   "funnel_appts_per_click": 18.16,
+   "funnel_forms_per_appt": 17.58,
+   "funnel_purchases_per_form": 56.25
   },
   {
    "campaign": "Search_ON_Menopause_clinic_tCPA [NB]",
@@ -193,12 +192,12 @@
    "purchases_14d": 11.17,
    "cpa_14d": 220.69,
    "avg_roas_14d": 1.34,
-   "ph_appts": 36,
-   "ph_forms": 15,
-   "ph_purchases": 9,
-   "funnel_appts_per_click": 8.37,
-   "funnel_forms_per_appt": 41.67,
-   "funnel_purchases_per_form": 60.0
+   "ph_appts": 38,
+   "ph_forms": 18,
+   "ph_purchases": 8,
+   "funnel_appts_per_click": 8.84,
+   "funnel_forms_per_appt": 47.37,
+   "funnel_purchases_per_form": 44.44
   },
   {
    "campaign": "Search_CA_Treatments_tCPA [NB]",
@@ -221,12 +220,12 @@
    "purchases_14d": 11.59,
    "cpa_14d": 172.09,
    "avg_roas_14d": 1.57,
-   "ph_appts": 50,
-   "ph_forms": 16,
-   "ph_purchases": 7,
-   "funnel_appts_per_click": 12.99,
-   "funnel_forms_per_appt": 32.0,
-   "funnel_purchases_per_form": 43.75
+   "ph_appts": 52,
+   "ph_forms": 17,
+   "ph_purchases": 8,
+   "funnel_appts_per_click": 13.51,
+   "funnel_forms_per_appt": 32.69,
+   "funnel_purchases_per_form": 47.06
   },
   {
    "campaign": "Search_ON_AB_Clinic_tCPA [NB]",
@@ -249,12 +248,12 @@
    "purchases_14d": 13.58,
    "cpa_14d": 145.23,
    "avg_roas_14d": 2.03,
-   "ph_appts": 110,
-   "ph_forms": 16,
-   "ph_purchases": 7,
-   "funnel_appts_per_click": 11.33,
-   "funnel_forms_per_appt": 14.55,
-   "funnel_purchases_per_form": 43.75
+   "ph_appts": 116,
+   "ph_forms": 19,
+   "ph_purchases": 11,
+   "funnel_appts_per_click": 11.95,
+   "funnel_forms_per_appt": 16.38,
+   "funnel_purchases_per_form": 57.89
   },
   {
    "campaign": "Search_CA_EN_Clinic_tCPA [NB]",
@@ -277,12 +276,12 @@
    "purchases_14d": 22.0,
    "cpa_14d": 83.47,
    "avg_roas_14d": 3.37,
-   "ph_appts": 122,
-   "ph_forms": 43,
-   "ph_purchases": 16,
-   "funnel_appts_per_click": 18.97,
-   "funnel_forms_per_appt": 35.25,
-   "funnel_purchases_per_form": 37.21
+   "ph_appts": 114,
+   "ph_forms": 40,
+   "ph_purchases": 14,
+   "funnel_appts_per_click": 17.73,
+   "funnel_forms_per_appt": 35.09,
+   "funnel_purchases_per_form": 35.0
   },
   {
    "campaign": "Search_CA_EN_HRT_Treatments_tCPA [NB]",
@@ -305,12 +304,12 @@
    "purchases_14d": 7.01,
    "cpa_14d": 177.94,
    "avg_roas_14d": 1.42,
-   "ph_appts": 28,
-   "ph_forms": 9,
+   "ph_appts": 26,
+   "ph_forms": 8,
    "ph_purchases": 4,
-   "funnel_appts_per_click": 9.4,
-   "funnel_forms_per_appt": 32.14,
-   "funnel_purchases_per_form": 44.44
+   "funnel_appts_per_click": 8.72,
+   "funnel_forms_per_appt": 30.77,
+   "funnel_purchases_per_form": 50.0
   },
   {
    "campaign": "Search_CA_Treatments_tCPA [NB] LP_Test_Quiz_Promo",
@@ -333,12 +332,12 @@
    "purchases_14d": 3.5,
    "cpa_14d": 295.4,
    "avg_roas_14d": 1.0,
-   "ph_appts": 6,
-   "ph_forms": 9,
+   "ph_appts": 8,
+   "ph_forms": 10,
    "ph_purchases": 4,
-   "funnel_appts_per_click": 3.3,
-   "funnel_forms_per_appt": 150.0,
-   "funnel_purchases_per_form": 44.44
+   "funnel_appts_per_click": 4.4,
+   "funnel_forms_per_appt": 125.0,
+   "funnel_purchases_per_form": 40.0
   },
   {
    "campaign": "Search_CA_EN_Competitors [NB]",
@@ -389,11 +388,11 @@
    "purchases_14d": 0,
    "cpa_14d": null,
    "avg_roas_14d": 0.67,
-   "ph_appts": 0,
+   "ph_appts": 2,
    "ph_forms": 0,
    "ph_purchases": 0,
-   "funnel_appts_per_click": 0.0,
-   "funnel_forms_per_appt": null,
+   "funnel_appts_per_click": 4.26,
+   "funnel_forms_per_appt": 0.0,
    "funnel_purchases_per_form": null
   },
   {
@@ -445,11 +444,11 @@
    "purchases_14d": 0,
    "cpa_14d": null,
    "avg_roas_14d": 0.4,
-   "ph_appts": 0,
+   "ph_appts": 1,
    "ph_forms": 0,
    "ph_purchases": 0,
-   "funnel_appts_per_click": 0.0,
-   "funnel_forms_per_appt": null,
+   "funnel_appts_per_click": 5.26,
+   "funnel_forms_per_appt": 0.0,
    "funnel_purchases_per_form": null
   },
   {
@@ -473,10 +472,10 @@
    "purchases_14d": 0,
    "cpa_14d": null,
    "avg_roas_14d": 0.61,
-   "ph_appts": 2,
+   "ph_appts": 1,
    "ph_forms": 0,
    "ph_purchases": 0,
-   "funnel_appts_per_click": 2.15,
+   "funnel_appts_per_click": 1.08,
    "funnel_forms_per_appt": 0.0,
    "funnel_purchases_per_form": null
   }
@@ -685,12 +684,12 @@
    "purchases": 27.89,
    "cpa": 125.31,
    "roas": 2.44,
-   "ph_appts": 0,
-   "ph_forms": 0,
-   "ph_purchases": 0,
-   "appts_per_click": 0.0,
-   "forms_per_appt": null,
-   "purch_per_form": null
+   "ph_appts": 124,
+   "ph_forms": 43,
+   "ph_purchases": 28,
+   "appts_per_click": 12.17,
+   "forms_per_appt": 34.68,
+   "purch_per_form": 65.12
   }
  ],
  "channel_funnel": [],
@@ -829,25 +828,25 @@
   },
   {
    "date": "2026-07-06",
-   "sessions": 2079,
-   "appt_sessions": 184,
-   "form_sessions": 63,
-   "purchase_sessions": 59,
-   "appts_per_session": 8.85,
-   "forms_per_appt": 34.24,
-   "purch_per_form": 93.65,
-   "cvr": 2.84
+   "sessions": 2451,
+   "appt_sessions": 223,
+   "form_sessions": 73,
+   "purchase_sessions": 64,
+   "appts_per_session": 9.1,
+   "forms_per_appt": 32.74,
+   "purch_per_form": 87.67,
+   "cvr": 2.61
   },
   {
    "date": "2026-07-07",
-   "sessions": 0,
-   "appt_sessions": 0,
-   "form_sessions": 0,
-   "purchase_sessions": 0,
-   "appts_per_session": null,
-   "forms_per_appt": null,
-   "purch_per_form": null,
-   "cvr": null
+   "sessions": 2073,
+   "appt_sessions": 192,
+   "form_sessions": 70,
+   "purchase_sessions": 60,
+   "appts_per_session": 9.26,
+   "forms_per_appt": 36.46,
+   "purch_per_form": 85.71,
+   "cvr": 2.89
   }
  ],
  "ga4_channel_funnel": [
@@ -1210,12 +1209,12 @@
    "scroll90": 12,
    "scroll99": 7,
    "funnel": {
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": 0.0,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 6,
+    "ph_forms": 4,
+    "ph_purchases": 2,
+    "appts_per_click": 7.59,
+    "forms_per_appt": 66.67,
+    "purch_per_form": 50.0
    }
   },
   "7d": {
@@ -1236,12 +1235,12 @@
    "scroll90": 62,
    "scroll99": 32,
    "funnel": {
-    "ph_appts": 44,
-    "ph_forms": 10,
-    "ph_purchases": 1,
-    "appts_per_click": 7.73,
-    "forms_per_appt": 22.73,
-    "purch_per_form": 10.0
+    "ph_appts": 52,
+    "ph_forms": 14,
+    "ph_purchases": 3,
+    "appts_per_click": 9.14,
+    "forms_per_appt": 26.92,
+    "purch_per_form": 21.43
    }
   },
   "14d": {
@@ -1263,11 +1262,11 @@
    "scroll99": 61,
    "funnel": {
     "ph_appts": 102,
-    "ph_forms": 30,
-    "ph_purchases": 11,
+    "ph_forms": 32,
+    "ph_purchases": 12,
     "appts_per_click": 7.6,
-    "forms_per_appt": 29.41,
-    "purch_per_form": 36.67
+    "forms_per_appt": 31.37,
+    "purch_per_form": 37.5
    }
   }
  },
@@ -1398,11 +1397,11 @@
    "cpa": 129.16,
    "roas": 2.28,
    "funnel": {
-    "ph_appts": 15,
-    "ph_forms": 6,
-    "ph_purchases": 3,
-    "appts_per_click": 9.2,
-    "forms_per_appt": 40.0,
+    "ph_appts": 7,
+    "ph_forms": 4,
+    "ph_purchases": 2,
+    "appts_per_click": 4.29,
+    "forms_per_appt": 57.14,
     "purch_per_form": 50.0
    }
   },
@@ -1686,10 +1685,10 @@
    "cpa": 35.88,
    "roas": 8.22,
    "funnel": {
-    "ph_appts": 6,
+    "ph_appts": 8,
     "ph_forms": 0,
     "ph_purchases": 0,
-    "appts_per_click": 6.45,
+    "appts_per_click": 8.6,
     "forms_per_appt": 0.0,
     "purch_per_form": null
    }
@@ -1710,12 +1709,12 @@
    "cpa": 39.19,
    "roas": 7.53,
    "funnel": {
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": 0.0,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 6,
+    "ph_forms": 4,
+    "ph_purchases": 2,
+    "appts_per_click": 7.59,
+    "forms_per_appt": 66.67,
+    "purch_per_form": 50.0
    }
   }
  ],
