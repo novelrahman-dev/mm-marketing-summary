@@ -1290,12 +1290,12 @@
    "cpa": 55.35,
    "roas": 5.33,
    "funnel": {
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": null,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 5,
+    "ph_forms": 4,
+    "ph_purchases": 2,
+    "appts_per_click": 10.2,
+    "forms_per_appt": 80.0,
+    "purch_per_form": 50.0
    }
   },
   {
