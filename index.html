@@ -723,7 +723,7 @@ function renderCampaignsFacebook(d){
   const fbRegHdr = `<th class="r">Impr.</th><th class="r">Link Clicks</th><th class="r">CTR</th>
     <th class="r">Avg CPC</th><th class="r">Spend</th><th class="r">Appts/Clicks</th>
     <th class="r">Forms/Appts</th><th class="r">Purch/Forms</th>
-    <th class="r">Scroll99</th><th class="r">CPA</th><th class="r">ROAS</th>`;
+    <th class="r">Purchases</th><th class="r">CPA</th><th class="r">ROAS</th>`;
 
   function fbRegRow(r, label, showFunnel){
     const ac   = showFunnel&&r.appts_per_click!=null ? r.appts_per_click.toFixed(1)+'%' : '—';
