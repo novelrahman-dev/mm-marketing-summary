@@ -726,9 +726,12 @@ function renderCampaignsFacebook(d){
     <th class="r">Scroll99</th><th class="r">CPA</th><th class="r">ROAS</th>`;
 
   function fbRegRow(r, label, showFunnel){
-    const ac  = showFunnel&&r.appts_per_click!=null ? r.appts_per_click.toFixed(1)+'%' : '—';
-    const fa  = showFunnel&&r.forms_per_appt!=null  ? r.forms_per_appt.toFixed(1)+'%'  : '—';
-    const pf  = showFunnel&&r.purch_per_form!=null  ? r.purch_per_form.toFixed(1)+'%'  : '—';
+    const ac   = showFunnel&&r.appts_per_click!=null ? r.appts_per_click.toFixed(1)+'%' : '—';
+    const fa   = showFunnel&&r.forms_per_appt!=null  ? r.forms_per_appt.toFixed(1)+'%'  : '—';
+    const pf   = showFunnel&&r.purch_per_form!=null  ? r.purch_per_form.toFixed(1)+'%'  : '—';
+    const phP  = r.ph_purchases || 0;
+    const phCPA  = (phP > 0 && r.spend) ? r.spend / phP : null;
+    const phROAS = (phP > 0 && r.spend) ? (phP * 295) / r.spend : null;
     return `<tr style="background:#fafaf8">
       <td style="padding-left:24px;color:var(--muted);font-size:11px">${label}</td>
       <td class="r">${fmtNum(r.impressions)}</td>
@@ -739,9 +742,9 @@ function renderCampaignsFacebook(d){
       <td class="r">${ac}</td>
       <td class="r">${fa}</td>
       <td class="r">${pf}</td>
-      <td class="r">${r.scroll99>0?r.scroll99:'—'}</td>
-      <td class="r">${cpaTagFB(r.cpa)}</td>
-      <td class="r">${r.roas!=null?r.roas.toFixed(2)+'x':'—'}</td>
+      <td class="r">${phP > 0 ? phP : '—'}</td>
+      <td class="r">${cpaTagFB(phCPA)}</td>
+      <td class="r">${phROAS!=null?phROAS.toFixed(2)+'x':'—'}</td>
     </tr>`;
   }
 
