@@ -2644,12 +2644,12 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": null,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 3,
+    "ph_forms": 4,
+    "ph_purchases": 1,
+    "appts_per_click": 6.38,
+    "forms_per_appt": 133.33,
+    "purch_per_form": 25.0
    },
    {
     "province": "Quebec",
@@ -2663,11 +2663,11 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 0,
+    "ph_appts": 1,
     "ph_forms": 0,
     "ph_purchases": 0,
-    "appts_per_click": null,
-    "forms_per_appt": null,
+    "appts_per_click": 5.88,
+    "forms_per_appt": 0.0,
     "purch_per_form": null
    },
    {
@@ -2683,11 +2683,11 @@
     "cpa": null,
     "roas": null,
     "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
+    "ph_forms": 1,
+    "ph_purchases": 1,
     "appts_per_click": null,
     "forms_per_appt": null,
-    "purch_per_form": null
+    "purch_per_form": 100.0
    }
   ],
   "7d": [
@@ -2703,12 +2703,12 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": null,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 26,
+    "ph_forms": 10,
+    "ph_purchases": 3,
+    "appts_per_click": 8.15,
+    "forms_per_appt": 38.46,
+    "purch_per_form": 30.0
    },
    {
     "province": "Quebec",
@@ -2722,11 +2722,11 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 0,
+    "ph_appts": 3,
     "ph_forms": 0,
     "ph_purchases": 0,
-    "appts_per_click": null,
-    "forms_per_appt": null,
+    "appts_per_click": 2.46,
+    "forms_per_appt": 0.0,
     "purch_per_form": null
    },
    {
@@ -2741,12 +2741,12 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 0,
-    "ph_forms": 0,
-    "ph_purchases": 0,
-    "appts_per_click": null,
-    "forms_per_appt": null,
-    "purch_per_form": null
+    "ph_appts": 9,
+    "ph_forms": 7,
+    "ph_purchases": 1,
+    "appts_per_click": 7.03,
+    "forms_per_appt": 77.78,
+    "purch_per_form": 14.29
    }
   ],
   "14d": [
@@ -2762,12 +2762,12 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 48,
-    "ph_forms": 15,
-    "ph_purchases": 7,
-    "appts_per_click": 5.61,
-    "forms_per_appt": 31.25,
-    "purch_per_form": 46.67
+    "ph_appts": 46,
+    "ph_forms": 14,
+    "ph_purchases": 6,
+    "appts_per_click": 5.37,
+    "forms_per_appt": 30.43,
+    "purch_per_form": 42.86
    },
    {
     "province": "Quebec",
@@ -2781,11 +2781,11 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 8,
+    "ph_appts": 9,
     "ph_forms": 2,
     "ph_purchases": 0,
-    "appts_per_click": 3.16,
-    "forms_per_appt": 25.0,
+    "appts_per_click": 3.56,
+    "forms_per_appt": 22.22,
     "purch_per_form": 0.0
    },
    {
@@ -2800,11 +2800,11 @@
     "scroll99": 0,
     "cpa": null,
     "roas": null,
-    "ph_appts": 19,
+    "ph_appts": 15,
     "ph_forms": 9,
     "ph_purchases": 2,
-    "appts_per_click": 8.15,
-    "forms_per_appt": 47.37,
+    "appts_per_click": 6.44,
+    "forms_per_appt": 60.0,
     "purch_per_form": 22.22
    }
   ]
