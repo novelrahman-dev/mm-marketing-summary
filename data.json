@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15 17:30 UTC",
+  "generated_at": "2026-07-15 21:45 UTC",
   "date_yesterday": "2026-07-14",
   "date_range_14d": "2026-07-01 to 2026-07-14",
   "totals": {
@@ -774,6 +774,21 @@
       "appts_per_click": 10.43,
       "forms_per_appt": 27.03,
       "purch_per_form": 70.0
+    },
+    {
+      "date": "2026-07-15",
+      "cost": 2222.76,
+      "clicks": 716,
+      "impressions": 7396,
+      "purchases": 6.5,
+      "cpa": 341.96,
+      "roas": 0.86,
+      "ph_appts": 76,
+      "ph_forms": 15,
+      "ph_purchases": 13,
+      "appts_per_click": 10.61,
+      "forms_per_appt": 19.74,
+      "purch_per_form": 86.67
     }
   ],
   "channel_funnel": [],
@@ -931,6 +946,17 @@
       "forms_per_appt": 25.53,
       "purch_per_form": 95.83,
       "cvr": 2.02
+    },
+    {
+      "date": "2026-07-15",
+      "sessions": 1858,
+      "appt_sessions": 131,
+      "form_sessions": 40,
+      "purchase_sessions": 47,
+      "appts_per_session": 7.05,
+      "forms_per_appt": 30.53,
+      "purch_per_form": 117.5,
+      "cvr": 2.53
     }
   ],
   "ga4_channel_funnel": [
@@ -2043,6 +2069,30 @@
         "forms_per_appt": 25.0,
         "purch_per_form": 0.0
       }
+    },
+    {
+      "date": "2026-07-15",
+      "impressions": 18370,
+      "reach": 15202,
+      "frequency": 1.2084,
+      "link_clicks": 96,
+      "cpp": 25.2,
+      "thumbstop_pct": 0.0447,
+      "hold_rate_pct": 0.1851,
+      "ctr": 0.0052,
+      "cpc": 3.99,
+      "spend": 383.09,
+      "purchases": 2.0,
+      "cpa": 191.54,
+      "roas": 1.54,
+      "funnel": {
+        "ph_appts": 8,
+        "ph_forms": 3,
+        "ph_purchases": 1,
+        "appts_per_click": 8.33,
+        "forms_per_appt": 37.5,
+        "purch_per_form": 33.33
+      }
     }
   ],
   "google_region": {
@@ -3092,5 +3142,6 @@
     "holding": 1,
     "new": 0,
     "hidden": 5
-  }
+  },
+  "date_today": "2026-07-15"
 }
