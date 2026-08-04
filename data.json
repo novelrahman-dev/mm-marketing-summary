@@ -1,8 +1,7 @@
 {
-  "generated_at": "2026-08-04 10:40 UTC",
+  "generated_at": "2026-08-04 13:10 UTC",
   "date_yesterday": "2026-08-03",
   "date_range_14d": "2026-07-21 to 2026-08-03",
-  "posthog_note": "PostHog query engine was unavailable at build time (2026-08-04); funnel overlays (site funnel, Google/FB appts-forms-purchases, regional PostHog columns) carried forward from the 2026-08-03 run (through Aug 2). Windsor spend/purchase/CPA/ROAS and Motion data are fresh through Aug 3. To be patched when PostHog recovers.",
   "totals": {
     "yesterday": {
       "cost": 4236.14,
@@ -14,12 +13,12 @@
       "cpc": 3.98,
       "roas": 1.1,
       "funnel": {
-        "ph_appts": 0,
-        "ph_forms": 0,
-        "ph_purchases": 0,
-        "appts_per_click": 0.0,
-        "forms_per_appt": null,
-        "purch_per_form": null
+        "ph_appts": 82,
+        "ph_forms": 13,
+        "ph_purchases": 11,
+        "appts_per_click": 7.7,
+        "forms_per_appt": 15.85,
+        "purch_per_form": 84.62
       }
     },
     "7d": {
@@ -32,12 +31,12 @@
       "cpc": 3.65,
       "roas": 1.12,
       "funnel": {
-        "ph_appts": 561,
-        "ph_forms": 161,
-        "ph_purchases": 97,
-        "appts_per_click": 7.38,
-        "forms_per_appt": 28.7,
-        "purch_per_form": 60.25
+        "ph_appts": 653,
+        "ph_forms": 178,
+        "ph_purchases": 111,
+        "appts_per_click": 8.59,
+        "forms_per_appt": 27.26,
+        "purch_per_form": 62.36
       }
     },
     "14d": {
@@ -50,12 +49,12 @@
       "cpc": 3.48,
       "roas": 1.33,
       "funnel": {
-        "ph_appts": 1199,
-        "ph_forms": 343,
-        "ph_purchases": 207,
-        "appts_per_click": 8.17,
-        "forms_per_appt": 28.61,
-        "purch_per_form": 60.35
+        "ph_appts": 1271,
+        "ph_forms": 356,
+        "ph_purchases": 218,
+        "appts_per_click": 8.66,
+        "forms_per_appt": 28.01,
+        "purch_per_form": 61.24
       }
     }
   },
@@ -81,12 +80,12 @@
       "purchases_14d": 83.75,
       "cpa_14d": 250.43,
       "avg_roas_14d": 1.07,
-      "ph_appts": 347,
-      "ph_forms": 115,
-      "ph_purchases": 56,
-      "funnel_appts_per_click": 5.53,
-      "funnel_forms_per_appt": 33.14,
-      "funnel_purchases_per_form": 48.7
+      "ph_appts": 351,
+      "ph_forms": 119,
+      "ph_purchases": 59,
+      "funnel_appts_per_click": 5.6,
+      "funnel_forms_per_appt": 33.9,
+      "funnel_purchases_per_form": 49.58
     },
     {
       "campaign": "PMax_CA_Treatments_BC [NB]",
@@ -109,12 +108,12 @@
       "purchases_14d": 21.96,
       "cpa_14d": 207.71,
       "avg_roas_14d": 1.36,
-      "ph_appts": 103,
-      "ph_forms": 35,
+      "ph_appts": 99,
+      "ph_forms": 33,
       "ph_purchases": 16,
-      "funnel_appts_per_click": 5.12,
-      "funnel_forms_per_appt": 33.98,
-      "funnel_purchases_per_form": 45.71
+      "funnel_appts_per_click": 4.93,
+      "funnel_forms_per_appt": 33.33,
+      "funnel_purchases_per_form": 48.48
     },
     {
       "campaign": "Search_QC_FR_Treatments_tCPA_Portfolio_bid_Account_default [NB]",
@@ -137,11 +136,11 @@
       "purchases_14d": 12.52,
       "cpa_14d": 322.31,
       "avg_roas_14d": 0.92,
-      "ph_appts": 93,
+      "ph_appts": 101,
       "ph_forms": 16,
       "ph_purchases": 8,
-      "funnel_appts_per_click": 11.12,
-      "funnel_forms_per_appt": 17.2,
+      "funnel_appts_per_click": 12.08,
+      "funnel_forms_per_appt": 15.84,
       "funnel_purchases_per_form": 50.0
     },
     {
@@ -165,12 +164,12 @@
       "purchases_14d": 5.0,
       "cpa_14d": 718.29,
       "avg_roas_14d": 0.41,
-      "ph_appts": 34,
-      "ph_forms": 10,
-      "ph_purchases": 3,
-      "funnel_appts_per_click": 6.22,
-      "funnel_forms_per_appt": 29.41,
-      "funnel_purchases_per_form": 30.0
+      "ph_appts": 40,
+      "ph_forms": 9,
+      "ph_purchases": 2,
+      "funnel_appts_per_click": 7.31,
+      "funnel_forms_per_appt": 22.5,
+      "funnel_purchases_per_form": 22.22
     },
     {
       "campaign": "Search_CA_Max_clicks [Brand]",
@@ -193,12 +192,12 @@
       "purchases_14d": 55.46,
       "cpa_14d": 55.33,
       "avg_roas_14d": 4.66,
-      "ph_appts": 236,
-      "ph_forms": 82,
-      "ph_purchases": 83,
-      "funnel_appts_per_click": 16.99,
-      "funnel_forms_per_appt": 34.75,
-      "funnel_purchases_per_form": 101.22
+      "ph_appts": 232,
+      "ph_forms": 75,
+      "ph_purchases": 82,
+      "funnel_appts_per_click": 16.7,
+      "funnel_forms_per_appt": 32.33,
+      "funnel_purchases_per_form": 109.33
     },
     {
       "campaign": "Search_CA_EN_Clinic_tCPA [NB]",
@@ -221,12 +220,12 @@
       "purchases_14d": 24.0,
       "cpa_14d": 124.51,
       "avg_roas_14d": 2.17,
-      "ph_appts": 142,
-      "ph_forms": 36,
-      "ph_purchases": 16,
-      "funnel_appts_per_click": 17.23,
-      "funnel_forms_per_appt": 25.35,
-      "funnel_purchases_per_form": 44.44
+      "ph_appts": 144,
+      "ph_forms": 34,
+      "ph_purchases": 15,
+      "funnel_appts_per_click": 17.48,
+      "funnel_forms_per_appt": 23.61,
+      "funnel_purchases_per_form": 44.12
     },
     {
       "campaign": "Search_ON_Menopause_clinic_tCPA [NB]",
@@ -249,12 +248,12 @@
       "purchases_14d": 13.3,
       "cpa_14d": 221.64,
       "avg_roas_14d": 1.24,
-      "ph_appts": 44,
-      "ph_forms": 15,
-      "ph_purchases": 10,
-      "funnel_appts_per_click": 8.98,
-      "funnel_forms_per_appt": 34.09,
-      "funnel_purchases_per_form": 66.67
+      "ph_appts": 43,
+      "ph_forms": 13,
+      "ph_purchases": 9,
+      "funnel_appts_per_click": 8.78,
+      "funnel_forms_per_appt": 30.23,
+      "funnel_purchases_per_form": 69.23
     },
     {
       "campaign": "Search_QC_FR_Clinique_Hormonotherapie_tCPA [NB]",
@@ -277,12 +276,12 @@
       "purchases_14d": 11.97,
       "cpa_14d": 215.94,
       "avg_roas_14d": 1.37,
-      "ph_appts": 100,
-      "ph_forms": 24,
-      "ph_purchases": 14,
-      "funnel_appts_per_click": 16.1,
-      "funnel_forms_per_appt": 24.0,
-      "funnel_purchases_per_form": 58.33
+      "ph_appts": 99,
+      "ph_forms": 22,
+      "ph_purchases": 13,
+      "funnel_appts_per_click": 15.94,
+      "funnel_forms_per_appt": 22.22,
+      "funnel_purchases_per_form": 59.09
     },
     {
       "campaign": "Search_CA_Treatments_BCNSMB_tCPA [NB]",
@@ -305,12 +304,12 @@
       "purchases_14d": 3.0,
       "cpa_14d": 511.94,
       "avg_roas_14d": 0.58,
-      "ph_appts": 23,
-      "ph_forms": 5,
-      "ph_purchases": 2,
-      "funnel_appts_per_click": 9.54,
-      "funnel_forms_per_appt": 21.74,
-      "funnel_purchases_per_form": 40.0
+      "ph_appts": 21,
+      "ph_forms": 4,
+      "ph_purchases": 1,
+      "funnel_appts_per_click": 8.71,
+      "funnel_forms_per_appt": 19.05,
+      "funnel_purchases_per_form": 25.0
     },
     {
       "campaign": "Search_ON_AB_Clinic_tCPA [NB]",
@@ -333,12 +332,12 @@
       "purchases_14d": 6.29,
       "cpa_14d": 199.02,
       "avg_roas_14d": 1.48,
-      "ph_appts": 92,
-      "ph_forms": 14,
-      "ph_purchases": 6,
-      "funnel_appts_per_click": 16.67,
-      "funnel_forms_per_appt": 15.22,
-      "funnel_purchases_per_form": 42.86
+      "ph_appts": 83,
+      "ph_forms": 11,
+      "ph_purchases": 4,
+      "funnel_appts_per_click": 15.04,
+      "funnel_forms_per_appt": 13.25,
+      "funnel_purchases_per_form": 36.36
     },
     {
       "campaign": "PMax_CA_Treatments_AB [NB]",
@@ -361,11 +360,11 @@
       "purchases_14d": 6.81,
       "cpa_14d": 182.94,
       "avg_roas_14d": 1.61,
-      "ph_appts": 29,
+      "ph_appts": 27,
       "ph_forms": 7,
       "ph_purchases": 4,
-      "funnel_appts_per_click": 6.13,
-      "funnel_forms_per_appt": 24.14,
+      "funnel_appts_per_click": 5.71,
+      "funnel_forms_per_appt": 25.93,
       "funnel_purchases_per_form": 57.14
     },
     {
@@ -389,12 +388,12 @@
       "purchases_14d": 0.55,
       "cpa_14d": 1248.47,
       "avg_roas_14d": 0.24,
-      "ph_appts": 7,
-      "ph_forms": 5,
-      "ph_purchases": 2,
-      "funnel_appts_per_click": 6.36,
-      "funnel_forms_per_appt": 71.43,
-      "funnel_purchases_per_form": 40.0
+      "ph_appts": 5,
+      "ph_forms": 4,
+      "ph_purchases": 1,
+      "funnel_appts_per_click": 4.55,
+      "funnel_forms_per_appt": 80.0,
+      "funnel_purchases_per_form": 25.0
     },
     {
       "campaign": "Search_CA_Menopause_clinic_BCNSMB_tCPA [NB]",
@@ -417,12 +416,12 @@
       "purchases_14d": 1.5,
       "cpa_14d": 403.08,
       "avg_roas_14d": 0.73,
-      "ph_appts": 11,
-      "ph_forms": 4,
+      "ph_appts": 9,
+      "ph_forms": 3,
       "ph_purchases": 1,
-      "funnel_appts_per_click": 12.36,
-      "funnel_forms_per_appt": 36.36,
-      "funnel_purchases_per_form": 25.0
+      "funnel_appts_per_click": 10.11,
+      "funnel_forms_per_appt": 33.33,
+      "funnel_purchases_per_form": 33.33
     },
     {
       "campaign": "Search_CA_Treatments_BCNSMB_tCPA [NB] Test_Alberta_Treatment",
@@ -445,11 +444,11 @@
       "purchases_14d": 3.6,
       "cpa_14d": 149.63,
       "avg_roas_14d": 1.97,
-      "ph_appts": 11,
+      "ph_appts": 10,
       "ph_forms": 2,
       "ph_purchases": 2,
-      "funnel_appts_per_click": 9.17,
-      "funnel_forms_per_appt": 18.18,
+      "funnel_appts_per_click": 8.33,
+      "funnel_forms_per_appt": 20.0,
       "funnel_purchases_per_form": 100.0
     },
     {
@@ -518,12 +517,12 @@
       "purchases": 24.98,
       "cpa": 129.24,
       "roas": 2.1,
-      "ph_appts": 121,
-      "ph_forms": 32,
-      "ph_purchases": 19,
-      "appts_per_click": 11.47,
-      "forms_per_appt": 26.45,
-      "purch_per_form": 59.38
+      "ph_appts": 101,
+      "ph_forms": 28,
+      "ph_purchases": 16,
+      "appts_per_click": 9.57,
+      "forms_per_appt": 27.72,
+      "purch_per_form": 57.14
     },
     {
       "date": "2026-07-22",
@@ -698,12 +697,12 @@
       "purchases": 9.0,
       "cpa": 414.96,
       "roas": 0.71,
-      "ph_appts": 71,
-      "ph_forms": 20,
-      "ph_purchases": 10,
-      "appts_per_click": 7.16,
-      "forms_per_appt": 28.17,
-      "purch_per_form": 50.0
+      "ph_appts": 81,
+      "ph_forms": 24,
+      "ph_purchases": 13,
+      "appts_per_click": 8.17,
+      "forms_per_appt": 29.63,
+      "purch_per_form": 54.17
     },
     {
       "date": "2026-08-03",
@@ -713,12 +712,12 @@
       "purchases": 15.81,
       "cpa": 267.9,
       "roas": 1.1,
-      "ph_appts": 0,
-      "ph_forms": 0,
-      "ph_purchases": 0,
-      "appts_per_click": 0.0,
-      "forms_per_appt": null,
-      "purch_per_form": null
+      "ph_appts": 82,
+      "ph_forms": 13,
+      "ph_purchases": 11,
+      "appts_per_click": 7.7,
+      "forms_per_appt": 15.85,
+      "purch_per_form": 84.62
     }
   ],
   "channel_funnel": [],
@@ -857,14 +856,25 @@
     },
     {
       "date": "2026-08-02",
-      "sessions": 1616,
-      "appt_sessions": 97,
-      "form_sessions": 32,
-      "purchase_sessions": 23,
-      "appts_per_session": 6.0,
-      "forms_per_appt": 32.99,
-      "purch_per_form": 71.88,
-      "cvr": 1.42
+      "sessions": 2021,
+      "appt_sessions": 117,
+      "form_sessions": 42,
+      "purchase_sessions": 29,
+      "appts_per_session": 5.79,
+      "forms_per_appt": 35.9,
+      "purch_per_form": 69.05,
+      "cvr": 1.43
+    },
+    {
+      "date": "2026-08-03",
+      "sessions": 2181,
+      "appt_sessions": 121,
+      "form_sessions": 40,
+      "purchase_sessions": 39,
+      "appts_per_session": 5.55,
+      "forms_per_appt": 33.06,
+      "purch_per_form": 97.5,
+      "cvr": 1.79
     }
   ],
   "ga4_channel_funnel": [
@@ -1209,12 +1219,12 @@
       "scroll90": 17,
       "scroll99": 10,
       "funnel": {
-        "ph_appts": 0,
-        "ph_forms": 0,
-        "ph_purchases": 0,
-        "appts_per_click": 0.0,
-        "forms_per_appt": null,
-        "purch_per_form": null
+        "ph_appts": 8,
+        "ph_forms": 6,
+        "ph_purchases": 3,
+        "appts_per_click": 3.52,
+        "forms_per_appt": 75.0,
+        "purch_per_form": 50.0
       }
     },
     "7d": {
@@ -1235,12 +1245,12 @@
       "scroll90": 103,
       "scroll99": 63,
       "funnel": {
-        "ph_appts": 48,
-        "ph_forms": 23,
-        "ph_purchases": 8,
-        "appts_per_click": 3.86,
-        "forms_per_appt": 47.92,
-        "purch_per_form": 34.78
+        "ph_appts": 63,
+        "ph_forms": 33,
+        "ph_purchases": 12,
+        "appts_per_click": 5.06,
+        "forms_per_appt": 52.38,
+        "purch_per_form": 36.36
       }
     },
     "14d": {
@@ -1261,12 +1271,12 @@
       "scroll90": 184,
       "scroll99": 101,
       "funnel": {
-        "ph_appts": 110,
-        "ph_forms": 45,
-        "ph_purchases": 11,
-        "appts_per_click": 5.09,
-        "forms_per_appt": 40.91,
-        "purch_per_form": 24.44
+        "ph_appts": 124,
+        "ph_forms": 55,
+        "ph_purchases": 15,
+        "appts_per_click": 5.73,
+        "forms_per_appt": 44.35,
+        "purch_per_form": 27.27
       }
     }
   },
@@ -1290,12 +1300,12 @@
       "cpa": 98.6,
       "roas": 2.99,
       "funnel": {
-        "ph_appts": 7,
-        "ph_forms": 5,
-        "ph_purchases": 0,
-        "appts_per_click": 0.59,
-        "forms_per_appt": 71.43,
-        "purch_per_form": 0.0
+        "ph_appts": 14,
+        "ph_forms": 7,
+        "ph_purchases": 3,
+        "appts_per_click": 1.18,
+        "forms_per_appt": 50.0,
+        "purch_per_form": 42.86
       }
     },
     {
@@ -1344,11 +1354,11 @@
       "cpa": 32.63,
       "roas": 9.04,
       "funnel": {
-        "ph_appts": 0,
+        "ph_appts": 1,
         "ph_forms": 0,
         "ph_purchases": 0,
-        "appts_per_click": 0.0,
-        "forms_per_appt": null,
+        "appts_per_click": 0.27,
+        "forms_per_appt": 0.0,
         "purch_per_form": null
       }
     },
@@ -1505,11 +1515,11 @@
       "cpa": 46.76,
       "roas": 6.31,
       "funnel": {
-        "ph_appts": 7,
+        "ph_appts": 6,
         "ph_forms": 3,
         "ph_purchases": 1,
-        "appts_per_click": 6.86,
-        "forms_per_appt": 42.86,
+        "appts_per_click": 5.88,
+        "forms_per_appt": 50.0,
         "purch_per_form": 33.33
       }
     },
@@ -1793,12 +1803,12 @@
       "cpa": 246.68,
       "roas": 1.2,
       "funnel": {
-        "ph_appts": 3,
-        "ph_forms": 3,
-        "ph_purchases": 0,
-        "appts_per_click": 1.36,
-        "forms_per_appt": 100.0,
-        "purch_per_form": 0.0
+        "ph_appts": 10,
+        "ph_forms": 7,
+        "ph_purchases": 1,
+        "appts_per_click": 4.55,
+        "forms_per_appt": 70.0,
+        "purch_per_form": 14.29
       }
     },
     {
@@ -1817,12 +1827,12 @@
       "cpa": 73.29,
       "roas": 4.03,
       "funnel": {
-        "ph_appts": 0,
-        "ph_forms": 0,
-        "ph_purchases": 0,
-        "appts_per_click": 0.0,
-        "forms_per_appt": null,
-        "purch_per_form": null
+        "ph_appts": 8,
+        "ph_forms": 6,
+        "ph_purchases": 3,
+        "appts_per_click": 3.52,
+        "forms_per_appt": 75.0,
+        "purch_per_form": 50.0
       }
     }
   ],
@@ -1838,12 +1848,12 @@
         "purchases": 3.93,
         "cpa": 307.42,
         "roas": 0.96,
-        "ph_appts": 24,
-        "ph_forms": 7,
-        "ph_purchases": 3,
-        "appts_per_click": 7.04,
-        "forms_per_appt": 29.17,
-        "purch_per_form": 42.86
+        "ph_appts": 15,
+        "ph_forms": 4,
+        "ph_purchases": 6,
+        "appts_per_click": 4.4,
+        "forms_per_appt": 26.67,
+        "purch_per_form": 150.0
       },
       {
         "province": "Quebec",
@@ -1855,12 +1865,12 @@
         "purchases": 7.88,
         "cpa": 161.21,
         "roas": 1.83,
-        "ph_appts": 28,
-        "ph_forms": 3,
-        "ph_purchases": 2,
-        "appts_per_click": 9.52,
-        "forms_per_appt": 10.71,
-        "purch_per_form": 66.67
+        "ph_appts": 40,
+        "ph_forms": 9,
+        "ph_purchases": 7,
+        "appts_per_click": 13.61,
+        "forms_per_appt": 22.5,
+        "purch_per_form": 77.78
       },
       {
         "province": "British Columbia",
@@ -1872,12 +1882,12 @@
         "purchases": 3.0,
         "cpa": 279.88,
         "roas": 1.05,
-        "ph_appts": 16,
-        "ph_forms": 5,
-        "ph_purchases": 3,
-        "appts_per_click": 8.04,
-        "forms_per_appt": 31.25,
-        "purch_per_form": 60.0
+        "ph_appts": 12,
+        "ph_forms": 1,
+        "ph_purchases": 1,
+        "appts_per_click": 6.03,
+        "forms_per_appt": 8.33,
+        "purch_per_form": 100.0
       },
       {
         "province": "Alberta",
@@ -1890,11 +1900,11 @@
         "cpa": null,
         "roas": 0.0,
         "ph_appts": 3,
-        "ph_forms": 3,
-        "ph_purchases": 1,
+        "ph_forms": 1,
+        "ph_purchases": 0,
         "appts_per_click": 3.03,
-        "forms_per_appt": 100.0,
-        "purch_per_form": 33.33
+        "forms_per_appt": 33.33,
+        "purch_per_form": 0.0
       },
       {
         "province": "Nova Scotia",
@@ -1906,12 +1916,12 @@
         "purchases": 0.0,
         "cpa": null,
         "roas": 0.0,
-        "ph_appts": 3,
-        "ph_forms": 1,
+        "ph_appts": 5,
+        "ph_forms": 0,
         "ph_purchases": 0,
-        "appts_per_click": 8.11,
-        "forms_per_appt": 33.33,
-        "purch_per_form": 0.0
+        "appts_per_click": 13.51,
+        "forms_per_appt": 0.0,
+        "purch_per_form": null
       },
       {
         "province": "Manitoba",
@@ -1923,12 +1933,12 @@
         "purchases": 0.0,
         "cpa": null,
         "roas": 0.0,
-        "ph_appts": 2,
-        "ph_forms": 1,
+        "ph_appts": 1,
+        "ph_forms": 0,
         "ph_purchases": 0,
-        "appts_per_click": 4.76,
-        "forms_per_appt": 50.0,
-        "purch_per_form": 0.0
+        "appts_per_click": 2.38,
+        "forms_per_appt": 0.0,
+        "purch_per_form": null
       },
       {
         "province": "New Brunswick",
@@ -1940,12 +1950,12 @@
         "purchases": 1.0,
         "cpa": 186.71,
         "roas": 1.58,
-        "ph_appts": 1,
-        "ph_forms": 0,
+        "ph_appts": 3,
+        "ph_forms": 1,
         "ph_purchases": 0,
-        "appts_per_click": 2.63,
-        "forms_per_appt": 0.0,
-        "purch_per_form": null
+        "appts_per_click": 7.89,
+        "forms_per_appt": 33.33,
+        "purch_per_form": 0.0
       },
       {
         "province": "Saskatchewan",
@@ -1974,11 +1984,11 @@
         "purchases": 0.0,
         "cpa": null,
         "roas": 0.0,
-        "ph_appts": 0,
+        "ph_appts": 1,
         "ph_forms": 0,
         "ph_purchases": 0,
-        "appts_per_click": 0.0,
-        "forms_per_appt": null,
+        "appts_per_click": 33.33,
+        "forms_per_appt": 0.0,
         "purch_per_form": null
       },
       {
@@ -1991,11 +2001,11 @@
         "purchases": 0.0,
         "cpa": null,
         "roas": 0.0,
-        "ph_appts": 1,
+        "ph_appts": 0,
         "ph_forms": 0,
         "ph_purchases": 0,
-        "appts_per_click": 25.0,
-        "forms_per_appt": 0.0,
+        "appts_per_click": 0.0,
+        "forms_per_appt": null,
         "purch_per_form": null
       }
     ],
@@ -2010,12 +2020,12 @@
         "purchases": 37.02,
         "cpa": 252.71,
         "roas": 1.07,
-        "ph_appts": 193,
-        "ph_forms": 56,
-        "ph_purchases": 33,
-        "appts_per_click": 7.2,
-        "forms_per_appt": 29.02,
-        "purch_per_form": 58.93
+        "ph_appts": 179,
+        "ph_forms": 50,
+        "ph_purchases": 35,
+        "appts_per_click": 6.68,
+        "forms_per_appt": 27.93,
+        "purch_per_form": 70.0
       },
       {
         "province": "Quebec",
@@ -2027,12 +2037,12 @@
         "purchases": 31.46,
         "cpa": 225.08,
         "roas": 1.23,
-        "ph_appts": 212,
-        "ph_forms": 46,
-        "ph_purchases": 33,
-        "appts_per_click": 12.9,
-        "forms_per_appt": 21.7,
-        "purch_per_form": 71.74
+        "ph_appts": 206,
+        "ph_forms": 43,
+        "ph_purchases": 30,
+        "appts_per_click": 12.53,
+        "forms_per_appt": 20.87,
+        "purch_per_form": 69.77
       },
       {
         "province": "British Columbia",
@@ -2044,12 +2054,12 @@
         "purchases": 17.45,
         "cpa": 285.91,
         "roas": 0.97,
-        "ph_appts": 127,
-        "ph_forms": 45,
-        "ph_purchases": 26,
-        "appts_per_click": 8.26,
-        "forms_per_appt": 35.43,
-        "purch_per_form": 57.78
+        "ph_appts": 112,
+        "ph_forms": 39,
+        "ph_purchases": 23,
+        "appts_per_click": 7.29,
+        "forms_per_appt": 34.82,
+        "purch_per_form": 58.97
       },
       {
         "province": "Alberta",
@@ -2062,11 +2072,11 @@
         "cpa": 258.76,
         "roas": 1.05,
         "ph_appts": 20,
-        "ph_forms": 8,
+        "ph_forms": 9,
         "ph_purchases": 6,
         "appts_per_click": 2.29,
-        "forms_per_appt": 40.0,
-        "purch_per_form": 75.0
+        "forms_per_appt": 45.0,
+        "purch_per_form": 66.67
       },
       {
         "province": "Nova Scotia",
@@ -2078,12 +2088,12 @@
         "purchases": 7.0,
         "cpa": 161.91,
         "roas": 1.56,
-        "ph_appts": 17,
-        "ph_forms": 4,
+        "ph_appts": 18,
+        "ph_forms": 3,
         "ph_purchases": 3,
-        "appts_per_click": 5.03,
-        "forms_per_appt": 23.53,
-        "purch_per_form": 75.0
+        "appts_per_click": 5.33,
+        "forms_per_appt": 16.67,
+        "purch_per_form": 100.0
       },
       {
         "province": "Manitoba",
@@ -2095,12 +2105,12 @@
         "purchases": 2.0,
         "cpa": 417.97,
         "roas": 0.71,
-        "ph_appts": 20,
-        "ph_forms": 8,
+        "ph_appts": 15,
+        "ph_forms": 7,
         "ph_purchases": 1,
-        "appts_per_click": 9.35,
-        "forms_per_appt": 40.0,
-        "purch_per_form": 12.5
+        "appts_per_click": 7.01,
+        "forms_per_appt": 46.67,
+        "purch_per_form": 14.29
       },
       {
         "province": "New Brunswick",
@@ -2112,12 +2122,12 @@
         "purchases": 3.0,
         "cpa": 305.88,
         "roas": 0.96,
-        "ph_appts": 11,
-        "ph_forms": 4,
-        "ph_purchases": 3,
-        "appts_per_click": 4.68,
-        "forms_per_appt": 36.36,
-        "purch_per_form": 75.0
+        "ph_appts": 12,
+        "ph_forms": 3,
+        "ph_purchases": 2,
+        "appts_per_click": 5.11,
+        "forms_per_appt": 25.0,
+        "purch_per_form": 66.67
       },
       {
         "province": "Saskatchewan",
@@ -2130,11 +2140,11 @@
         "cpa": 81.46,
         "roas": 3.62,
         "ph_appts": 3,
-        "ph_forms": 2,
-        "ph_purchases": 1,
+        "ph_forms": 1,
+        "ph_purchases": 0,
         "appts_per_click": 5.88,
-        "forms_per_appt": 66.67,
-        "purch_per_form": 50.0
+        "forms_per_appt": 33.33,
+        "purch_per_form": 0.0
       },
       {
         "province": "Newfoundland and Labrador",
@@ -2182,12 +2192,12 @@
         "purchases": 73.41,
         "cpa": 237.49,
         "roas": 1.12,
-        "ph_appts": 388,
-        "ph_forms": 110,
-        "ph_purchases": 66,
-        "appts_per_click": 7.52,
-        "forms_per_appt": 28.35,
-        "purch_per_form": 60.0
+        "ph_appts": 374,
+        "ph_forms": 103,
+        "ph_purchases": 67,
+        "appts_per_click": 7.25,
+        "forms_per_appt": 27.54,
+        "purch_per_form": 65.05
       },
       {
         "province": "Quebec",
@@ -2199,12 +2209,12 @@
         "purchases": 59.07,
         "cpa": 191.41,
         "roas": 1.38,
-        "ph_appts": 352,
-        "ph_forms": 82,
-        "ph_purchases": 54,
-        "appts_per_click": 13.12,
-        "forms_per_appt": 23.3,
-        "purch_per_form": 65.85
+        "ph_appts": 373,
+        "ph_forms": 84,
+        "ph_purchases": 55,
+        "appts_per_click": 13.9,
+        "forms_per_appt": 22.52,
+        "purch_per_form": 65.48
       },
       {
         "province": "British Columbia",
@@ -2216,12 +2226,12 @@
         "purchases": 39.46,
         "cpa": 250.37,
         "roas": 1.15,
-        "ph_appts": 271,
-        "ph_forms": 98,
+        "ph_appts": 264,
+        "ph_forms": 93,
         "ph_purchases": 53,
-        "appts_per_click": 8.74,
-        "forms_per_appt": 36.16,
-        "purch_per_form": 54.08
+        "appts_per_click": 8.51,
+        "forms_per_appt": 35.23,
+        "purch_per_form": 56.99
       },
       {
         "province": "Alberta",
@@ -2233,12 +2243,12 @@
         "purchases": 31.78,
         "cpa": 205.04,
         "roas": 1.35,
-        "ph_appts": 45,
-        "ph_forms": 19,
-        "ph_purchases": 13,
-        "appts_per_click": 2.31,
-        "forms_per_appt": 42.22,
-        "purch_per_form": 68.42
+        "ph_appts": 46,
+        "ph_forms": 18,
+        "ph_purchases": 11,
+        "appts_per_click": 2.36,
+        "forms_per_appt": 39.13,
+        "purch_per_form": 61.11
       },
       {
         "province": "Nova Scotia",
@@ -2250,12 +2260,12 @@
         "purchases": 15.0,
         "cpa": 149.83,
         "roas": 1.84,
-        "ph_appts": 40,
-        "ph_forms": 10,
+        "ph_appts": 39,
+        "ph_forms": 9,
         "ph_purchases": 5,
-        "appts_per_click": 5.49,
-        "forms_per_appt": 25.0,
-        "purch_per_form": 50.0
+        "appts_per_click": 5.35,
+        "forms_per_appt": 23.08,
+        "purch_per_form": 55.56
       },
       {
         "province": "Manitoba",
@@ -2267,12 +2277,12 @@
         "purchases": 14.0,
         "cpa": 107.05,
         "roas": 2.36,
-        "ph_appts": 35,
-        "ph_forms": 12,
-        "ph_purchases": 4,
-        "appts_per_click": 8.2,
-        "forms_per_appt": 34.29,
-        "purch_per_form": 33.33
+        "ph_appts": 32,
+        "ph_forms": 10,
+        "ph_purchases": 3,
+        "appts_per_click": 7.49,
+        "forms_per_appt": 31.25,
+        "purch_per_form": 30.0
       },
       {
         "province": "New Brunswick",
@@ -2284,11 +2294,11 @@
         "purchases": 10.0,
         "cpa": 171.18,
         "roas": 1.72,
-        "ph_appts": 20,
-        "ph_forms": 7,
-        "ph_purchases": 7,
-        "appts_per_click": 4.3,
-        "forms_per_appt": 35.0,
+        "ph_appts": 23,
+        "ph_forms": 6,
+        "ph_purchases": 6,
+        "appts_per_click": 4.95,
+        "forms_per_appt": 26.09,
         "purch_per_form": 100.0
       },
       {
@@ -2318,11 +2328,11 @@
         "purchases": 1.0,
         "cpa": 108.8,
         "roas": 2.71,
-        "ph_appts": 4,
+        "ph_appts": 5,
         "ph_forms": 3,
         "ph_purchases": 1,
-        "appts_per_click": 13.33,
-        "forms_per_appt": 75.0,
+        "appts_per_click": 16.67,
+        "forms_per_appt": 60.0,
         "purch_per_form": 33.33
       },
       {
@@ -2335,12 +2345,12 @@
         "purchases": 2.0,
         "cpa": 49.48,
         "roas": 5.96,
-        "ph_appts": 6,
-        "ph_forms": 1,
+        "ph_appts": 2,
+        "ph_forms": 0,
         "ph_purchases": 0,
-        "appts_per_click": 23.08,
-        "forms_per_appt": 16.67,
-        "purch_per_form": 0.0
+        "appts_per_click": 7.69,
+        "forms_per_appt": 0.0,
+        "purch_per_form": null
       }
     ]
   },
@@ -2356,14 +2366,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": null,
-        "roas": 0.0,
-        "ph_appts": 5,
-        "ph_forms": 3,
-        "ph_purchases": 0,
-        "appts_per_click": 4.0,
-        "forms_per_appt": 60.0,
-        "purch_per_form": 0.0
+        "cpa": 416.52,
+        "roas": 0.71,
+        "ph_appts": 8,
+        "ph_forms": 4,
+        "ph_purchases": 1,
+        "appts_per_click": 6.4,
+        "forms_per_appt": 50.0,
+        "purch_per_form": 25.0
       },
       {
         "province": "Quebec",
@@ -2375,14 +2385,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": null,
-        "roas": 0.0,
-        "ph_appts": 1,
+        "cpa": 83.38,
+        "roas": 3.54,
+        "ph_appts": 2,
         "ph_forms": 1,
-        "ph_purchases": 0,
-        "appts_per_click": 1.69,
-        "forms_per_appt": 100.0,
-        "purch_per_form": 0.0
+        "ph_purchases": 2,
+        "appts_per_click": 3.39,
+        "forms_per_appt": 50.0,
+        "purch_per_form": 200.0
       },
       {
         "province": "British Columbia",
@@ -2394,14 +2404,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": null,
-        "roas": 0.0,
-        "ph_appts": 0,
+        "cpa": 102.43,
+        "roas": 2.88,
+        "ph_appts": 2,
         "ph_forms": 1,
-        "ph_purchases": 0,
-        "appts_per_click": 0.0,
-        "forms_per_appt": null,
-        "purch_per_form": 0.0
+        "ph_purchases": 1,
+        "appts_per_click": 6.06,
+        "forms_per_appt": 50.0,
+        "purch_per_form": 100.0
       }
     ],
     "7d": [
@@ -2415,13 +2425,13 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": 1208.5,
-        "roas": 0.24,
-        "ph_appts": 22,
-        "ph_forms": 8,
-        "ph_purchases": 2,
-        "appts_per_click": 3.1,
-        "forms_per_appt": 36.36,
+        "cpa": 805.67,
+        "roas": 0.37,
+        "ph_appts": 27,
+        "ph_forms": 12,
+        "ph_purchases": 3,
+        "appts_per_click": 3.8,
+        "forms_per_appt": 44.44,
         "purch_per_form": 25.0
       },
       {
@@ -2434,14 +2444,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": 467.56,
-        "roas": 0.63,
-        "ph_appts": 10,
+        "cpa": 233.78,
+        "roas": 1.26,
+        "ph_appts": 12,
         "ph_forms": 4,
-        "ph_purchases": 2,
-        "appts_per_click": 3.72,
-        "forms_per_appt": 40.0,
-        "purch_per_form": 50.0
+        "ph_purchases": 4,
+        "appts_per_click": 4.46,
+        "forms_per_appt": 33.33,
+        "purch_per_form": 100.0
       },
       {
         "province": "British Columbia",
@@ -2453,14 +2463,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": 682.65,
-        "roas": 0.43,
+        "cpa": 341.32,
+        "roas": 0.86,
         "ph_appts": 11,
         "ph_forms": 5,
-        "ph_purchases": 1,
+        "ph_purchases": 2,
         "appts_per_click": 5.19,
         "forms_per_appt": 45.45,
-        "purch_per_form": 20.0
+        "purch_per_form": 40.0
       }
     ],
     "14d": [
@@ -2474,13 +2484,13 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": 1035.24,
-        "roas": 0.28,
-        "ph_appts": 39,
-        "ph_forms": 16,
-        "ph_purchases": 4,
-        "appts_per_click": 3.13,
-        "forms_per_appt": 41.03,
+        "cpa": 828.19,
+        "roas": 0.36,
+        "ph_appts": 45,
+        "ph_forms": 20,
+        "ph_purchases": 5,
+        "appts_per_click": 3.61,
+        "forms_per_appt": 44.44,
         "purch_per_form": 25.0
       },
       {
@@ -2493,14 +2503,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": 829.74,
-        "roas": 0.36,
-        "ph_appts": 15,
-        "ph_forms": 7,
-        "ph_purchases": 2,
-        "appts_per_click": 3.16,
-        "forms_per_appt": 46.67,
-        "purch_per_form": 28.57
+        "cpa": 414.87,
+        "roas": 0.71,
+        "ph_appts": 17,
+        "ph_forms": 8,
+        "ph_purchases": 4,
+        "appts_per_click": 3.58,
+        "forms_per_appt": 47.06,
+        "purch_per_form": 50.0
       },
       {
         "province": "British Columbia",
@@ -2512,14 +2522,14 @@
         "scroll50": 0,
         "scroll90": 0,
         "scroll99": 0,
-        "cpa": 669.02,
-        "roas": 0.44,
-        "ph_appts": 27,
+        "cpa": 446.01,
+        "roas": 0.66,
+        "ph_appts": 24,
         "ph_forms": 11,
-        "ph_purchases": 2,
-        "appts_per_click": 6.98,
-        "forms_per_appt": 40.74,
-        "purch_per_form": 18.18
+        "ph_purchases": 3,
+        "appts_per_click": 6.2,
+        "forms_per_appt": 45.83,
+        "purch_per_form": 27.27
       }
     ]
   },
